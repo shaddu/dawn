@@ -1,1 +1,99 @@
-{"sections":{"banner":{"type":"main-collection-banner","disabled":true,"settings":{"show_collection_description":false,"show_collection_image":true,"color_scheme":"background-1"}},"583de503-95d3-4450-b6ff-eed1ba380363":{"type":"image-banner","blocks":{"template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-heading-1":{"type":"heading","disabled":true,"settings":{"heading":"Image banner","heading_size":"h1"}},"template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-text-1":{"type":"text","disabled":true,"settings":{"text":"Give customers details about the banner image(s) or content on the template.","text_style":"body"}},"template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-buttons-1":{"type":"buttons","disabled":true,"settings":{"button_label_1":"Button label","button_link_1":"","button_style_secondary_1":false,"button_label_2":"Button label","button_link_2":"","button_style_secondary_2":false}}},"block_order":["template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-heading-1","template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-text-1","template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-buttons-1"],"custom_css":["#Banner-template--21506801631513__583de503-95d3-4450-b6ff-eed1ba380363 {margin: 0 auto; max-width: 120rem;}"],"settings":{"image":"{{ collection.image }}","image_overlay_opacity":0,"image_height":"adapt","image_behavior":"none","desktop_content_position":"middle-center","desktop_content_alignment":"center","show_text_box":true,"color_scheme":"","stack_images_on_mobile":true,"mobile_content_alignment":"center","show_text_below":false}},"product-grid":{"type":"main-collection-product-grid","settings":{"products_per_page":24,"columns_desktop":4,"columns_mobile":"2","image_ratio":"adapt","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"enable_filtering":false,"filter_type":"vertical","enable_sorting":true,"padding_top":36,"padding_bottom":36}}},"order":["banner","583de503-95d3-4450-b6ff-eed1ba380363","product-grid"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": false,
+        "show_collection_image": true,
+        "color_scheme": "background-1"
+      }
+    },
+    "583de503-95d3-4450-b6ff-eed1ba380363": {
+      "type": "image-banner",
+      "blocks": {
+        "template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-heading-1": {
+          "type": "heading",
+          "disabled": true,
+          "settings": {
+            "heading": "Image banner",
+            "heading_size": "h1"
+          }
+        },
+        "template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-text-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "Give customers details about the banner image(s) or content on the template.",
+            "text_style": "body"
+          }
+        },
+        "template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-buttons-1": {
+          "type": "buttons",
+          "disabled": true,
+          "settings": {
+            "button_label_1": "Button label",
+            "button_link_1": "",
+            "button_style_secondary_1": false,
+            "button_label_2": "Button label",
+            "button_link_2": "",
+            "button_style_secondary_2": false
+          }
+        }
+      },
+      "block_order": [
+        "template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-heading-1",
+        "template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-text-1",
+        "template--21506593063193__583de503-95d3-4450-b6ff-eed1ba380363-buttons-1"
+      ],
+      "custom_css": [
+        "#Banner-template--21506801631513__583de503-95d3-4450-b6ff-eed1ba380363 {margin: 0 auto; max-width: 120rem;}"
+      ],
+      "settings": {
+        "image": "{{ collection.image }}",
+        "image_overlay_opacity": 0,
+        "image_height": "adapt",
+        "image_behavior": "none",
+        "desktop_content_position": "middle-center",
+        "desktop_content_alignment": "center",
+        "show_text_box": true,
+        "color_scheme": "",
+        "stack_images_on_mobile": true,
+        "mobile_content_alignment": "center",
+        "show_text_below": false
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 24,
+        "columns_desktop": 4,
+        "columns_mobile": "2",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": false,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "583de503-95d3-4450-b6ff-eed1ba380363",
+    "product-grid"
+  ]
+}

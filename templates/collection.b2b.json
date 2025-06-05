@@ -1,1 +1,84 @@
-{"sections":{"banner":{"type":"main-collection-banner","settings":{"show_collection_description":true,"show_collection_image":false,"color_scheme":"background-1"}},"product-grid":{"type":"main-collection-product-grid","disabled":true,"settings":{"products_per_page":24,"columns_desktop":3,"columns_mobile":"2","image_ratio":"adapt","image_shape":"default","show_secondary_image":false,"show_vendor":false,"show_rating":false,"enable_filtering":true,"filter_type":"vertical","enable_sorting":true,"padding_top":36,"padding_bottom":36}},"custom_liquid_AagBM4":{"type":"custom-liquid","settings":{"custom_liquid":"<div style=\"padding-left:10%; font-size: inherit; overflow: hidden;\">\n    <div style=\"overflow:hidden; padding-top:56.25%; position:relative;\">\n        <iframe src=\"https:\/\/lookerstudio.google.com\/embed\/reporting\/fffc1cbb-8aa1-4e70-96d2-76fa70d1b40e\/page\/p_9iufwcq6ed\" style=\"border:0; position:absolute; top:0; left:0; width:90%; height:95%; overflow:hidden;\" allowfullscreen=\"\"  sandbox=\"allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox\" scrolling=\"no\" ><\/iframe>\n    <\/div>\n<\/div>","color_scheme":"","padding_top":40,"padding_bottom":52}},"1711107340a22c6c9d":{"type":"apps","blocks":{"forms_inline_ejPPhQ":{"type":"shopify:\/\/apps\/forms\/blocks\/inline\/8744a304-fcb1-4347-b211-bb6b4759a76a","disabled":true,"settings":{"form_id":"85721","text_color":"#202020","button_background_color":"#202020","button_label_color":"#ffffff","links_color":"#1878b9","errors_color":"#e02229","text_alignment":"center","form_alignment":"center","padding_top":0,"padding_bottom":0,"padding_right":0,"padding_left":0}}},"block_order":["forms_inline_ejPPhQ"],"settings":{"include_margins":true}}},"order":["banner","product-grid","custom_liquid_AagBM4","1711107340a22c6c9d"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "banner": {
+      "type": "main-collection-banner",
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 24,
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "custom_liquid_AagBM4": {
+      "type": "custom-liquid",
+      "settings": {
+        "custom_liquid": "<div style=\"padding-left:10%; font-size: inherit; overflow: hidden;\">\n    <div style=\"overflow:hidden; padding-top:56.25%; position:relative;\">\n        <iframe src=\"https://lookerstudio.google.com/embed/reporting/fffc1cbb-8aa1-4e70-96d2-76fa70d1b40e/page/p_9iufwcq6ed\" style=\"border:0; position:absolute; top:0; left:0; width:90%; height:95%; overflow:hidden;\" allowfullscreen=\"\"  sandbox=\"allow-storage-access-by-user-activation allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox\" scrolling=\"no\" ></iframe>\n    </div>\n</div>",
+        "color_scheme": "",
+        "padding_top": 40,
+        "padding_bottom": 52
+      }
+    },
+    "1711107340a22c6c9d": {
+      "type": "apps",
+      "blocks": {
+        "forms_inline_ejPPhQ": {
+          "type": "shopify://apps/forms/blocks/inline/8744a304-fcb1-4347-b211-bb6b4759a76a",
+          "disabled": true,
+          "settings": {
+            "form_id": "85721",
+            "text_color": "#202020",
+            "button_background_color": "#202020",
+            "button_label_color": "#ffffff",
+            "links_color": "#1878b9",
+            "errors_color": "#e02229",
+            "text_alignment": "center",
+            "form_alignment": "center",
+            "padding_top": 0,
+            "padding_bottom": 0,
+            "padding_right": 0,
+            "padding_left": 0
+          }
+        }
+      },
+      "block_order": [
+        "forms_inline_ejPPhQ"
+      ],
+      "settings": {
+        "include_margins": true
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "product-grid",
+    "custom_liquid_AagBM4",
+    "1711107340a22c6c9d"
+  ]
+}
