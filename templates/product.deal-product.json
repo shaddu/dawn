@@ -3,6 +3,12 @@
         "main": {
             "type": "main-product",
             "blocks": {
+                "aa69a284-d228-4492-b2ec-af28709f0ca4": {
+                    "type": "custom_liquid",
+                    "settings": {
+                        "custom_liquid": "<h1 id=\"dotw\" > <strong>DEAL OF THE WEEK <\/strong> <\/h1>\n<div id=\"timer\">\n  <div id=\"days\"><\/div>\n  <div id=\"hours\"><\/div>\n  <div id=\"minutes\"><\/div>\n  <div id=\"seconds\"><\/div>\n\n<\/div>\n\n<style>\n@import url(https:\/\/fonts.googleapis.com\/css?family=Covered+By+Your+Grace);\n\n#days {\n  font-size: 50px;\n  color: white;\n}\n#hours {\n  font-size: 50px;\n  color: black;\n}\n#minutes {\n  font-size: 50px;\n  color: black;\n}\n#seconds {\n  font-size: 50px;\n  color: white;\n}\n\n#days, #hours, #minutes, #seconds {\n  display: table-cell;\n  line-height: 1;\n  padding: 5px 15px;\n  font-size: 35px;\n  color: white;\n}\n\n#timespan {\n  display: block;\n  font-size: 20px;\n  color: white;\n}\n\n#timer {\n  background: #d11e1f;\n  font-family: 'Covered By Your Grace', cursive;\n  text-align: center;\n  color: white;\n  border-radius:5px;\ndisplay: inline-block;\n\n}\n#dotw{\ntext-align:left;\nfont-family: monospace;\nmargin:0;\nfont-size:34px;\n}\n  \n<\/style>\n\n<script type=\"text\/javascript\">\nfunction makeTimer() {\nvar endTime = new Date(\"{{ product.metafields.custom.endtime}}\");\n\n\/\/var endTime = new Date(\"August 14, 2023 00:00:00 PDT\");\t\t\t\n\t\t\tvar endTime = (Date.parse(endTime )) \/ 1000;\n\n\t\t\tvar now = new Date();\n\t\t\tvar now = (Date.parse(now) \/ 1000);\n\n\t\t\tvar timeLeft = endTime - now;\n\n\t\t\tvar days = Math.floor(timeLeft \/ 86400); \n\t\t\tvar hours = Math.floor((timeLeft - (days * 86400)) \/ 3600);\n\t\t\tvar minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) \/ 60);\n\t\t\tvar seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));\n\n\t\t\tif (hours < \"10\") { hours = \"0\" + hours; }\n\t\t\tif (minutes < \"10\") { minutes = \"0\" + minutes; }\n\t\t\tif (seconds < \"10\") { seconds = \"0\" + seconds; }\n\n\t\t\t\tdocument.getElementById(\"days\").innerHTML = days + \"<span id='timespan'>Days<\/span>\";\n\t\t\tdocument.getElementById(\"hours\").innerHTML = hours + \"<span id='timespan'>Hours<\/span>\";\n\t\t\tdocument.getElementById(\"minutes\").innerHTML = minutes + \"<span id='timespan'>Minutes<\/span>\";\n\t\t\tdocument.getElementById(\"seconds\").innerHTML = seconds + \"<span id='timespan'>Seconds<\/span>\";\t\t\n\n}\n  \n\tsetInterval(function() { makeTimer(); }, 1000);\n<\/script>"
+                    }
+                },
                 "vendor": {
                     "type": "text",
                     "settings": {
@@ -30,26 +36,19 @@
                 "variant_picker": {
                     "type": "variant_picker",
                     "settings": {
-                        "picker_type": "button",
-                        "swatch_shape": "circle"
+                        "picker_type": "button"
                     }
                 },
                 "price": {
                     "type": "price",
                     "settings": {}
                 },
-                "9e4ea1ad-1c88-4089-a2e9-94f3a0c9fd74": {
+                "882f9f66-afec-4a32-bd13-4b68dd20c1d6": {
                     "type": "inventory",
                     "settings": {
                         "text_style": "body",
                         "inventory_threshold": 10,
                         "show_inventory_quantity": true
-                    }
-                },
-                "custom_liquid_LexP6w": {
-                    "type": "custom_liquid",
-                    "settings": {
-                        "custom_liquid": "<style>\n.shimmer {\n    \n    margin: 0 auto;\n    padding: 0 140px 0 0;\n    display: inline;\n    margin-bottom: 0;\n    position: relative; \/* Add this line *\/\n}\n\n.shimmer:before { \/* Add this block *\/\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    border: 1px solid red; \/* Adjust border thickness as needed *\/\n    border-radius: 5px; \/* Adjust border radius as needed *\/\n    pointer-events: none;\n}\n\n.shimmer {\n    text-align: center;\n    color: rgba(255, 255, 255, 0.1);\n    background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));\n    background: -moz-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));\n    background: gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));\n    -webkit-background-size: 35px 100%;\n    -moz-background-size: 35px 100%;\n    background-size: 35px 100%;\n    -webkit-background-clip: text;\n    -moz-background-clip: text;\n    background-clip: text;\n    -webkit-animation-name: shimmer;\n    -moz-animation-name: shimmer;\n    animation-name: shimmer;\n    -webkit-animation-duration: 5s;\n    -moz-animation-duration: 5s;\n    animation-duration: 5s;\n    -webkit-animation-iteration-count: infinite;\n    -moz-animation-iteration-count: infinite;\n    animation-iteration-count: infinite;\n    background-repeat: no-repeat;\n    background-position: 0 0;\n    background-color: #222;\n}\n\n@-moz-keyframes shimmer {\n    0% {\n        background-position: top left;\n    }\n    100% {\n        background-position: top right;\n    }\n}\n\n@-webkit-keyframes shimmer {\n    0% {\n        background-position: top left;\n    }\n    100% {\n        background-position: top right;\n    }\n}\n\n@-o-keyframes shimmer {\n    0% {\n        background-position: top left;\n    }\n    100% {\n        background-position: top right;\n    }\n}\n\n@keyframes shimmer {\n    0% {\n        background-position: top left;\n    }\n    100% {\n        background-position: top right;\n    }\n}\n\n}\n<\/style>\n{% if product.tags contains 'BLACKFRIDAY2024' %}\n<label class=\"shimmer\"\n    style=\"font-size:17px; font-weight: 500;padding:15px\">\n    Save 20% - Use code BLACKFRIDAY2024\n<\/label>\n{% endif %}"
                     }
                 },
                 "description": {
@@ -77,6 +76,7 @@
                 },
                 "collapsible-row-3": {
                     "type": "collapsible_tab",
+                    "disabled": true,
                     "settings": {
                         "heading": "Custom build",
                         "icon": "clipboard",
@@ -98,7 +98,7 @@
                     "settings": {
                         "heading": "Shipping & Returns",
                         "icon": "truck",
-                        "content": "<p>- Free shipping on all orders. For more details on shipping please check our <a href=\"https:\/\/www.breakfreecomputers.co.uk\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">shipping policy.<\/a><\/p><p>- 60 days return on all products. For more details on returns and refunds please check our <a href=\"https:\/\/www.breakfreecomputers.co.uk\/policies\/refund-policy\" target=\"_blank\" title=\"Refund Policy\">refund policy.<\/a><\/p>",
+                        "content": "<p>- Free shipping on all orders. For more details on shipping please check ourÂ <a href=\"https:\/\/www.breakfreecomputers.co.uk\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">shipping policy.<\/a><\/p><p>- 60 days return on all products. For more details on returns and refunds please check ourÂ <a href=\"https:\/\/www.breakfreecomputers.co.uk\/policies\/refund-policy\" target=\"_blank\" title=\"Refund Policy\">refund policy.<\/a><\/p>",
                         "page": ""
                     }
                 },
@@ -149,14 +149,14 @@
                 }
             },
             "block_order": [
+                "aa69a284-d228-4492-b2ec-af28709f0ca4",
                 "vendor",
                 "title",
                 "0575ae14-5ee0-4032-9d11-22d6720acdc4",
                 "f8562418-02d9-400e-a35a-764da93ea2ef",
                 "variant_picker",
                 "price",
-                "9e4ea1ad-1c88-4089-a2e9-94f3a0c9fd74",
-                "custom_liquid_LexP6w",
+                "882f9f66-afec-4a32-bd13-4b68dd20c1d6",
                 "description",
                 "collapsible-row-2",
                 "82adee38-436d-4cfb-9a42-2a6a62876456",
@@ -172,7 +172,6 @@
             ],
             "settings": {
                 "enable_sticky_info": true,
-                "color_scheme": "",
                 "media_size": "small",
                 "constrain_to_viewport": true,
                 "media_fit": "contain",
@@ -228,91 +227,12 @@
                 "desktop_content_position": "top",
                 "desktop_content_alignment": "left",
                 "mobile_content_alignment": "left",
-                "section_color_scheme": "",
                 "color_scheme": "background-1",
                 "padding_top": 36,
                 "padding_bottom": 36
             }
         },
-        "33978e83-5b15-429d-9318-f1c4a652db93": {
-            "type": "featured-product",
-            "blocks": {
-                "69e617c9-80f6-40d7-b3cc-e47de33d55c5": {
-                    "type": "custom_liquid",
-                    "settings": {
-                        "custom_liquid": "<h1 id=\"dotw\" > <strong>DEAL OF THE WEEK <\/strong> <\/h1>\n<div id=\"timer\">\n  <div id=\"days\"><\/div>\n  <div id=\"hours\"><\/div>\n  <div id=\"minutes\"><\/div>\n  <div id=\"seconds\"><\/div>\n\n<\/div>\n\n<style>\n@import url(https:\/\/fonts.googleapis.com\/css?family=Covered+By+Your+Grace);\n\n#days {\n  font-size: 50px;\n  color: white;\n}\n#hours {\n  font-size: 50px;\n  color: black;\n}\n#minutes {\n  font-size: 50px;\n  color: black;\n}\n#seconds {\n  font-size: 50px;\n  color: white;\n}\n\n#days, #hours, #minutes, #seconds {\n  display: table-cell;\n  line-height: 1;\n  padding: 5px 15px;\n  font-size: 35px;\n  color: white;\n}\n\n#timespan {\n  display: block;\n  font-size: 20px;\n  color: white;\n}\n\n#timer {\n  background: #d11e1f;\n  font-family: 'Covered By Your Grace', cursive;\n  text-align: center;\n  color: white;\n  border-radius:5px;\ndisplay: inline-block;\n\n}\n#dotw{\ntext-align:left;\nfont-family: monospace;\nmargin:0;\nfont-size:34px;\n}\n  \n<\/style>\n\n<script type=\"text\/javascript\">\nfunction makeTimer() {\nvar endTime = new Date(\"{{  section.settings.product.metafields.custom.endtime}}\");\n\n\/\/var endTime = new Date(\"August 14, 2023 00:00:00 PDT\");\t\t\t\n\t\t\tvar endTime = (Date.parse(endTime )) \/ 1000;\n\n\t\t\tvar now = new Date();\n\t\t\tvar now = (Date.parse(now) \/ 1000);\n\n\t\t\tvar timeLeft = endTime - now;\n\n\t\t\tvar days = Math.floor(timeLeft \/ 86400); \n\t\t\tvar hours = Math.floor((timeLeft - (days * 86400)) \/ 3600);\n\t\t\tvar minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) \/ 60);\n\t\t\tvar seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));\n\n\t\t\tif (hours < \"10\") { hours = \"0\" + hours; }\n\t\t\tif (minutes < \"10\") { minutes = \"0\" + minutes; }\n\t\t\tif (seconds < \"10\") { seconds = \"0\" + seconds; }\n\n\t\t\t\tdocument.getElementById(\"days\").innerHTML = days + \"<span id='timespan'>Days<\/span>\";\n\t\t\tdocument.getElementById(\"hours\").innerHTML = hours + \"<span id='timespan'>Hours<\/span>\";\n\t\t\tdocument.getElementById(\"minutes\").innerHTML = minutes + \"<span id='timespan'>Minutes<\/span>\";\n\t\t\tdocument.getElementById(\"seconds\").innerHTML = seconds + \"<span id='timespan'>Seconds<\/span>\";\t\t\n\n}\n  \n\tsetInterval(function() { makeTimer(); }, 1000);\n<\/script>"
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-text-1": {
-                    "type": "text",
-                    "disabled": true,
-                    "settings": {
-                        "text": "{{ section.settings.product.vendor }}",
-                        "text_style": "uppercase"
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-title-1": {
-                    "type": "title",
-                    "settings": {
-                        "heading_size": "h2"
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-price-1": {
-                    "type": "price",
-                    "settings": {}
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-variant_picker-1": {
-                    "type": "variant_picker",
-                    "disabled": true,
-                    "settings": {
-                        "picker_type": "button",
-                        "swatch_shape": "circle"
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-quantity_selector-1": {
-                    "type": "quantity_selector",
-                    "settings": {}
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-buy_buttons-1": {
-                    "type": "buy_buttons",
-                    "settings": {
-                        "show_dynamic_checkout": true,
-                        "show_gift_card_recipient": true
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-share-1": {
-                    "type": "share",
-                    "settings": {
-                        "share_label": "Share"
-                    }
-                }
-            },
-            "block_order": [
-                "69e617c9-80f6-40d7-b3cc-e47de33d55c5",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-text-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-title-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-price-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-variant_picker-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-quantity_selector-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-buy_buttons-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-share-1"
-            ],
-            "settings": {
-                "product": "breakfree-computers-deal-of-the-week",
-                "color_scheme": "background-1",
-                "secondary_background": false,
-                "media_size": "small",
-                "constrain_to_viewport": true,
-                "media_fit": "contain",
-                "media_position": "left",
-                "image_zoom": "none",
-                "hide_variants": false,
-                "enable_video_looping": false,
-                "padding_top": 36,
-                "padding_bottom": 36
-            }
-        },
-        "1693561942c97c1222": {
+        "1693562304bbd3ffb4": {
             "type": "apps",
             "settings": {
                 "include_margins": true
@@ -340,8 +260,7 @@
     "order": [
         "main",
         "3fa33a73-71b1-46d7-9529-b7792729d902",
-        "33978e83-5b15-429d-9318-f1c4a652db93",
-        "1693561942c97c1222",
+        "1693562304bbd3ffb4",
         "related-products"
     ]
 }

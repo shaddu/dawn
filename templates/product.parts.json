@@ -46,7 +46,7 @@
                         "show_inventory_quantity": true
                     }
                 },
-                "custom_liquid_LexP6w": {
+                "custom_liquid_QanWAH": {
                     "type": "custom_liquid",
                     "settings": {
                         "custom_liquid": "<style>\n.shimmer {\n    \n    margin: 0 auto;\n    padding: 0 140px 0 0;\n    display: inline;\n    margin-bottom: 0;\n    position: relative; \/* Add this line *\/\n}\n\n.shimmer:before { \/* Add this block *\/\n    content: '';\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    border: 1px solid red; \/* Adjust border thickness as needed *\/\n    border-radius: 5px; \/* Adjust border radius as needed *\/\n    pointer-events: none;\n}\n\n.shimmer {\n    text-align: center;\n    color: rgba(255, 255, 255, 0.1);\n    background: -webkit-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));\n    background: -moz-gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));\n    background: gradient(linear, left top, right top, from(#222), to(#222), color-stop(0.5, #fff));\n    -webkit-background-size: 35px 100%;\n    -moz-background-size: 35px 100%;\n    background-size: 35px 100%;\n    -webkit-background-clip: text;\n    -moz-background-clip: text;\n    background-clip: text;\n    -webkit-animation-name: shimmer;\n    -moz-animation-name: shimmer;\n    animation-name: shimmer;\n    -webkit-animation-duration: 5s;\n    -moz-animation-duration: 5s;\n    animation-duration: 5s;\n    -webkit-animation-iteration-count: infinite;\n    -moz-animation-iteration-count: infinite;\n    animation-iteration-count: infinite;\n    background-repeat: no-repeat;\n    background-position: 0 0;\n    background-color: #222;\n}\n\n@-moz-keyframes shimmer {\n    0% {\n        background-position: top left;\n    }\n    100% {\n        background-position: top right;\n    }\n}\n\n@-webkit-keyframes shimmer {\n    0% {\n        background-position: top left;\n    }\n    100% {\n        background-position: top right;\n    }\n}\n\n@-o-keyframes shimmer {\n    0% {\n        background-position: top left;\n    }\n    100% {\n        background-position: top right;\n    }\n}\n\n@keyframes shimmer {\n    0% {\n        background-position: top left;\n    }\n    100% {\n        background-position: top right;\n    }\n}\n\n}\n<\/style>\n{% if product.tags contains 'BLACKFRIDAY2024' %}\n<label class=\"shimmer\"\n    style=\"font-size:17px; font-weight: 500;padding:15px\">\n    Save 20% - Use code BLACKFRIDAY2024\n<\/label>\n{% endif %}"
@@ -57,8 +57,18 @@
                     "disabled": true,
                     "settings": {}
                 },
+                "0671e304-7a4c-4f0d-9db0-7fd65eb04cf0": {
+                    "type": "collapsible_tab",
+                    "settings": {
+                        "heading": "Description",
+                        "icon": "clipboard",
+                        "content": "<p>{{ product.metafields.custom.specs | metafield_tag }}<\/p>",
+                        "page": ""
+                    }
+                },
                 "collapsible-row-2": {
                     "type": "collapsible_tab",
+                    "disabled": true,
                     "settings": {
                         "heading": "Specification",
                         "icon": "ruler",
@@ -68,6 +78,7 @@
                 },
                 "82adee38-436d-4cfb-9a42-2a6a62876456": {
                     "type": "collapsible_tab",
+                    "disabled": true,
                     "settings": {
                         "heading": "Operating System",
                         "icon": "fire",
@@ -77,6 +88,7 @@
                 },
                 "collapsible-row-3": {
                     "type": "collapsible_tab",
+                    "disabled": true,
                     "settings": {
                         "heading": "Custom build",
                         "icon": "clipboard",
@@ -98,7 +110,7 @@
                     "settings": {
                         "heading": "Shipping & Returns",
                         "icon": "truck",
-                        "content": "<p>- Free shipping on all orders. For more details on shipping please check our <a href=\"https:\/\/www.breakfreecomputers.co.uk\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">shipping policy.<\/a><\/p><p>- 60 days return on all products. For more details on returns and refunds please check our <a href=\"https:\/\/www.breakfreecomputers.co.uk\/policies\/refund-policy\" target=\"_blank\" title=\"Refund Policy\">refund policy.<\/a><\/p>",
+                        "content": "<p>- Free shipping on all orders. For more details on shipping please check ourÂ <a href=\"https:\/\/www.breakfreecomputers.co.uk\/policies\/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">shipping policy.<\/a><\/p><p>- 60 days return on all products. For more details on returns and refunds please check ourÂ <a href=\"https:\/\/www.breakfreecomputers.co.uk\/policies\/refund-policy\" target=\"_blank\" title=\"Refund Policy\">refund policy.<\/a><\/p>",
                         "page": ""
                     }
                 },
@@ -156,8 +168,9 @@
                 "variant_picker",
                 "price",
                 "9e4ea1ad-1c88-4089-a2e9-94f3a0c9fd74",
-                "custom_liquid_LexP6w",
+                "custom_liquid_QanWAH",
                 "description",
+                "0671e304-7a4c-4f0d-9db0-7fd65eb04cf0",
                 "collapsible-row-2",
                 "82adee38-436d-4cfb-9a42-2a6a62876456",
                 "collapsible-row-3",

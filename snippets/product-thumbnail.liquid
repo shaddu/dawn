@@ -53,6 +53,33 @@
   class="product-media-container media-type-{{ media.media_type }} media-fit-{{ media_fit }} global-media-settings gradient{% if constrain_to_viewport %} constrain-height{% endif %}"
   style="--ratio: {{ media.aspect_ratio | default: 1.0 }}; --preview-ratio: {{ media.preview_image.aspect_ratio | default: 1.0 }};"
 >
+ <!-- <div class="card__badge top right">
+             
+    {% assign condition = product.metafields.custom.condition | downcase | strip %}
+    {% assign badge_style = '' %}
+    
+    {% if condition == 'new' %}
+      {% assign badge_style = 'background-color: #d11e1f; color: #ffffff;' %}
+    {% elsif condition == 'opened - never used' %}
+      {% assign badge_style = 'background-color: #fd7e14; color: #ffffff;' %}
+    {% elsif condition == 'excellent - refurbished' %}
+      {% assign badge_style = 'background-color: #1DB954; color: #ffffff;' %}
+    {% elsif condition == 'very good - refurbished' %}
+      {% assign badge_style = 'background-color: #96bf48; color: #ffffff;' %}
+    {% elsif condition == 'good - refurbished' %}
+      {% assign badge_style = 'background-color: #0F9D58; color: #ffffff;' %}
+    {% endif %}
+    
+    {% if badge_style != '' %}
+      <span
+        id="NoMediaStandardBadge-{{ section.id }}-{{ product.id }}"
+        class="badge badge--top-right price__badge-sale"
+        style="{{ badge_style }}"
+      >
+        {{ product.metafields.custom.condition }}
+      </span>
+    {% endif %}
+</div> -->
   <modal-opener
     class="product__modal-opener product__modal-opener--{{ media.media_type }}"
     data-modal="#ProductModal-{{ modal_id }}"

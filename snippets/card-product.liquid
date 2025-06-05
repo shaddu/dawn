@@ -141,6 +141,34 @@
               </span>
             {%- endif -%}
           </div>
+          <div class="card__badge top left">
+               
+              {% assign condition = card_product.metafields.custom.condition | downcase | strip %}
+              {% assign badge_style = '' %}
+              
+              {% if condition == 'new' %}
+                {% assign badge_style = 'background-color: #d11e1f; color: #ffffff;' %}
+              {% elsif condition == 'opened - never used' %}
+                {% assign badge_style = 'background-color: #fd7e14; color: #ffffff;' %}
+              {% elsif condition == 'excellent - refurbished' %}
+                {% assign badge_style = 'background-color: #1DB954; color: #ffffff;' %}
+              {% elsif condition == 'very good - refurbished' %}
+                {% assign badge_style = 'background-color: #96bf48; color: #ffffff;' %}
+              {% elsif condition == 'good - refurbished' %}
+                {% assign badge_style = 'background-color: #0F9D58; color: #ffffff;' %}
+              {% endif %}
+              
+              {% if badge_style != '' %}
+                <span
+                  id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
+                  class="badge badge--top-right price__badge-sale"
+                  style="{{ badge_style }}"
+                >
+                  {{ card_product.metafields.custom.condition }}
+                </span>
+              {% endif %}
+
+          </div>
         </div>
       </div>
       <div class="card__content">
