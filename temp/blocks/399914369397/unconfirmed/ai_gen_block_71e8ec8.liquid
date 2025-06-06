@@ -1,6 +1,232 @@
+{% doc %}
+  @prompt
+    Create code to center the collection banner on collection pages
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-centered-banner-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    max-width: {{ block.settings.max_width }}px;
+    margin: 0 auto;
+    padding: {{ block.settings.vertical_padding }}px 0;
+  }
+
+  .ai-centered-banner-image-{{ ai_gen_id }} {
+    width: 100%;
+    max-width:100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-centered-banner-image-container-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: {{ block.settings.spacing }}px;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .ai-centered-banner-title-{{ ai_gen_id }} {
+    margin-top: 0;
+    margin-bottom: {{ block.settings.spacing }}px;
+    font-size: {{ block.settings.title_size }}px;
+    font-weight: {{ block.settings.title_weight }};
+    color: {{ block.settings.title_color }};}
+
+  .ai-centered-banner-description-{{ ai_gen_id }} {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: {{ block.settings.description_size }}px;
+    color: {{ block.settings.description_color }};
+    max-width: {{ block.settings.text_max_width }}px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-centered-banner-title-{{ ai_gen_id }} {
+      font-size: {{ block.settings.title_size | times: 0.8 }}px;
+    }
+
+    .ai-centered-banner-description-{{ ai_gen_id }} {
+      font-size: {{ block.settings.description_size | times: 0.9 }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="ai-centered-banner-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  {% if collection.image %}
+    <div class="ai-centered-banner-image-container-{{ ai_gen_id }}">
+      <img
+        src="{{ collection.image | img_url: 'master' }}"
+        alt="{{ collection.title | escape }}"
+        class="ai-centered-banner-image-{{ ai_gen_id }}"
+        width="{{ collection.image.width }}"
+        height="{{ collection.image.height }}"loading="lazy"
+      >
+    </div>
+  {% endif %}
+
+  {% if collection.title != blank and block.settings.show_title %}
+    <h1 class="ai-centered-banner-title-{{ ai_gen_id }}">{{ collection.title }}</h1>
+  {% endif %}
+
+  {% if collection.description != blank and block.settings.show_description %}
+    <div class="ai-centered-banner-description-{{ ai_gen_id }}">
+      {{ collection.description }}
+    </div>
+  {% endif %}
+</div>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Centered Banner",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "max_width",
+      "min": 600,
+      "max": 1600,
+      "step": 50,
+      "unit": "px",
+      "label": "Maximum width",
+      "default": 1200
+    },
+    {
+      "type": "range",
+      "id": "vertical_padding",
+      "min": 0,
+      "max": 80,
+      "step": 4,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "spacing",
+      "min": 8,
+      "max": 48,
+      "step": 4,
+      "unit": "px",
+      "label": "Spacing between elements",
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "text_max_width",
+      "min": 400,
+      "max": 1200,
+      "step": 50,
+      "unit": "px",
+      "label": "Text maximum width",
+      "default": 800
+    },
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Content"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_title",
+      "label": "Show collection title",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "title_size",
+      "min": 20,
+      "max": 60,
+      "step": 2,
+      "unit": "px",
+      "label": "Title size",
+      "default": 32
+    },
+    {
+      "type": "select",
+      "id": "title_weight",
+      "label": "Title weight",
+      "options": [
+        {
+          "value": "400",
+          "label": "Regular"
+        },
+        {
+          "value": "500",
+          "label": "Medium"
+        },
+        {
+          "value": "600",
+          "label": "Semibold"
+        },
+        {
+          "value": "700",
+          "label": "Bold"
+        }
+      ],
+      "default": "600"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title color",
+      "default": "#121212"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "description_size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Description size",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "description_color",
+      "label": "Description color",
+      "default": "#121212"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Centered Banner"
+    }
+  ],
+  "tag": null
+}
 {% endschema %}
