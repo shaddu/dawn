@@ -180,6 +180,7 @@
           "settings": {
             "gap": 32,
             "image_width": 50,
+            "image": "shopify://shop_images/image2_5a92a834-3d8a-4c6e-afb5-97269e405891.jpg",
             "image_height": 500,
             "image_height_mobile": 300,
             "image_border_radius": 8,
@@ -197,7 +198,7 @@
             "accordion_title_2": "Accordion 2",
             "accordion_content_2": "<p>Add your content here. You can include text, images, and more.</p>",
             "accordion_collection_2": "",
-            "accordion_title_3": "",
+            "accordion_title_3": "Accordion 3",
             "accordion_content_3": "",
             "accordion_collection_3": "",
             "accordion_title_4": "",
