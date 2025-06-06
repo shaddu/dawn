@@ -1,6 +1,597 @@
+{% doc %}
+  @prompt
+    Create a two-column section where the first column displays a slideshow of collection images and the second column shows an accordion with collection details, first column should be only image selection and divide the section in two parts, so that new value can be added in accordian
+    
+
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .collection-showcase-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: {{ block.settings.gap }}px;
+  }
+
+  .collection-showcase__column-{{ ai_gen_id }} {
+    flex: 1;
+    min-width: 300px;
+  }
+
+  .collection-showcase__image-column-{{ ai_gen_id }} {
+    flex-basis: calc({{ block.settings.image_width }}% - {{ block.settings.gap }}px / 2);
+  }
+
+  .collection-showcase__content-column-{{ ai_gen_id }} {
+    flex-basis: calc({{ 100 | minus: block.settings.image_width }}% - {{ block.settings.gap }}px / 2);
+  }
+
+  .collection-image-{{ ai_gen_id }} {
+    position: relative;
+    overflow: hidden;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    height: {{ block.settings.image_height }}px;
+    width: 100%;
+  }
+
+  .collection-image__wrapper-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+  }
+
+  .collection-image__img-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .collection-image__placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4f4;
+  }
+
+  .collection-image__placeholder-{{ ai_gen_id }} svg {
+    width: 50%;
+    height: 50%;
+    opacity: 0.5;
+  }
+
+  .collection-accordion-{{ ai_gen_id }} {
+    display: flex;
+    flex-direction: column;
+    gap: {{ block.settings.accordion_gap }}px;
+  }
+
+  .collection-accordion__item-{{ ai_gen_id }} {
+    border: 1px solid {{ block.settings.accordion_border_color }};
+    border-radius: {{ block.settings.accordion_border_radius }}px;
+    overflow: hidden;
+  }
+
+  .collection-accordion__header-{{ ai_gen_id }} {
+    padding: 15px 20px;
+    background-color: {{ block.settings.accordion_header_bg }};
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: {{ block.settings.accordion_text_color }};
+  }
+
+  .collection-accordion__icon-{{ ai_gen_id }} {
+    width: 16px;
+    height: 16px;
+    position: relative;
+    transition: transform 0.3s ease;
+  }
+
+  .collection-accordion__icon-{{ ai_gen_id }}::before,
+  .collection-accordion__icon-{{ ai_gen_id }}::after {
+    content: '';
+    position: absolute;
+    background-color: {{ block.settings.accordion_text_color }};
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    margin-top: -1px;
+  }
+
+  .collection-accordion__icon-{{ ai_gen_id }}::after {
+    transform: rotate(90deg);
+    transition: transform 0.3s ease;
+  }
+
+  .collection-accordion__item-{{ ai_gen_id }}.active .collection-accordion__icon-{{ ai_gen_id }}::after {
+    transform: rotate(0);
+  }
+
+  .collection-accordion__content-{{ ai_gen_id }} {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: {{ block.settings.accordion_content_bg }};
+    color: {{ block.settings.accordion_text_color }};
+  }
+
+  .collection-accordion__item-{{ ai_gen_id }}.active .collection-accordion__content-{{ ai_gen_id }} {
+    max-height: 500px;
+  }
+
+  .collection-accordion__inner-{{ ai_gen_id }} {
+    padding: 20px;
+  }
+
+  .collection-accordion__description-{{ ai_gen_id }} {
+    margin-bottom: 15px;
+  }
+
+  .collection-accordion__products-{{ ai_gen_id }} {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .collection-accordion__product-{{ ai_gen_id }} {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+
+  .collection-accordion__product-image-{{ ai_gen_id }} {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .collection-accordion__product-image-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .collection-accordion__product-info-{{ ai_gen_id }} {
+    flex: 1;
+  }
+
+  .collection-accordion__product-title-{{ ai_gen_id }} {
+    font-weight: 600;
+    margin: 0 0 5px;
+    font-size: 14px;
+  }
+
+  .collection-accordion__product-price-{{ ai_gen_id }} {
+    font-size: 14px;
+  }
+
+  .collection-accordion__view-all-{{ ai_gen_id }} {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: {{ block.settings.button_bg_color }};
+    color: {{ block.settings.button_text_color }};
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  @media screen and (max-width: 768px) {
+    .collection-showcase-{{ ai_gen_id }} {
+      flex-direction: column;
+    }
+
+    .collection-showcase__image-column-{{ ai_gen_id }},
+    .collection-showcase__content-column-{{ ai_gen_id }} {
+      flex-basis: 100%;
+    }
+
+    .collection-image-{{ ai_gen_id }} {
+      height: {{ block.settings.image_height_mobile }}px;
+    }
+  }
+{% endstyle %}
+
+<div class="collection-showcase-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="collection-showcase__column-{{ ai_gen_id }} collection-showcase__image-column-{{ ai_gen_id }}">
+    <div class="collection-image-{{ ai_gen_id }}">
+      <div class="collection-image__wrapper-{{ ai_gen_id }}">
+        {% if block.settings.image %}
+          <img 
+            src="{{ block.settings.image | image_url: width: 1000 }}" 
+            alt="{{ block.settings.image.alt | escape }}" 
+            class="collection-image__img-{{ ai_gen_id }}"
+            loading="eager"
+          >
+        {% else %}
+          <div class="collection-image__placeholder-{{ ai_gen_id }}">
+            {{ 'collection-apparel-1' | placeholder_svg_tag }}
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+
+  <div class="collection-showcase__column-{{ ai_gen_id }} collection-showcase__content-column-{{ ai_gen_id }}">
+    <collection-accordion-{{ ai_gen_id }} class="collection-accordion-{{ ai_gen_id }}">
+      {% for i in (1..4) %}
+        {% capture title_key %}accordion_title_{{ i }}{% endcapture %}
+        {% capture content_key %}accordion_content_{{ i }}{% endcapture %}
+        {% capture collection_key %}accordion_collection_{{ i }}{% endcapture %}
+        
+        {% assign title = block.settings[title_key] %}
+        {% assign content = block.settings[content_key] %}
+        {% assign collection = block.settings[collection_key] %}
+        
+        {% if title != blank %}
+          <div class="collection-accordion__item-{{ ai_gen_id }} {% if forloop.first and block.settings.first_expanded %}active{% endif %}" data-accordion-index="{{ forloop.index0 }}">
+            <div class="collection-accordion__header-{{ ai_gen_id }}">
+              <span>{{ title }}</span>
+              <div class="collection-accordion__icon-{{ ai_gen_id }}"></div>
+            </div>
+            <div class="collection-accordion__content-{{ ai_gen_id }}">
+              <div class="collection-accordion__inner-{{ ai_gen_id }}">
+                {% if content != blank %}
+                  <div class="collection-accordion__description-{{ ai_gen_id }}">
+                    {{ content }}
+                  </div>
+                {% endif %}
+
+                {% if collection != blank and block.settings.show_products %}
+                  <div class="collection-accordion__products-{{ ai_gen_id }}">
+                    {% for product in collection.products limit: block.settings.products_to_show %}
+                      <div class="collection-accordion__product-{{ ai_gen_id }}">
+                        <div class="collection-accordion__product-image-{{ ai_gen_id }}">
+                          {% if product.featured_image %}
+                            <img 
+                              src="{{ product.featured_image | image_url: width: 100 }}" 
+                              alt="{{ product.title | escape }}"
+                              loading="lazy"
+                            >
+                          {% else %}
+                            <div class="collection-accordion__product-image-{{ ai_gen_id }}">
+                              {{ 'product-apparel-1' | placeholder_svg_tag }}
+                            </div>
+                          {% endif %}
+                        </div>
+                        <div class="collection-accordion__product-info-{{ ai_gen_id }}">
+                          <h4 class="collection-accordion__product-title-{{ ai_gen_id }}">{{ product.title }}</h4>
+                          <div class="collection-accordion__product-price-{{ ai_gen_id }}">{{ product.price | money }}</div>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+
+                {% if collection != blank and block.settings.show_view_all %}
+                  <a href="{{ collection.url }}" class="collection-accordion__view-all-{{ ai_gen_id }}">
+                    {{ block.settings.view_all_text }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </collection-accordion-{{ ai_gen_id }}>
+  </div>
+</div>
+
+<script>
+  (function() {
+    class CollectionAccordion extends HTMLElement {
+      constructor() {
+        super();
+        this.accordionItems = this.querySelectorAll('.collection-accordion__item-{{ ai_gen_id }}');
+        this.accordionHeaders = this.querySelectorAll('.collection-accordion__header-{{ ai_gen_id }}');
+      }
+
+      connectedCallback() {
+        this.setupEventListeners();
+      }
+
+      setupEventListeners() {
+        this.accordionHeaders.forEach(header => {
+          header.addEventListener('click', () => {
+            const item = header.parentElement;
+            const isActive = item.classList.contains('active');
+            
+            if ({{ block.settings.toggle_behavior | json }} === 'single') {
+              this.accordionItems.forEach(accordionItem => {
+                accordionItem.classList.remove('active');
+              });
+            }
+            
+            if (isActive && {{ block.settings.toggle_behavior | json }} === 'multiple') {
+              item.classList.remove('active');
+            } else {
+              item.classList.add('active');
+            }
+          });
+        });
+      }
+    }
+
+    customElements.define('collection-accordion-{{ ai_gen_id }}', CollectionAccordion);
+  })();
+</script>
+
 {% schema %}
- {
-   "name": "AI_Block",
-   "tag": "shopify-ai-generated-block"
- }
+{
+  "name": "Collection Showcase",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "min": 0,
+      "max": 60,
+      "step": 4,
+      "unit": "px",
+      "label": "Column gap",
+      "default": 32
+    },
+    {
+      "type": "range",
+      "id": "image_width",
+      "min": 30,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "label": "Image column width",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Image Settings"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "range",
+      "id": "image_height",
+      "min": 200,
+      "max": 800,
+      "step": 20,
+      "unit": "px",
+      "label": "Image height",
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "image_height_mobile",
+      "min": 200,
+      "max": 600,
+      "step": 20,
+      "unit": "px",
+      "label": "Image height on mobile",
+      "default": 300
+    },
+    {
+      "type": "range",
+      "id": "image_border_radius",
+      "min": 0,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "label": "Image border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Accordion Settings"
+    },
+    {
+      "type": "select",
+      "id": "toggle_behavior",
+      "options": [
+        {
+          "value": "single",
+          "label": "Only one open at a time"
+        },
+        {
+          "value": "multiple",
+          "label": "Multiple can be open"
+        }
+      ],
+      "default": "single",
+      "label": "Toggle behavior"
+    },
+    {
+      "type": "checkbox",
+      "id": "first_expanded",
+      "label": "Expand first item by default",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "accordion_gap",
+      "min": 0,
+      "max": 40,
+      "step": 4,
+      "unit": "px",
+      "label": "Gap between items",
+      "default": 16
+    },
+    {
+      "type": "color",
+      "id": "accordion_header_bg",
+      "label": "Header background",
+      "default": "#f4f4f4"
+    },
+    {
+      "type": "color",
+      "id": "accordion_content_bg",
+      "label": "Content background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "accordion_text_color",
+      "label": "Text color",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "accordion_border_color",
+      "label": "Border color",
+      "default": "#e5e5e5"
+    },
+    {
+      "type": "range",
+      "id": "accordion_border_radius",
+      "min": 0,
+      "max": 20,
+      "step": 2,
+      "unit": "px",
+      "label": "Border radius",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Accordion 1"
+    },
+    {
+      "type": "text",
+      "id": "accordion_title_1",
+      "label": "Title",
+      "default": "Accordion 1"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_content_1",
+      "label": "Content",
+      "default": "<p>Add your content here. You can include text, images, and more.</p>"
+    },
+    {
+      "type": "collection",
+      "id": "accordion_collection_1",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Accordion 2"
+    },
+    {
+      "type": "text",
+      "id": "accordion_title_2",
+      "label": "Title",
+      "default": "Accordion 2"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_content_2",
+      "label": "Content",
+      "default": "<p>Add your content here. You can include text, images, and more.</p>"
+    },
+    {
+      "type": "collection",
+      "id": "accordion_collection_2",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Accordion 3"
+    },
+    {
+      "type": "text",
+      "id": "accordion_title_3",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_content_3",
+      "label": "Content"
+    },
+    {
+      "type": "collection",
+      "id": "accordion_collection_3",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Accordion 4"
+    },
+    {
+      "type": "text",
+      "id": "accordion_title_4",
+      "label": "Title"
+    },
+    {
+      "type": "richtext",
+      "id": "accordion_content_4",
+      "label": "Content"
+    },
+    {
+      "type": "collection",
+      "id": "accordion_collection_4",
+      "label": "Collection"
+    },
+    {
+      "type": "header",
+      "content": "Product Display"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_products",
+      "label": "Show collection products",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 1,
+      "max": 4,
+      "step": 1,
+      "label": "Products to show",
+      "default": 2
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show 'View all' button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View all button text",
+      "default": "View all products"
+    },
+    {
+      "type": "color",
+      "id": "button_bg_color",
+      "label": "Button background",
+      "default": "#121212"
+    },
+    {
+      "type": "color",
+      "id": "button_text_color",
+      "label": "Button text",
+      "default": "#ffffff"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Showcase"
+    }
+  ]
+}
 {% endschema %}
