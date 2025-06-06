@@ -8,146 +8,176 @@
  * ------------------------------------------------------------
  */
 {
-    "sections": {
-        "banner": {
-            "type": "main-collection-banner",
-            "settings": {
-                "show_collection_description": true,
-                "show_collection_image": false,
-                "color_scheme": "background-1"
-            }
-        },
-        "product-grid": {
-            "type": "main-collection-product-grid",
-            "settings": {
-                "products_per_page": 24,
-                "columns_desktop": 3,
-                "columns_mobile": "2",
-                "color_scheme": "",
-                "image_ratio": "adapt",
-                "image_shape": "default",
-                "show_secondary_image": false,
-                "show_vendor": false,
-                "show_rating": false,
-                "quick_add": "none",
-                "enable_filtering": true,
-                "filter_type": "vertical",
-                "enable_sorting": true,
-                "padding_top": 36,
-                "padding_bottom": 36
-            }
-        },
-        "featured_product_VxM9kV": {
-            "type": "featured-product",
-            "blocks": {
-                "69e617c9-80f6-40d7-b3cc-e47de33d55c5": {
-                    "type": "custom_liquid",
-                    "settings": {
-                        "custom_liquid": "<h1 id=\"dotw\" > <strong>DEAL OF THE WEEK <\/strong> <\/h1>\n<div id=\"timer\">\n  <div id=\"days\"><\/div>\n  <div id=\"hours\"><\/div>\n  <div id=\"minutes\"><\/div>\n  <div id=\"seconds\"><\/div>\n\n<\/div>\n\n<style>\n@import url(https:\/\/fonts.googleapis.com\/css?family=Covered+By+Your+Grace);\n\n#days {\n  font-size: 50px;\n  color: white;\n}\n#hours {\n  font-size: 50px;\n  color: black;\n}\n#minutes {\n  font-size: 50px;\n  color: black;\n}\n#seconds {\n  font-size: 50px;\n  color: white;\n}\n\n#days, #hours, #minutes, #seconds {\n  display: table-cell;\n  line-height: 1;\n  padding: 5px 15px;\n  font-size: 35px;\n  color: white;\n}\n\n#timespan {\n  display: block;\n  font-size: 20px;\n  color: white;\n}\n\n#timer {\n  background: #d11e1f;\n  font-family: 'Covered By Your Grace', cursive;\n  text-align: center;\n  color: white;\n  border-radius:5px;\ndisplay: inline-block;\n\n}\n#dotw{\ntext-align:left;\nfont-family: monospace;\nmargin:0;\nfont-size:34px;\n}\n  \n<\/style>\n\n<script type=\"text\/javascript\">\nfunction makeTimer() {\nvar endTime = new Date(\"{{  section.settings.product.metafields.custom.endtime}}\");\n\n\/\/var endTime = new Date(\"August 14, 2023 00:00:00 PDT\");\t\t\t\n\t\t\tvar endTime = (Date.parse(endTime )) \/ 1000;\n\n\t\t\tvar now = new Date();\n\t\t\tvar now = (Date.parse(now) \/ 1000);\n\n\t\t\tvar timeLeft = endTime - now;\n\n\t\t\tvar days = Math.floor(timeLeft \/ 86400); \n\t\t\tvar hours = Math.floor((timeLeft - (days * 86400)) \/ 3600);\n\t\t\tvar minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) \/ 60);\n\t\t\tvar seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));\n\n\t\t\tif (hours < \"10\") { hours = \"0\" + hours; }\n\t\t\tif (minutes < \"10\") { minutes = \"0\" + minutes; }\n\t\t\tif (seconds < \"10\") { seconds = \"0\" + seconds; }\n\n\t\t\t\tdocument.getElementById(\"days\").innerHTML = days + \"<span id='timespan'>Days<\/span>\";\n\t\t\tdocument.getElementById(\"hours\").innerHTML = hours + \"<span id='timespan'>Hours<\/span>\";\n\t\t\tdocument.getElementById(\"minutes\").innerHTML = minutes + \"<span id='timespan'>Minutes<\/span>\";\n\t\t\tdocument.getElementById(\"seconds\").innerHTML = seconds + \"<span id='timespan'>Seconds<\/span>\";\t\t\n\n}\n  \n\tsetInterval(function() { makeTimer(); }, 1000);\n<\/script>"
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-text-1": {
-                    "type": "text",
-                    "disabled": true,
-                    "settings": {
-                        "text": "{{ section.settings.product.vendor }}",
-                        "text_style": "uppercase"
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-title-1": {
-                    "type": "title",
-                    "settings": {
-                        "heading_size": "h2"
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-price-1": {
-                    "type": "price",
-                    "settings": {}
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-variant_picker-1": {
-                    "type": "variant_picker",
-                    "disabled": true,
-                    "settings": {
-                        "picker_type": "button",
-                        "swatch_shape": "circle"
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-quantity_selector-1": {
-                    "type": "quantity_selector",
-                    "settings": {}
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-buy_buttons-1": {
-                    "type": "buy_buttons",
-                    "settings": {
-                        "show_dynamic_checkout": true,
-                        "show_gift_card_recipient": true
-                    }
-                },
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-share-1": {
-                    "type": "share",
-                    "settings": {
-                        "share_label": "Share"
-                    }
-                }
-            },
-            "block_order": [
-                "69e617c9-80f6-40d7-b3cc-e47de33d55c5",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-text-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-title-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-price-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-variant_picker-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-quantity_selector-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-buy_buttons-1",
-                "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-share-1"
-            ],
-            "settings": {
-                "product": "breakfree-computers-deal-of-the-week",
-                "color_scheme": "background-1",
-                "secondary_background": false,
-                "media_size": "small",
-                "constrain_to_viewport": true,
-                "media_fit": "contain",
-                "media_position": "left",
-                "image_zoom": "none",
-                "hide_variants": false,
-                "enable_video_looping": false,
-                "padding_top": 36,
-                "padding_bottom": 36
-            }
-        },
-        "featured_collection_LWDGpi": {
-            "type": "featured-collection",
-            "settings": {
-                "collection": "all",
-                "products_to_show": 5,
-                "title": "Recently Added",
-                "heading_size": "h1",
-                "description": "",
-                "show_description": false,
-                "description_style": "body",
-                "columns_desktop": 5,
-                "enable_desktop_slider": false,
-                "full_width": false,
-                "show_view_all": false,
-                "view_all_style": "solid",
-                "color_scheme": "",
-                "image_ratio": "adapt",
-                "image_shape": "default",
-                "show_secondary_image": false,
-                "show_vendor": false,
-                "show_rating": false,
-                "quick_add": "none",
-                "columns_mobile": "2",
-                "swipe_on_mobile": false,
-                "padding_top": 36,
-                "padding_bottom": 36
-            }
+  "sections": {
+    "1749225537163cab6d": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_71e8ec8_ic6Xbn": {
+          "type": "ai_gen_block_71e8ec8",
+          "settings": {
+            "max_width": 1200,
+            "vertical_padding": 32,
+            "spacing": 20,
+            "text_max_width": 800,
+            "image_border_radius": 8,
+            "show_title": true,
+            "title_size": 44,
+            "title_weight": "600",
+            "title_color": "#121212",
+            "show_description": true,
+            "description_size": 16,
+            "description_color": "#121212"
+          },
+          "blocks": {}
         }
+      },
+      "block_order": [
+        "ai_gen_block_71e8ec8_ic6Xbn"
+      ],
+      "settings": {}
     },
-    "order": [
-        "banner",
-        "product-grid",
-        "featured_product_VxM9kV",
-        "featured_collection_LWDGpi"
-    ]
+    "banner": {
+      "type": "main-collection-banner",
+      "disabled": true,
+      "settings": {
+        "show_collection_description": true,
+        "show_collection_image": false,
+        "color_scheme": "background-1"
+      }
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "disabled": true,
+      "settings": {
+        "products_per_page": 24,
+        "columns_desktop": 3,
+        "columns_mobile": "2",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "enable_filtering": true,
+        "filter_type": "vertical",
+        "enable_sorting": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_product_VxM9kV": {
+      "type": "featured-product",
+      "blocks": {
+        "69e617c9-80f6-40d7-b3cc-e47de33d55c5": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h1 id=\"dotw\" > <strong>DEAL OF THE WEEK </strong> </h1>\n<div id=\"timer\">\n  <div id=\"days\"></div>\n  <div id=\"hours\"></div>\n  <div id=\"minutes\"></div>\n  <div id=\"seconds\"></div>\n\n</div>\n\n<style>\n@import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);\n\n#days {\n  font-size: 50px;\n  color: white;\n}\n#hours {\n  font-size: 50px;\n  color: black;\n}\n#minutes {\n  font-size: 50px;\n  color: black;\n}\n#seconds {\n  font-size: 50px;\n  color: white;\n}\n\n#days, #hours, #minutes, #seconds {\n  display: table-cell;\n  line-height: 1;\n  padding: 5px 15px;\n  font-size: 35px;\n  color: white;\n}\n\n#timespan {\n  display: block;\n  font-size: 20px;\n  color: white;\n}\n\n#timer {\n  background: #d11e1f;\n  font-family: 'Covered By Your Grace', cursive;\n  text-align: center;\n  color: white;\n  border-radius:5px;\ndisplay: inline-block;\n\n}\n#dotw{\ntext-align:left;\nfont-family: monospace;\nmargin:0;\nfont-size:34px;\n}\n  \n</style>\n\n<script type=\"text/javascript\">\nfunction makeTimer() {\nvar endTime = new Date(\"{{  section.settings.product.metafields.custom.endtime}}\");\n\n//var endTime = new Date(\"August 14, 2023 00:00:00 PDT\");\t\t\t\n\t\t\tvar endTime = (Date.parse(endTime )) / 1000;\n\n\t\t\tvar now = new Date();\n\t\t\tvar now = (Date.parse(now) / 1000);\n\n\t\t\tvar timeLeft = endTime - now;\n\n\t\t\tvar days = Math.floor(timeLeft / 86400); \n\t\t\tvar hours = Math.floor((timeLeft - (days * 86400)) / 3600);\n\t\t\tvar minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);\n\t\t\tvar seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));\n\n\t\t\tif (hours < \"10\") { hours = \"0\" + hours; }\n\t\t\tif (minutes < \"10\") { minutes = \"0\" + minutes; }\n\t\t\tif (seconds < \"10\") { seconds = \"0\" + seconds; }\n\n\t\t\t\tdocument.getElementById(\"days\").innerHTML = days + \"<span id='timespan'>Days</span>\";\n\t\t\tdocument.getElementById(\"hours\").innerHTML = hours + \"<span id='timespan'>Hours</span>\";\n\t\t\tdocument.getElementById(\"minutes\").innerHTML = minutes + \"<span id='timespan'>Minutes</span>\";\n\t\t\tdocument.getElementById(\"seconds\").innerHTML = seconds + \"<span id='timespan'>Seconds</span>\";\t\t\n\n}\n  \n\tsetInterval(function() { makeTimer(); }, 1000);\n</script>"
+          }
+        },
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-text-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-title-1": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-price-1": {
+          "type": "price",
+          "settings": {}
+        },
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-variant_picker-1": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-quantity_selector-1": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-buy_buttons-1": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-share-1": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        }
+      },
+      "block_order": [
+        "69e617c9-80f6-40d7-b3cc-e47de33d55c5",
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-text-1",
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-title-1",
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-price-1",
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-variant_picker-1",
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-quantity_selector-1",
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-buy_buttons-1",
+        "template--16845912506649__33978e83-5b15-429d-9318-f1c4a652db93-share-1"
+      ],
+      "settings": {
+        "product": "breakfree-computers-deal-of-the-week",
+        "color_scheme": "background-1",
+        "secondary_background": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection_LWDGpi": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "all",
+        "products_to_show": 5,
+        "title": "Recently Added",
+        "heading_size": "h1",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 5,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "1749225537163cab6d",
+    "banner",
+    "product-grid",
+    "featured_product_VxM9kV",
+    "featured_collection_LWDGpi"
+  ]
 }
