@@ -107,7 +107,7 @@
           "settings": {
             "heading": "Shipping & Returns",
             "icon": "truck",
-            "content": "<p>- Free shipping on all orders. For more details on shipping please check our�<a href=\"https://www.breakfreecomputers.co.uk/policies/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">shipping policy.</a></p><p>- 60 days return on all products. For more details on returns and refunds please check our�<a href=\"https://www.breakfreecomputers.co.uk/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">refund policy.</a></p>",
+            "content": "<p>- Free shipping on all orders. For more details on shipping please check our <a href=\"https://www.breakfreecomputers.co.uk/policies/shipping-policy\" target=\"_blank\" title=\"Shipping Policy\">shipping policy.</a></p><p>- 60 days return on all products. For more details on returns and refunds please check our <a href=\"https://www.breakfreecomputers.co.uk/policies/refund-policy\" target=\"_blank\" title=\"Refund Policy\">refund policy.</a></p>",
             "page": ""
           }
         },
