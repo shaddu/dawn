@@ -171,6 +171,52 @@
         "padding_top": 36,
         "padding_bottom": 36
       }
+    },
+    "174922624645cf0740": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_aeb8aa2_z6weDk": {
+          "type": "ai_gen_block_aeb8aa2",
+          "settings": {
+            "gap": 32,
+            "image_width": 50,
+            "image_height": 500,
+            "image_height_mobile": 300,
+            "image_border_radius": 8,
+            "toggle_behavior": "single",
+            "first_expanded": true,
+            "accordion_gap": 16,
+            "accordion_header_bg": "#f4f4f4",
+            "accordion_content_bg": "#ffffff",
+            "accordion_text_color": "#121212",
+            "accordion_border_color": "#e5e5e5",
+            "accordion_border_radius": 8,
+            "accordion_title_1": "Accordion 1",
+            "accordion_content_1": "<p>Add your content here. You can include text, images, and more.</p>",
+            "accordion_collection_1": "",
+            "accordion_title_2": "Accordion 2",
+            "accordion_content_2": "<p>Add your content here. You can include text, images, and more.</p>",
+            "accordion_collection_2": "",
+            "accordion_title_3": "",
+            "accordion_content_3": "",
+            "accordion_collection_3": "",
+            "accordion_title_4": "",
+            "accordion_content_4": "",
+            "accordion_collection_4": "",
+            "show_products": true,
+            "products_to_show": 2,
+            "show_view_all": true,
+            "view_all_text": "View all products",
+            "button_bg_color": "#121212",
+            "button_text_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_aeb8aa2_z6weDk"
+      ],
+      "settings": {}
     }
   },
   "order": [
@@ -178,6 +224,7 @@
     "banner",
     "product-grid",
     "featured_product_VxM9kV",
-    "featured_collection_LWDGpi"
+    "featured_collection_LWDGpi",
+    "174922624645cf0740"
   ]
 }
