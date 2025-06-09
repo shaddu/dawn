@@ -1,10 +1,8 @@
 {% doc %}
   @prompt
-    Create a two-column section where the left column contains an image slideshow that pulls images from a collection metafield called 'product_images', and the right column contains an accordion that is dynamically generated from JSON data stored in a collection metafield called 'product_data'. The section should be responsive and the accordion items should be created automatically based on the JSON structure.
-
+    Create a two-column section where the left column contains a product-style image gallery (main image, thumbnails, zoom modal) using images from a collection metafield called 'product_images', and the right column contains an accordion generated from JSON data in a collection metafield called 'product_data'. The section should be responsive and the accordion items should be created automatically based on the JSON structure.
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
-
 {% style %}
   .ai-collection-display-{{ ai_gen_id }} {
     display: flex;
@@ -12,116 +10,101 @@
     gap: 30px;
     width: 100%;
   }
-
   @media screen and (min-width: 750px) {
     .ai-collection-display-{{ ai_gen_id }} {
       flex-direction: row;
     }
   }
-
   .ai-collection-display__column-{{ ai_gen_id }} {
     flex: 1;
   }
-
-  .ai-collection-display__slideshow-{{ ai_gen_id }} {
-    position: relative;
-    overflow: hidden;
+  .ai-collection-gallery-{{ ai_gen_id }} {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  .ai-collection-gallery__main-{{ ai_gen_id }} {
+    width: 100%;
+    aspect-ratio: 1/1;
+    background: #f4f4f4;
     border-radius: {{ block.settings.image_border_radius }}px;
-  }
-
-  .ai-collection-display__slides-{{ ai_gen_id }} {
+    overflow: hidden;
     display: flex;
-    transition: transform 0.5s ease;
-  }
-
-  .ai-collection-display__slide-{{ ai_gen_id }} {
-    flex: 0 0 100%;
-    width: 100%;
-    height: 100%;
+    align-items: center;
+    justify-content: center;
     position: relative;
+    cursor: zoom-in;
   }
-
-  .ai-collection-display__slide-{{ ai_gen_id }} img {
+  .ai-collection-gallery__main-{{ ai_gen_id }} img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    display: block;
+    object-fit: contain;
+    border-radius: {{ block.settings.image_border_radius }}px;
+    transition: box-shadow 0.2s;
   }
-
-  .ai-collection-display__image-placeholder-{{ ai_gen_id }} {
+  .ai-collection-gallery__thumbs-{{ ai_gen_id }} {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    justify-content: center;
+  }
+  .ai-collection-gallery__thumb-{{ ai_gen_id }} {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid #eee;
+    opacity: 0.7;
+    transition: border 0.2s, opacity 0.2s;
+  }
+  .ai-collection-gallery__thumb-{{ ai_gen_id }}.active {
+    border: 2px solid {{ block.settings.dot_active_color }};
+    opacity: 1;
+  }
+  .ai-collection-gallery__image-placeholder-{{ ai_gen_id }} {
     width: 100%;
     aspect-ratio: 1/1;
     background-color: #f4f4f4;
     display: flex;
     align-items: center;
     justify-content: center;
+    border-radius: {{ block.settings.image_border_radius }}px;
   }
-
-  .ai-collection-display__image-placeholder-{{ ai_gen_id }} svg {
+  .ai-collection-gallery__image-placeholder-{{ ai_gen_id }} svg {
     width: 50%;
     height: 50%;
     opacity: 0.5;
   }
-
-  .ai-collection-display__controls-{{ ai_gen_id }} {
-    position: absolute;
-    bottom: 15px;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-    z-index: 2;
-  }
-
-  .ai-collection-display__dot-{{ ai_gen_id }} {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-
-  .ai-collection-display__dot-{{ ai_gen_id }}.active {
-    background-color: {{ block.settings.dot_active_color }};
-  }
-
-  .ai-collection-display__nav-{{ ai_gen_id }} {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background-color: rgba(255, 255, 255, 0.8);
-    border-radius: 50%;
-    display: flex;
+  .ai-collection-gallery__zoom-modal-{{ ai_gen_id }} {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.8);
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    z-index: 2;
   }
-
-  .ai-collection-display__prev-{{ ai_gen_id }} {
-    left: 10px;
+  .ai-collection-gallery__zoom-modal-{{ ai_gen_id }}.active {
+    display: flex;
   }
-
-  .ai-collection-display__next-{{ ai_gen_id }} {
-    right: 10px;
+  .ai-collection-gallery__zoom-img-{{ ai_gen_id }} {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    background: #fff;
   }
-
   .ai-collection-display__accordion-{{ ai_gen_id }} {
     border-radius: {{ block.settings.accordion_border_radius }}px;
     overflow: hidden;
   }
-
   .ai-collection-display__accordion-item-{{ ai_gen_id }} {
     border: 1px solid {{ block.settings.accordion_border_color }};
     margin-bottom: 10px;
     border-radius: {{ block.settings.accordion_border_radius }}px;
     overflow: hidden;
   }
-
   .ai-collection-display__accordion-header-{{ ai_gen_id }} {
     padding: 15px;
     background-color: {{ block.settings.accordion_header_bg }};
@@ -132,11 +115,9 @@
     align-items: center;
     font-weight: bold;
   }
-
   .ai-collection-display__accordion-icon-{{ ai_gen_id }} {
     transition: transform 0.3s ease;
   }
-
   .ai-collection-display__accordion-content-{{ ai_gen_id }} {
     padding: 0;
     max-height: 0;
@@ -145,20 +126,16 @@
     background-color: {{ block.settings.accordion_content_bg }};
     color: {{ block.settings.accordion_content_text }};
   }
-
   .ai-collection-display__accordion-content-inner-{{ ai_gen_id }} {
     padding: 15px;
   }
-
   .ai-collection-display__accordion-item-{{ ai_gen_id }}.active .ai-collection-display__accordion-icon-{{ ai_gen_id }} {
     transform: rotate(180deg);
   }
-
   .ai-collection-display__accordion-item-{{ ai_gen_id }}.active .ai-collection-display__accordion-content-{{ ai_gen_id }} {
     max-height: 1000px;
     padding: 15px;
   }
-
   .ai-collection-display__no-data-{{ ai_gen_id }} {
     padding: 20px;
     text-align: center;
@@ -169,45 +146,48 @@
 
 <div class="ai-collection-display-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="ai-collection-display__column-{{ ai_gen_id }}">
-    <div class="ai-collection-display__slideshow-{{ ai_gen_id }}">
+    <div class="ai-collection-gallery-{{ ai_gen_id }}">
       {% assign product_images = collection.metafields.custom.product_images.value %}
-     
-        <div class="ai-collection-display__slides-{{ ai_gen_id }}">
+      {% if product_images and product_images.size > 0 %}
+        <div class="ai-collection-gallery__main-{{ ai_gen_id }}">
+          <img
+            id="main-image-{{ ai_gen_id }}"
+            src="{{ product_images[0] | image_url: width: 1000 }}"
+            alt="Main"
+            style="width:100%;height:100%;"
+            loading="eager"
+          >
+        </div>
+        <div class="ai-collection-gallery__thumbs-{{ ai_gen_id }}">
           {% for image in product_images %}
-            <div class="ai-collection-display__slide-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
-              <img 
-                src="{{ image | image_url: width: 1000 }}" 
-                alt="{{ image.alt | escape }}"
-                loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-                width="100%"
-                height="100%"
-              >
-            </div>
+            <img
+              class="ai-collection-gallery__thumb-{{ ai_gen_id }}{% if forloop.first %} active{% endif %}"
+              src="{{ image | image_url: width: 120 }}"
+              alt="Thumb"
+              data-index="{{ forloop.index0 }}"
+              style="width:60px;height:60px;"
+            >
           {% endfor %}
         </div>
-        
-        <div class="ai-collection-display__controls-{{ ai_gen_id }}">
-          {% for image in product_images %}
-            <div class="ai-collection-display__dot-{{ ai_gen_id }} {% if forloop.first %}active{% endif %}" data-index="{{ forloop.index0 }}"></div>
-          {% endfor %}
+        <!-- Zoom Modal -->
+        <div id="zoom-modal-{{ ai_gen_id }}" class="ai-collection-gallery__zoom-modal-{{ ai_gen_id }}">
+          <img
+            id="zoom-image-{{ ai_gen_id }}"
+            class="ai-collection-gallery__zoom-img-{{ ai_gen_id }}"
+            src=""
+            alt="Zoom"
+          >
         </div>
-        
-        <div class="ai-collection-display__nav-{{ ai_gen_id }} ai-collection-display__prev-{{ ai_gen_id }}">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M15 18L9 12L15 6" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
+      {% else %}
+        <div class="ai-collection-gallery__image-placeholder-{{ ai_gen_id }}">
+          {{ 'product-1' | placeholder_svg_tag }}
         </div>
-        
-        <div class="ai-collection-display__nav-{{ ai_gen_id }} ai-collection-display__next-{{ ai_gen_id }}">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M9 6L15 12L9 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
+      {% endif %}
     </div>
-  </div><div class="ai-collection-display__column-{{ ai_gen_id }}">
+  </div>
+  <div class="ai-collection-display__column-{{ ai_gen_id }}">
     <div class="ai-collection-display__accordion-{{ ai_gen_id }}">
       {% assign product_data = collection.metafields.custom.product_data.value %}
-      
       {% if product_data.size > 0 %}
         {% for item in product_data %}
           <div class="ai-collection-display__accordion-item-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
@@ -237,146 +217,44 @@
 
 <script>
   (function() {
-    class CollectionDisplay extends HTMLElement {
-      constructor() {
-        super();
-        this.slideshow = this.querySelector('.ai-collection-display__slideshow-{{ ai_gen_id }}');
-        this.slides = this.querySelectorAll('.ai-collection-display__slide-{{ ai_gen_id }}');
-        this.slidesContainer = this.querySelector('.ai-collection-display__slides-{{ ai_gen_id }}');
-        this.dots = this.querySelectorAll('.ai-collection-display__dot-{{ ai_gen_id }}');
-        this.prevButton = this.querySelector('.ai-collection-display__prev-{{ ai_gen_id }}');
-        this.nextButton = this.querySelector('.ai-collection-display__next-{{ ai_gen_id }}');
-        this.accordionItems = this.querySelectorAll('.ai-collection-display__accordion-item-{{ ai_gen_id }}');
-        this.currentSlide = 0;
-        this.slideCount = this.slides.length;
-        this.autoplayInterval = null;
-      }
-
-      connectedCallback() {
-        if (this.slideCount > 0) {
-          this.setupSlideshow();
-        }
-        this.setupAccordion();
-      }
-
-      setupSlideshow() {
-        // Set up navigation buttons
-        if (this.prevButton && this.nextButton) {
-          this.prevButton.addEventListener('click', () => this.goToSlide(this.currentSlide - 1));
-          this.nextButton.addEventListener('click', () => this.goToSlide(this.currentSlide + 1));
-        }
-
-        // Set up dots
-        this.dots.forEach(dot => {
-          dot.addEventListener('click', () => {
-            const index = parseInt(dot.dataset.index);
-            this.goToSlide(index);
-          });
+    // Gallery logic
+    var mainImg = document.getElementById('main-image-{{ ai_gen_id }}');
+    var thumbs = document.querySelectorAll('.ai-collection-gallery__thumb-{{ ai_gen_id }}');
+    var zoomModal = document.getElementById('zoom-modal-{{ ai_gen_id }}');
+    var zoomImg = document.getElementById('zoom-image-{{ ai_gen_id }}');
+    if(mainImg && thumbs.length > 0) {
+      thumbs.forEach(function(thumb, idx) {
+        thumb.addEventListener('click', function() {
+          mainImg.src = thumb.src.replace('width=120', 'width=1000');
+          thumbs.forEach(t => t.classList.remove('active'));
+          thumb.classList.add('active');
         });
-
-        // Set up autoplay if enabled
-        if ({{ block.settings.autoplay | json }}) {
-          this.startAutoplay();
-          
-          // Pause autoplay on hover
-          this.slideshow.addEventListener('mouseenter', () => this.stopAutoplay());
-          this.slideshow.addEventListener('mouseleave', () => this.startAutoplay());
-        }
-
-        // Handle touch events for mobile
-        let startX, endX;
-        this.slideshow.addEventListener('touchstart', (e) => {
-          startX = e.touches[0].clientX;
-        });
-        
-        this.slideshow.addEventListener('touchend', (e) => {
-          endX = e.changedTouches[0].clientX;
-          if (startX - endX > 50) { // Swipe left
-            this.goToSlide(this.currentSlide + 1);
-          } else if (endX - startX > 50) { // Swipe right
-            this.goToSlide(this.currentSlide - 1);
-          }
-        });
-      }
-
-      setupAccordion() {
-
-        if(this.accordionItems == undefined )
-          this.accordionItems = this.querySelectorAll('.ai-collection-display__accordion-item-{{ ai_gen_id }}');
-
-        this.accordionItems.forEach(item => {
-          const header = item.querySelector('.ai-collection-display__accordion-header-{{ ai_gen_id }}');
-          const content = item.querySelector('.ai-collection-display__accordion-content-{{ ai_gen_id }}');
-          
-          header.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            
-            // Close all items
-            if ({{ block.settings.close_others | json }}) {
-              this.accordionItems.forEach(otherItem => {
-                if (otherItem !== item) {
-                  otherItem.classList.remove('active');
-                }
-              });
-            }
-            
-            // Toggle current item
-            item.classList.toggle('active');
-          });
-          
-          // Open first item by default if configured
-          if ({{ block.settings.open_first_item | json }} && item.dataset.index === '0') {
-            item.classList.add('active');
-          }
-        });
-      }
-
-      goToSlide(index) {
-        // Handle wrapping
-        if (index < 0) {
-          index = this.slideCount - 1;
-        } else if (index >= this.slideCount) {
-          index = 0;
-        }
-        
-        // Update current slide
-        this.currentSlide = index;
-        
-        // Update slides position
-        if (this.slidesContainer) {
-          this.slidesContainer.style.transform = `translateX(-${this.currentSlide * 100}%)`;
-        }
-        
-        // Update dots
-        this.dots.forEach((dot, i) => {
-          dot.classList.toggle('active', i === this.currentSlide);
-        });
-      }
-
-      startAutoplay() {
-        if (this.autoplayInterval) return;
-        
-        this.autoplayInterval = setInterval(() => {
-          this.goToSlide(this.currentSlide + 1);
-        }, {{ block.settings.autoplay_speed | times: 1000 }});
-      }
-
-      stopAutoplay() {
-        if (this.autoplayInterval) {
-          clearInterval(this.autoplayInterval);
-          this.autoplayInterval = null;
-        }
-      }
+      });
+      // Zoom on click
+      mainImg.addEventListener('click', function() {
+        zoomImg.src = mainImg.src.replace('width=1000', 'width=2000');
+        zoomModal.classList.add('active');
+      });
+      zoomModal.addEventListener('click', function() {
+        zoomModal.classList.remove('active');
+      });
     }
 
-    customElements.define('collection-display-{{ ai_gen_id }}', CollectionDisplay);
-    
-    // Initialize all instances
-    document.querySelectorAll('.ai-collection-display-{{ ai_gen_id }}').forEach(container => {
-      if (!(container instanceof CollectionDisplay)) {
-        Object.setPrototypeOf(container, CollectionDisplay.prototype);
-        container.connectedCallback();
-      }
+    // Accordion logic
+    document.querySelectorAll('.ai-collection-display__accordion-item-{{ ai_gen_id }}').forEach(function(item) {
+      var header = item.querySelector('.ai-collection-display__accordion-header-{{ ai_gen_id }}');
+      header.addEventListener('click', function() {
+        var isActive = item.classList.contains('active');
+        {% if block.settings.close_others %}
+        document.querySelectorAll('.ai-collection-display__accordion-item-{{ ai_gen_id }}').forEach(function(other) {
+          if (other !== item) other.classList.remove('active');
+        });
+        {% endif %}
+        item.classList.toggle('active');
+      });
+      {% if block.settings.open_first_item %}
+      if(item.dataset.index === '0') item.classList.add('active');
+      {% endif %}
     });
   })();
 </script>
@@ -389,22 +267,6 @@
     {
       "type": "header",
       "content": "Slideshow Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "autoplay",
-      "label": "Autoplay slideshow",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "autoplay_speed",
-      "min": 3,
-      "max": 10,
-      "step": 1,
-      "unit": "s",
-      "label": "Autoplay speed",
-      "default": 5
     },
     {
       "type": "range",
