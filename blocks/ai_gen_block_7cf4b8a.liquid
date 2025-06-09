@@ -307,6 +307,7 @@
 
       setupAccordion() {
         this.accordionItems.forEach(item => {
+          console.log(item)
           const header = item.querySelector('.ai-collection-display__accordion-header-{{ ai_gen_id }}');
           const content = item.querySelector('.ai-collection-display__accordion-content-{{ ai_gen_id }}');
           
