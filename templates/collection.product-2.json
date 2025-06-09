@@ -177,6 +177,7 @@
       "blocks": {
         "ai_gen_block_aeb8aa2_z6weDk": {
           "type": "ai_gen_block_aeb8aa2",
+          "disabled": true,
           "settings": {
             "gap": 32,
             "image_width": 50,
