@@ -179,8 +179,8 @@
                 src="{{ image | image_url: width: 1000 }}" 
                 alt="{{ image.alt | escape }}"
                 loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-                width="{{ image.width }}"
-                height="{{ image.height }}"
+                width="100%"
+                height="100%"
               >
             </div>
           {% endfor %}
