@@ -171,10 +171,8 @@
   <div class="ai-collection-display__column-{{ ai_gen_id }}">
     <div class="ai-collection-display__slideshow-{{ ai_gen_id }}">
       {% assign product_images = collection.metafields.custom.product_images.value %}
-      <span>
-        {{ product_images.size }}
-      </span>
-      {% if product_images.size > 0 %}
+     
+      <!-- {% if product_images.size > 0 %} -->
         <div class="ai-collection-display__slides-{{ ai_gen_id }}">
           {% for image in product_images %}
             <div class="ai-collection-display__slide-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
@@ -206,11 +204,11 @@
             <path d="M9 6L15 12L9 18" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-      {% else %}
+      <!-- {% else %}
         <div class="ai-collection-display__image-placeholder-{{ ai_gen_id }}">
           {{ 'collection-apparel-1' | placeholder_svg_tag }}
         </div>
-      {% endif %}
+      {% endif %} -->
     </div>
   </div><div class="ai-collection-display__column-{{ ai_gen_id }}">
     <div class="ai-collection-display__accordion-{{ ai_gen_id }}">
