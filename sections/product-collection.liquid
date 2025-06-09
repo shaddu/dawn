@@ -8,6 +8,7 @@
       {% if gallery_images %}
         <div class="collection-slideshow" style="display:flex;flex-direction:column;gap:16px;">
           {% for image in gallery_images %}
+            console.log({{ image | file_url }})
             <img
               src="{{ image | file_url }}"
               alt="{{ collection.title | escape }}"
