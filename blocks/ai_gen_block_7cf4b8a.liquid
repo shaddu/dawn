@@ -170,7 +170,7 @@
 <div class="ai-collection-display-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
   <div class="ai-collection-display__column-{{ ai_gen_id }}">
     <div class="ai-collection-display__slideshow-{{ ai_gen_id }}">
-      {% assign product_images = collection.metafields.custom.product_images %}
+      {% assign product_images = collection.metafields.custom.product_images.value %}
       <span>
         {{ product_images.size }}
       </span>
