@@ -238,7 +238,7 @@
             "accordion_header_text": "#333333",
             "accordion_content_bg": "#ffffff",
             "accordion_content_text": "#333333",
-            "no_data_message": "No product data available"
+            "no_data_message": ""
           },
           "blocks": {}
         }
