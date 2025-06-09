@@ -306,9 +306,9 @@
       }
 
       setupAccordion() {
-        console.log("test")
 
-        this.accordionItems = this.querySelectorAll('.ai-collection-display__accordion-item-{{ ai_gen_id }}');
+        if(this.accordionItems == undefined )
+          this.accordionItems = this.querySelectorAll('.ai-collection-display__accordion-item-{{ ai_gen_id }}');
 
         this.accordionItems.forEach(item => {
           const header = item.querySelector('.ai-collection-display__accordion-header-{{ ai_gen_id }}');
