@@ -1,74 +1,226 @@
-<!-- filepath: sections/product-collection.liquid -->
-<section class="collection-accordion-section" style="max-width:1200px;margin:auto;padding:32px 0;">
-  <h1 style="font-size:44px;font-weight:600;color:#121212;">{{ collection.title }}</h1>
-  <div style="display:flex;gap:40px;align-items:flex-start;">
-    <!-- Left: Gallery/Slideshow -->
-    <div style="flex:1;">
-      {%- assign gallery_images = collection.metafields.custom.product_images -%}
-      {% if gallery_images %}
-        <div class="collection-slideshow" style="display:flex;flex-direction:column;gap:16px;">
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+.collection-showcase-{{ ai_gen_id }} {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+.collection-showcase__column-{{ ai_gen_id }} {
+  flex: 1;
+  min-width: 300px;
+}
+.collection-showcase__image-column-{{ ai_gen_id }} {
+  flex-basis: 50%;
+}
+.collection-showcase__content-column-{{ ai_gen_id }} {
+  flex-basis: 50%;
+}
+.collection-slideshow-{{ ai_gen_id }} {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  min-height: 320px;
+}
+.collection-slideshow__img-{{ ai_gen_id }} {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: none;
+}
+.collection-slideshow__img-{{ ai_gen_id }}.active {
+  display: block;
+}
+.collection-slideshow__controls-{{ ai_gen_id }} {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+.collection-slideshow__dot-{{ ai_gen_id }} {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ccc;
+  cursor: pointer;
+  border: none;
+}
+.collection-slideshow__dot-{{ ai_gen_id }}.active {
+  background: #121212;
+}
+.collection-accordion-{{ ai_gen_id }} {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.collection-accordion__item-{{ ai_gen_id }} {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.collection-accordion__header-{{ ai_gen_id }} {
+  padding: 15px 20px;
+  background-color: #f4f4f4;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: #121212;
+}
+.collection-accordion__icon-{{ ai_gen_id }} {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  transition: transform 0.3s;
+}
+.collection-accordion__icon-{{ ai_gen_id }}::before,
+.collection-accordion__icon-{{ ai_gen_id }}::after {
+  content: '';
+  position: absolute;
+  background-color: #121212;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  margin-top: -1px;
+}
+.collection-accordion__icon-{{ ai_gen_id }}::after {
+  transform: rotate(90deg);
+  transition: transform 0.3s;
+}
+.collection-accordion__item-{{ ai_gen_id }}.active .collection-accordion__icon-{{ ai_gen_id }}::after {
+  transform: rotate(0);
+}
+.collection-accordion__content-{{ ai_gen_id }} {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s;
+  background: #fff;
+  color: #121212;
+}
+.collection-accordion__item-{{ ai_gen_id }}.active .collection-accordion__content-{{ ai_gen_id }} {
+  max-height: 500px;
+}
+.collection-accordion__inner-{{ ai_gen_id }} {
+  padding: 20px;
+}
+@media screen and (max-width: 768px) {
+  .collection-showcase-{{ ai_gen_id }} {
+    flex-direction: column;
+  }
+  .collection-showcase__image-column-{{ ai_gen_id }},
+  .collection-showcase__content-column-{{ ai_gen_id }} {
+    flex-basis: 100%;
+  }
+  .collection-slideshow-{{ ai_gen_id }} {
+    min-height: 200px;
+  }
+}
+{% endstyle %}
+
+<div class="collection-showcase-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <!-- Left: Slideshow -->
+  <div class="collection-showcase__column-{{ ai_gen_id }} collection-showcase__image-column-{{ ai_gen_id }}">
+    <div class="collection-slideshow-{{ ai_gen_id }}">
+      {% assign gallery_images = collection.metafields.custom.product_images %}
+      {% if gallery_images and gallery_images.size > 0 %}
+        {% for image in gallery_images %}
+          <img
+            src="{{ image | file_url }}"
+            alt="{{ collection.title | escape }}"
+            class="collection-slideshow__img-{{ ai_gen_id }}{% if forloop.first %} active{% endif %}"
+            data-index="{{ forloop.index0 }}"
+            loading="lazy"
+          >
+        {% endfor %}
+        <div class="collection-slideshow__controls-{{ ai_gen_id }}">
           {% for image in gallery_images %}
-           ({{ image | file_url }})
-            <img
-              src="{{ image | file_url }}"
-              alt="{{ collection.title | escape }}"
-              style="max-width:400px;border-radius:8px;"
-              width="100%"
-              height="100%"
-            />
+            <button class="collection-slideshow__dot-{{ ai_gen_id }}{% if forloop.first %} active{% endif %}" data-index="{{ forloop.index0 }}"></button>
           {% endfor %}
+        </div>
+      {% else %}
+        <div style="width:100%;height:320px;display:flex;align-items:center;justify-content:center;background:#f4f4f4;border-radius:12px;">
+          {{ 'collection-apparel-1' | placeholder_svg_tag }}
         </div>
       {% endif %}
     </div>
-    <!-- Right: Accordion -->
-    <div style="flex:1;">
-      {%- assign accordion_data = collection.metafields.custom.product_data -%}
+  </div>
+
+  <!-- Right: Accordion -->
+  <div class="collection-showcase__column-{{ ai_gen_id }} collection-showcase__content-column-{{ ai_gen_id }}">
+    <div class="collection-accordion-{{ ai_gen_id }}">
+      {% assign accordion_data = collection.metafields.custom.product_data %}
       {% if accordion_data %}
-        {% assign accordion_items = accordion_data %}
-        <div class="accordion" style="display:flex;flex-direction:column;gap:16px;">
-          {% for item in accordion_items %}
-            <div class="accordion-item" style="border-radius:8px;border:1px solid #e5e5e5;overflow:hidden;">
-              <button
-                class="accordion-title"
-                style="width:100%;text-align:left;padding:16px;background:#f4f4f4;color:#121212;font-size:18px;font-weight:500;cursor:pointer;border:none;"
-              >
-                {{ item.title }}
-              </button>
-              <div class="accordion-content" style="display:none;padding:16px;background:#fff;color:#121212;">
+        {% for item in accordion_data %}
+          <div class="collection-accordion__item-{{ ai_gen_id }}{% if forloop.first %} active{% endif %}">
+            <div class="collection-accordion__header-{{ ai_gen_id }}">
+              <span>{{ item.title }}</span>
+              <div class="collection-accordion__icon-{{ ai_gen_id }}"></div>
+            </div>
+            <div class="collection-accordion__content-{{ ai_gen_id }}">
+              <div class="collection-accordion__inner-{{ ai_gen_id }}">
                 {{ item.content }}
                 {% if item.link %}
                   <br>
-                  <a
-                    href="{{ item.link.url }}"
-                    target="_blank"
-                    rel="noopener"
-                    style="color:#1a73e8;text-decoration:underline;"
-                  >
+                  <a href="{{ item.link.url }}" target="_blank" rel="noopener" style="color:#1a73e8;text-decoration:underline;">
                     {{ item.link.label }}
                   </a>
                 {% endif %}
               </div>
             </div>
-          {% endfor %}
-        </div>
-        <script>
-          document.querySelectorAll('.accordion-title').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-              var content = btn.nextElementSibling;
-              var isOpen = content.style.display === 'block';
-              document.querySelectorAll('.accordion-content').forEach(function(c) { c.style.display = 'none'; });
-              content.style.display = isOpen ? 'none' : 'block';
-            });
-          });
-        </script>
+          </div>
+        {% endfor %}
       {% endif %}
     </div>
   </div>
-</section>
+</div>
+
+<script>
+(function() {
+  // Slideshow logic
+  var images = document.querySelectorAll('.collection-slideshow__img-{{ ai_gen_id }}');
+  var dots = document.querySelectorAll('.collection-slideshow__dot-{{ ai_gen_id }}');
+  if(images.length > 1 && dots.length > 1) {
+    dots.forEach(function(dot, idx) {
+      dot.addEventListener('click', function() {
+        images.forEach(function(img) { img.classList.remove('active'); });
+        dots.forEach(function(d) { d.classList.remove('active'); });
+        images[idx].classList.add('active');
+        dots[idx].classList.add('active');
+      });
+    });
+  }
+
+  // Accordion logic
+  var accordionHeaders = document.querySelectorAll('.collection-accordion__header-{{ ai_gen_id }}');
+  accordionHeaders.forEach(function(header) {
+    header.addEventListener('click', function() {
+      var item = header.parentElement;
+      var isActive = item.classList.contains('active');
+      document.querySelectorAll('.collection-accordion__item-{{ ai_gen_id }}').forEach(function(i) {
+        i.classList.remove('active');
+      });
+      if(!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+})();
+</script>
 
 {% schema %}
 {
-  "name": "Product collection",
-  "settings": []
+  "name": "Gallery & Accordion Block",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Gallery & Accordion Block"
+    }
+  ]
 }
 {% endschema %}
