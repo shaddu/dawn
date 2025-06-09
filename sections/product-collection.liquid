@@ -1,6 +1,74 @@
+<!-- filepath: sections/product-collection.liquid -->
+<section class="collection-accordion-section" style="max-width:1200px;margin:auto;padding:32px 0;">
+  <h1 style="font-size:44px;font-weight:600;color:#121212;">{{ collection.title }}</h1>
+  <div style="display:flex;gap:40px;align-items:flex-start;">
+    <!-- Left: Gallery/Slideshow -->
+    <div style="flex:1;">
+      {%- assign gallery_images = collection.metafields.custom.product_images -%}
+      {% if gallery_images %}
+        <div class="collection-slideshow" style="display:flex;flex-direction:column;gap:16px;">
+          {% assign images = gallery_images | split: ',' %}
+          {% for image in images %}
+            <img
+              src="{{ image | file_url }}"
+              alt="{{ collection.title | escape }}"
+              style="width:100%;max-width:400px;border-radius:8px;"
+              width=""
+              height=""
+            >
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+    <!-- Right: Accordion -->
+    <div style="flex:1;">
+      {%- assign accordion_data = collection.metafields.custom.product_data -%}
+      {% if accordion_data %}
+        {% assign accordion_items = accordion_data %}
+        <div class="accordion" style="display:flex;flex-direction:column;gap:16px;">
+          {% for item in accordion_items %}
+            <div class="accordion-item" style="border-radius:8px;border:1px solid #e5e5e5;overflow:hidden;">
+              <button
+                class="accordion-title"
+                style="width:100%;text-align:left;padding:16px;background:#f4f4f4;color:#121212;font-size:18px;font-weight:500;cursor:pointer;border:none;"
+              >
+                {{ item.title }}
+              </button>
+              <div class="accordion-content" style="display:none;padding:16px;background:#fff;color:#121212;">
+                {{ item.content }}
+                {% if item.link %}
+                  <br>
+                  <a
+                    href="{{ item.link.url }}"
+                    target="_blank"
+                    rel="noopener"
+                    style="color:#1a73e8;text-decoration:underline;"
+                  >
+                    {{ item.link.label }}
+                  </a>
+                {% endif %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <script>
+          document.querySelectorAll('.accordion-title').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+              var content = btn.nextElementSibling;
+              var isOpen = content.style.display === 'block';
+              document.querySelectorAll('.accordion-content').forEach(function(c) { c.style.display = 'none'; });
+              content.style.display = isOpen ? 'none' : 'block';
+            });
+          });
+        </script>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
 {% schema %}
-  {
-    "name": "Section name",
-    "settings": []
-  }
+{
+  "name": "Section name",
+  "settings": []
+}
 {% endschema %}
