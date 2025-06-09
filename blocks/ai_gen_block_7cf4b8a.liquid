@@ -171,7 +171,9 @@
   <div class="ai-collection-display__column-{{ ai_gen_id }}">
     <div class="ai-collection-display__slideshow-{{ ai_gen_id }}">
       {% assign product_images = collection.metafields.custom.product_images %}
-      
+      <span>
+        {{ product_images.size }}
+      </span>
       {% if product_images.size > 0 %}
         <div class="ai-collection-display__slides-{{ ai_gen_id }}">
           {% for image in product_images %}
