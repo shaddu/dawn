@@ -31,9 +31,7 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "ai_gen_block_71e8ec8_ic6Xbn"
-      ],
+      "block_order": ["ai_gen_block_71e8ec8_ic6Xbn"],
       "settings": {}
     },
     "banner": {
@@ -215,9 +213,11 @@
           "blocks": {}
         }
       },
-      "block_order": [
-        "ai_gen_block_aeb8aa2_z6weDk"
-      ],
+      "block_order": ["ai_gen_block_aeb8aa2_z6weDk"],
+      "settings": {}
+    },
+    "product-collection": {
+      "type": "product-collection",
       "settings": {}
     }
   },
@@ -227,6 +227,7 @@
     "product-grid",
     "featured_product_VxM9kV",
     "featured_collection_LWDGpi",
-    "174922624645cf0740"
+    "174922624645cf0740",
+    "product-collection"
   ]
 }
