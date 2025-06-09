@@ -31,7 +31,9 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_71e8ec8_ic6Xbn"],
+      "block_order": [
+        "ai_gen_block_71e8ec8_ic6Xbn"
+      ],
       "settings": {}
     },
     "banner": {
@@ -213,11 +215,37 @@
           "blocks": {}
         }
       },
-      "block_order": ["ai_gen_block_aeb8aa2_z6weDk"],
+      "block_order": [
+        "ai_gen_block_aeb8aa2_z6weDk"
+      ],
       "settings": {}
     },
-    "product-collection": {
-      "type": "product-collection",
+    "1749489067c7639552": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_7cf4b8a_qA6RTY": {
+          "type": "ai_gen_block_7cf4b8a",
+          "settings": {
+            "autoplay": true,
+            "autoplay_speed": 5,
+            "image_border_radius": 8,
+            "dot_active_color": "#ffffff",
+            "open_first_item": true,
+            "close_others": true,
+            "accordion_border_radius": 8,
+            "accordion_border_color": "#e0e0e0",
+            "accordion_header_bg": "#f5f5f5",
+            "accordion_header_text": "#333333",
+            "accordion_content_bg": "#ffffff",
+            "accordion_content_text": "#333333",
+            "no_data_message": "No product data available"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_7cf4b8a_qA6RTY"
+      ],
       "settings": {}
     }
   },
@@ -228,6 +256,6 @@
     "featured_product_VxM9kV",
     "featured_collection_LWDGpi",
     "174922624645cf0740",
-    "product-collection"
+    "1749489067c7639552"
   ]
 }
