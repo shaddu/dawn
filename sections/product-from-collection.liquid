@@ -33,45 +33,48 @@
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} grid grid--1-col grid--2-col-tablet">
       <div class="grid__item product__media-wrapper">
         {% assign gallery_images = collection.metafields.custom.product_images.value %}
-        {% comment %} {% render 'product-media-gallery', variant_images: gallery_images %} {% endcomment %}
 
-        {% if gallery_images %}
-          <div class="product__media-wrapper">
-            {% for image in gallery_images %}
-              <div
-                class="product__media{% if forloop.first %} is-active{% endif %}"
-                data-media-id="media-{{ forloop.index0 }}"
-              >
-                <img
-                  src="{{ image | image_url }}"
-                  alt="{{ collection.title | escape }}"
-                  class="product__media-image"
-                  id="media-{{ forloop.index0 }}"
-                  {% if forloop.first %}
-                    style="display:block"
-                  {% else %}
-                    style="display:none"
-                  {% endif %}
-                >
-              </div>
-            {% endfor %}
-            <div class="product__media-list">
+        {% comment %} {% render 'product-media-gallery', variant_images: gallery_images %} {% endcomment %}
+        {% render 'collection-media-gallery', media_items: gallery_images, section: section %}
+        {% comment %}
+          {% if gallery_images %}
+            <div class="product__media-wrapper">
               {% for image in gallery_images %}
-                <button
-                  class="product__media-thumbnail{% if forloop.first %} is-active{% endif %}"
-                  type="button"
+                <div
+                  class="product__media{% if forloop.first %} is-active{% endif %}"
                   data-media-id="media-{{ forloop.index0 }}"
                 >
-                  <img src="{{ image | image_url }}" alt="Thumbnail" class="product__media-thumbnail-image">
-                </button>
+                  <img
+                    src="{{ image | image_url }}"
+                    alt="{{ collection.title | escape }}"
+                    class="product__media-image"
+                    id="media-{{ forloop.index0 }}"
+                    {% if forloop.first %}
+                      style="display:block"
+                    {% else %}
+                      style="display:none"
+                    {% endif %}
+                  >
+                </div>
               {% endfor %}
+              <div class="product__media-list">
+                {% for image in gallery_images %}
+                  <button
+                    class="product__media-thumbnail{% if forloop.first %} is-active{% endif %}"
+                    type="button"
+                    data-media-id="media-{{ forloop.index0 }}"
+                  >
+                    <img src="{{ image | file_url }}" alt="Thumbnail" class="product__media-thumbnail-image">
+                  </button>
+                {% endfor %}
+              </div>
             </div>
-          </div>
-        {% else %}
-          <div class="product__media-wrapper">
-            {{ 'product-1' | placeholder_svg_tag }}
-          </div>
-        {% endif %}
+          {% else %}
+            <div class="product__media-wrapper">
+              {{ 'product-1' | placeholder_svg_tag }}
+            </div>
+          {% endif %}
+        {% endcomment %}
       </div>
       <div class="product__info-wrapper grid__item">
         <section

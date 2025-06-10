@@ -1,0 +1,106 @@
+{% comment %}
+  Renders a collection media gallery (images only).
+  Accepts:
+  - media_items: {Array} Array of image file objects (from collection metafield)
+  - section: {Object} Section object for settings
+{% endcomment %}
+
+{% assign media_count = media_items.size %}
+{% assign media_width = 0.65 %}
+<media-gallery
+  id="MediaGallery-{{ section.id }}"
+  role="region"
+  aria-label="Collection gallery"
+  data-desktop-layout="stacked"
+>
+  <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
+  <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
+    <ul
+      id="Slider-Gallery-{{ section.id }}"
+      class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
+      role="list"
+    >
+      {% for image in media_items %}
+        <li
+          id="Slide-{{ section.id }}-{{ forloop.index0 }}"
+          class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
+          data-media-id="{{ section.id }}-{{ forloop.index0 }}"
+        >
+          <img
+            src="{{ image | image_url}}"
+            class="product__media-image"
+            alt="{{ image.alt | default: collection.title }}"
+            loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+          >
+        </li>
+      {% endfor %}
+    </ul>
+    {% if media_count > 1 %}
+      <div class="slider-buttons quick-add-hidden">
+        <button
+          type="button"
+          class="slider-button slider-button--prev"
+          name="previous"
+          aria-label="Previous slide"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+        </button>
+        <div class="slider-counter caption">
+          <span class="slider-counter--current">1</span>
+          <span aria-hidden="true"> / </span>
+          <span class="slider-counter--total">{{ media_count }}</span>
+        </div>
+        <button
+          type="button"
+          class="slider-button slider-button--next"
+          name="next"
+          aria-label="Next slide"
+        >
+          <span class="svg-wrapper">
+            {{- 'icon-caret.svg' | inline_asset_content -}}
+          </span>
+        </button>
+      </div>
+    {% endif %}
+  </slider-component>
+  {% if media_count > 1 %}
+    <slider-component
+      id="GalleryThumbnails-{{ section.id }}"
+      class="thumbnail-slider slider-mobile-gutter quick-add-hidden"
+    >
+      <ul
+        id="Slider-Thumbnails-{{ section.id }}"
+        class="thumbnail-list list-unstyled slider slider--mobile"
+      >
+        {% for image in media_items %}
+          <li
+            id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index0 }}"
+            class="thumbnail-list__item slider__slide"
+            data-target="{{ section.id }}-{{ forloop.index0 }}"
+            data-media-position="{{ forloop.index }}"
+          >
+            <button
+              class="thumbnail global-media-settings global-media-settings--no-shadow"
+              aria-label="Load image {{ forloop.index }}"
+              aria-controls="GalleryViewer-{{ section.id }}"
+              aria-describedby="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
+              {% if forloop.first %}
+                aria-current="true"
+              {% endif %}
+            >
+              <img
+                src="{{ image | image_url }}"
+                loading="lazy"
+                id="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
+                alt="{{ image.alt | default: collection.title }}"
+                style="width: 74px; height: 74px; object-fit: cover;"
+              >
+            </button>
+          </li>
+        {% endfor %}
+      </ul>
+    </slider-component>
+  {% endif %}
+</media-gallery>
