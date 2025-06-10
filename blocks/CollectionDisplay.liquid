@@ -148,7 +148,7 @@
   <div class="ai-collection-display__column-{{ ai_gen_id }}">
     <div class="ai-collection-gallery-{{ ai_gen_id }}">
       {% assign product_images = collection.metafields.custom.product_images.value %}
-      {% if product_images and product_images.size > 0 %}
+      {% if product_images %}
         <div class="ai-collection-gallery__main-{{ ai_gen_id }}">
           <img
             id="main-image-{{ ai_gen_id }}"
