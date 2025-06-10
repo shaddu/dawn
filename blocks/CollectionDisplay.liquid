@@ -11,7 +11,7 @@
           data-media-id="media-{{ forloop.index0 }}"
         >
           <img
-            src="{{ image | file_url }}"
+            src="{{ image | image_url }}"
             alt="{{ collection.title | escape }}"
             class="product__media-image"
             id="media-{{ forloop.index0 }}"
@@ -30,7 +30,7 @@
             type="button"
             data-media-id="media-{{ forloop.index0 }}"
           >
-            <img src="{{ image | file_url }}" alt="Thumbnail" class="product__media-thumbnail-image">
+            <img src="{{ image | image_url }}" alt="Thumbnail" class="product__media-thumbnail-image">
           </button>
         {% endfor %}
       </div>
@@ -43,7 +43,7 @@
 
   <!-- Collapsible Tabs (Accordion) -->
   <div class="product__accordion">
-    {% assign product_data = collection.metafields.custom.product_data %}
+    {% assign product_data = collection.metafields.custom.product_data.value %}
     {% if product_data %}
       {% for item in product_data %}
         <div class="product__accordion accordion" data-accordion>
