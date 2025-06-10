@@ -1,349 +1,95 @@
-{% doc %}
-  @prompt
-    Create a two-column section where the left column contains a product-style image gallery (main image, thumbnails, zoom modal) using images from a collection metafield called 'product_images', and the right column contains an accordion generated from JSON data in a collection metafield called 'product_data'. The section should be responsive and the accordion items should be created automatically based on the JSON structure.
-{% enddoc %}
-{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
-{% style %}
-  .ai-collection-display-{{ ai_gen_id }} {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 100%;
-  }
-  @media screen and (min-width: 750px) {
-    .ai-collection-display-{{ ai_gen_id }} {
-      flex-direction: row;
-    }
-  }
-  .ai-collection-display__column-{{ ai_gen_id }} {
-    flex: 1;
-  }
-  .ai-collection-gallery-{{ ai_gen_id }} {
-    width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-  .ai-collection-gallery__main-{{ ai_gen_id }} {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background: #f4f4f4;
-    border-radius: {{ block.settings.image_border_radius }}px;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    cursor: zoom-in;
-  }
-  .ai-collection-gallery__main-{{ ai_gen_id }} img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: {{ block.settings.image_border_radius }}px;
-    transition: box-shadow 0.2s;
-  }
-  .ai-collection-gallery__thumbs-{{ ai_gen_id }} {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
-    justify-content: center;
-  }
-  .ai-collection-gallery__thumb-{{ ai_gen_id }} {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    border-radius: 6px;
-    cursor: pointer;
-    border: 2px solid #eee;
-    opacity: 0.7;
-    transition: border 0.2s, opacity 0.2s;
-  }
-  .ai-collection-gallery__thumb-{{ ai_gen_id }}.active {
-    border: 2px solid {{ block.settings.dot_active_color }};
-    opacity: 1;
-  }
-  .ai-collection-gallery__image-placeholder-{{ ai_gen_id }} {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background-color: #f4f4f4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: {{ block.settings.image_border_radius }}px;
-  }
-  .ai-collection-gallery__image-placeholder-{{ ai_gen_id }} svg {
-    width: 50%;
-    height: 50%;
-    opacity: 0.5;
-  }
-  .ai-collection-gallery__zoom-modal-{{ ai_gen_id }} {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    top: 0; left: 0; width: 100vw; height: 100vh;
-    background: rgba(0,0,0,0.8);
-    align-items: center;
-    justify-content: center;
-  }
-  .ai-collection-gallery__zoom-modal-{{ ai_gen_id }}.active {
-    display: flex;
-  }
-  .ai-collection-gallery__zoom-img-{{ ai_gen_id }} {
-    max-width: 90vw;
-    max-height: 90vh;
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    background: #fff;
-  }
-  .ai-collection-display__accordion-{{ ai_gen_id }} {
-    border-radius: {{ block.settings.accordion_border_radius }}px;
-    overflow: hidden;
-  }
-  .ai-collection-display__accordion-item-{{ ai_gen_id }} {
-    border: 1px solid {{ block.settings.accordion_border_color }};
-    margin-bottom: 10px;
-    border-radius: {{ block.settings.accordion_border_radius }}px;
-    overflow: hidden;
-  }
-  .ai-collection-display__accordion-header-{{ ai_gen_id }} {
-    padding: 15px;
-    background-color: {{ block.settings.accordion_header_bg }};
-    color: {{ block.settings.accordion_header_text }};
-    cursor: pointer;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-weight: bold;
-  }
-  .ai-collection-display__accordion-icon-{{ ai_gen_id }} {
-    transition: transform 0.3s ease;
-  }
-  .ai-collection-display__accordion-content-{{ ai_gen_id }} {
-    padding: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-    background-color: {{ block.settings.accordion_content_bg }};
-    color: {{ block.settings.accordion_content_text }};
-  }
-  .ai-collection-display__accordion-content-inner-{{ ai_gen_id }} {
-    padding: 15px;
-  }
-  .ai-collection-display__accordion-item-{{ ai_gen_id }}.active .ai-collection-display__accordion-icon-{{ ai_gen_id }} {
-    transform: rotate(180deg);
-  }
-  .ai-collection-display__accordion-item-{{ ai_gen_id }}.active .ai-collection-display__accordion-content-{{ ai_gen_id }} {
-    max-height: 1000px;
-    padding: 15px;
-  }
-  .ai-collection-display__no-data-{{ ai_gen_id }} {
-    padding: 20px;
-    text-align: center;
-    background-color: #f4f4f4;
-    border-radius: {{ block.settings.accordion_border_radius }}px;
-  }
-{% endstyle %}
+{% assign section_id = section.id | replace: '_', '' | downcase %}
 
-<div class="ai-collection-display-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
-  <div class="ai-collection-display__column-{{ ai_gen_id }}">
-    <div class="ai-collection-gallery-{{ ai_gen_id }}">
-      {% assign product_images = collection.metafields.custom.product_images.value %}
-      <div class="ai-collection-gallery__main-{{ ai_gen_id }}">
-        <img
-          id="main-image-{{ ai_gen_id }}"
-          src="{{ product_images[0] | image_url: width: 1000 }}"
-          alt="Main"
-          style="width:100%;height:100%;"
-          loading="eager"
+<div class="product product--template product--large product__info-wrapper" id="CollectionGalleryTabs-{{ section_id }}">
+  <!-- Gallery -->
+  {% assign gallery_images = collection.metafields.custom.product_images.value %}
+  {% if gallery_images %}
+    <div class="product__media-wrapper">
+      {% for image in gallery_images %}
+        <div
+          class="product__media{% if forloop.first %} is-active{% endif %}"
+          data-media-id="media-{{ forloop.index0 }}"
         >
-      </div>
-      <div class="ai-collection-gallery__thumbs-{{ ai_gen_id }}">
-        {% for image in product_images %}
           <img
-            class="ai-collection-gallery__thumb-{{ ai_gen_id }}{% if forloop.first %} active{% endif %}"
-            src="{{ image | image_url: width: 120 }}"
-            alt="Thumb"
-            data-index="{{ forloop.index0 }}"
-            style="width:60px;height:60px;"
+            src="{{ image | file_url }}"
+            alt="{{ collection.title | escape }}"
+            class="product__media-image"
+            id="media-{{ forloop.index0 }}"
+            {% if forloop.first %}
+              style="display:block"
+            {% else %}
+              style="display:none"
+            {% endif %}
           >
-        {% endfor %}
-      </div>
-      <!-- Zoom Modal -->
-      <div id="zoom-modal-{{ ai_gen_id }}" class="ai-collection-gallery__zoom-modal-{{ ai_gen_id }}">
-        <img
-          id="zoom-image-{{ ai_gen_id }}"
-          class="ai-collection-gallery__zoom-img-{{ ai_gen_id }}"
-          src=""
-          alt="Zoom"
-        >
-      </div>
-    </div>
-  </div>
-  <div class="ai-collection-display__column-{{ ai_gen_id }}">
-    <div class="ai-collection-display__accordion-{{ ai_gen_id }}">
-      {% assign product_data = collection.metafields.custom.product_data.value %}
-      {% if product_data.size > 0 %}
-        {% for item in product_data %}
-          <div class="ai-collection-display__accordion-item-{{ ai_gen_id }}" data-index="{{ forloop.index0 }}">
-            <div class="ai-collection-display__accordion-header-{{ ai_gen_id }}">
-              <span>{{ item.title }}</span>
-              <span class="ai-collection-display__accordion-icon-{{ ai_gen_id }}">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
-              </span>
-            </div>
-            <div class="ai-collection-display__accordion-content-{{ ai_gen_id }}">
-              <div class="ai-collection-display__accordion-content-inner-{{ ai_gen_id }}">
-                {{ item.content }}
-              </div>
-            </div>
-          </div>
-        {% endfor %}
-      {% else %}
-        <div class="ai-collection-display__no-data-{{ ai_gen_id }}">
-          {{ block.settings.no_data_message }}
         </div>
-      {% endif %}
+      {% endfor %}
+      <div class="product__media-list">
+        {% for image in gallery_images %}
+          <button
+            class="product__media-thumbnail{% if forloop.first %} is-active{% endif %}"
+            type="button"
+            data-media-id="media-{{ forloop.index0 }}"
+          >
+            <img src="{{ image | file_url }}" alt="Thumbnail" class="product__media-thumbnail-image">
+          </button>
+        {% endfor %}
+      </div>
     </div>
+  {% else %}
+    <div class="product__media-wrapper">
+      {{ 'product-1' | placeholder_svg_tag }}
+    </div>
+  {% endif %}
+
+  <!-- Collapsible Tabs (Accordion) -->
+  <div class="product__accordion">
+    {% assign product_data = collection.metafields.custom.product_data %}
+    {% if product_data %}
+      {% for item in product_data %}
+        <div class="product__accordion accordion" data-accordion>
+          <details>
+            <summary>
+              <span>{{ item.title }}</span>
+            </summary>
+            <div class="accordion__content">
+              {{ item.content }}
+            </div>
+          </details>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div style="padding:20px;text-align:center;background:#f4f4f4;border-radius:8px;">No product data available</div>
+    {% endif %}
   </div>
 </div>
 
 <script>
-  (function() {
-    // Gallery logic
-    var mainImg = document.getElementById('main-image-{{ ai_gen_id }}');
-    var thumbs = document.querySelectorAll('.ai-collection-gallery__thumb-{{ ai_gen_id }}');
-    var zoomModal = document.getElementById('zoom-modal-{{ ai_gen_id }}');
-    var zoomImg = document.getElementById('zoom-image-{{ ai_gen_id }}');
-    if(mainImg && thumbs.length > 0) {
-      thumbs.forEach(function(thumb, idx) {
-        thumb.addEventListener('click', function() {
-          mainImg.src = thumb.src.replace('width=120', 'width=1000');
-          thumbs.forEach(t => t.classList.remove('active'));
-          thumb.classList.add('active');
+  // Only needed if your theme doesn't already handle gallery switching
+  document
+    .querySelectorAll('#CollectionGalleryTabs-{{ section_id }} .product__media-thumbnail')
+    .forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var id = btn.getAttribute('data-media-id');
+        document.querySelectorAll('#CollectionGalleryTabs-{{ section_id }} .product__media').forEach(function (media) {
+          media.classList.toggle('is-active', media.getAttribute('data-media-id') === id);
+          media.querySelector('img').style.display = media.classList.contains('is-active') ? 'block' : 'none';
         });
+        document
+          .querySelectorAll('#CollectionGalleryTabs-{{ section_id }} .product__media-thumbnail')
+          .forEach(function (th) {
+            th.classList.toggle('is-active', th === btn);
+          });
       });
-      // Zoom on click
-      mainImg.addEventListener('click', function() {
-        zoomImg.src = mainImg.src.replace('width=1000', 'width=2000');
-        zoomModal.classList.add('active');
-      });
-      zoomModal.addEventListener('click', function() {
-        zoomModal.classList.remove('active');
-      });
-    }
-
-    // Accordion logic
-    document.querySelectorAll('.ai-collection-display__accordion-item-{{ ai_gen_id }}').forEach(function(item) {
-      var header = item.querySelector('.ai-collection-display__accordion-header-{{ ai_gen_id }}');
-      header.addEventListener('click', function() {
-        var isActive = item.classList.contains('active');
-        {% if block.settings.close_others %}
-        document.querySelectorAll('.ai-collection-display__accordion-item-{{ ai_gen_id }}').forEach(function(other) {
-          if (other !== item) other.classList.remove('active');
-        });
-        {% endif %}
-        item.classList.toggle('active');
-      });
-      {% if block.settings.open_first_item %}
-      if(item.dataset.index === '0') item.classList.add('active');
-      {% endif %}
     });
-  })();
 </script>
 
 {% schema %}
 {
-  "name": "Collection Display",
-  "tag": null,
-  "settings": [
-    {
-      "type": "header",
-      "content": "Slideshow Settings"
-    },
-    {
-      "type": "range",
-      "id": "image_border_radius",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Image border radius",
-      "default": 8
-    },
-    {
-      "type": "color",
-      "id": "dot_active_color",
-      "label": "Active dot color",
-      "default": "#ffffff"
-    },
-    {
-      "type": "header",
-      "content": "Accordion Settings"
-    },
-    {
-      "type": "checkbox",
-      "id": "open_first_item",
-      "label": "Open first item by default",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "close_others",
-      "label": "Close others when one opens",
-      "default": true
-    },
-    {
-      "type": "range",
-      "id": "accordion_border_radius",
-      "min": 0,
-      "max": 20,
-      "step": 1,
-      "unit": "px",
-      "label": "Border radius",
-      "default": 8
-    },
-    {
-      "type": "color",
-      "id": "accordion_border_color",
-      "label": "Border color",
-      "default": "#e0e0e0"
-    },
-    {
-      "type": "color",
-      "id": "accordion_header_bg",
-      "label": "Header background",
-      "default": "#f5f5f5"
-    },
-    {
-      "type": "color",
-      "id": "accordion_header_text",
-      "label": "Header text color",
-      "default": "#333333"
-    },
-    {
-      "type": "color",
-      "id": "accordion_content_bg",
-      "label": "Content background",
-      "default": "#ffffff"
-    },
-    {
-      "type": "color",
-      "id": "accordion_content_text",
-      "label": "Content text color",
-      "default": "#333333"
-    },
-    {
-      "type": "text",
-      "id": "no_data_message",
-      "label": "No data message",
-      "default": "No product data available"
-    }
-  ],
+  "name": "CollectionDisplay",
+  "settings": [],
   "presets": [
     {
-      "name": "Collection Display"
+      "name": "CollectionDisplay"
     }
   ]
 }
