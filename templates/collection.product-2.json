@@ -43,6 +43,7 @@
         "collection_display_rBfE4A": {
           "type": "CollectionDisplay",
           "name": "CollectionDisplay",
+          "disabled": true,
           "settings": {},
           "blocks": {}
         }
@@ -50,6 +51,7 @@
       "block_order": [
         "collection_display_rBfE4A"
       ],
+      "disabled": true,
       "settings": {}
     },
     "banner": {
@@ -246,7 +248,7 @@
         "color_scheme": "",
         "media_size": "medium",
         "media_position": "left",
-        "gallery_layout": "thumbnail",
+        "gallery_layout": "thumbnail_slider",
         "padding_top": 64,
         "padding_bottom": 64
       }
