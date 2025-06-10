@@ -36,10 +36,11 @@
           data-media-id="{{ section.id }}-{{ forloop.index0 }}"
         >
           <img
-            src="{{ image | image_url}}"
+            src="{{ image | image_url: width: 800 }}"
             class="product__media-image"
             alt="{{ image.alt | default: collection.title }}"
             loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+            style="width:100%;height:auto;"
           >
         </li>
       {% endfor %}
@@ -100,7 +101,7 @@
               {% endif %}
             >
               <img
-                src="{{ image | image_url }}"
+                src="{{ image | image_url: width: 74 }}"
                 loading="lazy"
                 id="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
                 alt="{{ image.alt | default: collection.title }}"
