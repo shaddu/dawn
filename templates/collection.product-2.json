@@ -43,7 +43,6 @@
         "collection_display_rBfE4A": {
           "type": "CollectionDisplay",
           "name": "CollectionDisplay",
-          "disabled": true,
           "settings": {},
           "blocks": {}
         }
@@ -51,7 +50,6 @@
       "block_order": [
         "collection_display_rBfE4A"
       ],
-      "disabled": true,
       "settings": {}
     },
     "banner": {
