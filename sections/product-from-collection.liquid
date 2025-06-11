@@ -222,6 +222,11 @@
       </div>
     </div>
   </div>
+
+  {%- if gallery_images.size > 0 -%}
+    <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
+    <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
+  {%- endif -%}
 </collection-info>
 
 {% schema %}
@@ -290,10 +295,24 @@
       "default": 36
     },
     {
-      "type": "checkbox",
+      "type": "select",
       "id": "image_zoom",
-      "label": "Enable image zoom on hover",
-      "default": false
+      "default": "hover",
+      "options": [
+        {
+          "value": "lightbox",
+          "label": "t:sections.main-product.settings.image_zoom.options__1.label"
+        },
+        {
+          "value": "hover",
+          "label": "t:sections.main-product.settings.image_zoom.options__2.label"
+        },
+        {
+          "value": "none",
+          "label": "t:sections.main-product.settings.image_zoom.options__3.label"
+        }
+      ],
+      "label": "t:sections.main-product.settings.image_zoom.label"
     }
   ],
   "presets": [
