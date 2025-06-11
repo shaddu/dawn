@@ -29,6 +29,13 @@
 
   {% assign gallery_images = collection.metafields.custom.product_images.value %}
   {% assign media_count = gallery_images.size %}
+  {% if section.settings.media_size == 'large' %}
+    {% assign media_width = 0.65 %}
+  {% elsif section.settings.media_size == 'medium' %}
+    {% assign media_width = 0.55 %}
+  {% elsif section.settings.media_size == 'small' %}
+    {% assign media_width = 0.45 %}
+  {% endif %}
 
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} grid grid--1-col grid--2-col-tablet">
@@ -83,6 +90,12 @@
                     data-target="{{ section.id }}-{{ forloop.index0 }}"
                     data-media-position="{{ forloop.index }}"
                   >
+                    {%- capture sizes -%}
+                      (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width | minus: 100 | times: media_width | round }} - 4rem) / 4),
+                      (min-width: 990px) calc(({{ media_width | times: 100 }}vw - 4rem) / 4),
+                      (min-width: 750px) calc((100vw - 15rem) / 8),
+                      calc((100vw - 8rem) / 3)
+                    {%- endcapture -%}
                     {% capture thumbnail_id %}
                       Thumbnail-{{ section.id }}-{{ forloop.index0 }}
                     {% endcapture %}
@@ -100,7 +113,7 @@
                         | image_url: width: 208
                         | image_tag:
                         widths: '104, 162, 208, 324, 416',
-                        sizes: '(min-width: 750px) 104px, 25vw',
+                        sizes: sizes,
                         id: {{thumbnail_id
                       }}
                       , loading: 'lazy' }}
