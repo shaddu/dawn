@@ -23,27 +23,16 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
-    .collection-gallery-square-{{ section.id }} {
-      max-width: 420px;
-      aspect-ratio: 1/1;
-      margin: 0 auto;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #fafafa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
   {%- endstyle -%}
 
   {% if section.settings.image_zoom == 'hover' %}
     <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
   {% endif %}
 
+  {% assign gallery_images = collection.metafields.custom.product_images.value %}
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} grid grid--1-col grid--2-col-tablet">
       <div class="grid__item product__media-wrapper">
-        {% assign gallery_images = collection.metafields.custom.product_images.value %}
         <div class="collection-gallery-square-{{ section.id }}">
           <media-gallery
             id="MediaGallery-{{ section.id }}"
@@ -64,13 +53,17 @@
                     class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
                     data-media-id="{{ section.id }}-{{ forloop.index0 }}"
                   >
-                    <img
-                      src="{{ image | image_url: width: 800 }}"
-                      class="product__media-image"
-                      alt="{{ image.alt | default: collection.title }}"
-                      loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-                      style="width:100%;height:100%;object-fit:cover;"
-                    >
+                    {%- render 'product-thumbnail',
+                      media: image,
+                      media_count: gallery_images.size,
+                      position: forloop.index,
+                      desktop_layout: section.settings.gallery_layout,
+                      mobile_layout: section.settings.gallery_layout,
+                      modal_id: section.id,
+                      media_fit: 'cover',
+                      media_width: 100,
+                      lazy_load: true
+                    -%}
                   </li>
                 {% endfor %}
               </ul>
@@ -83,7 +76,7 @@
                     aria-label="Previous slide"
                   >
                     <span class="svg-wrapper">
-                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                      {{ 'icon-caret.svg' | inline_asset_content }}
                     </span>
                   </button>
                   <div class="slider-counter caption">
@@ -98,13 +91,13 @@
                     aria-label="Next slide"
                   >
                     <span class="svg-wrapper">
-                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                      {{ 'icon-caret.svg' | inline_asset_content }}
                     </span>
                   </button>
                 </div>
               {% endif %}
             </slider-component>
-            {% if gallery_images.size > 1 %}
+            {% if gallery_images.size > 1 and section.settings.gallery_layout == 'thumbnail' %}
               <slider-component
                 id="GalleryThumbnails-{{ section.id }}"
                 class="thumbnail-slider slider-mobile-gutter quick-add-hidden"
@@ -145,11 +138,8 @@
           </media-gallery>
         </div>
       </div>
-      <div class="product__info-wrapper grid__item">
-        <section
-          id="CollectionInfo-{{ section.id }}"
-          class="product__info-container"
-        >
+      <div class="grid__item product__info-wrapper">
+        <section id="CollectionInfo-{{ section.id }}" class="product__info-container">
           <div class="product__title">
             <h1>{{ collection.title | escape }}</h1>
           </div>
@@ -165,7 +155,7 @@
                           {{ item.title }}
                         </h2>
                       </div>
-                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                      {{ 'icon-caret.svg' | inline_asset_content }}
                     </summary>
                     <div class="accordion__content rte">
                       {{ item.content }}
