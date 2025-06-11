@@ -158,13 +158,12 @@
                       {% endcomment %}
                       {{
                         image
-                        | image_url: width: 416,
+                        | image_url: width: 416
                         | image_tag:
-                        widths: '54, 74, 104, 162, 208, 324, 416',
-                        sizes: sizes,
-                        id: thumbnail_id,
-                        alt: image.alt
-                        loading: 'lazy',
+                          widths: '54, 74, 104, 162, 208, 324, 416',
+                          sizes: sizes,
+                          id: thumbnail_id,
+                          loading: 'lazy'
                         | escape
                       }}
                     </button>
