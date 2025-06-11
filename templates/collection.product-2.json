@@ -257,7 +257,7 @@
       "name": "Main Collection",
       "settings": {
         "color_scheme": "",
-        "media_size": "medium",
+        "media_size": "small",
         "media_position": "left",
         "gallery_layout": "thumbnail",
         "padding_top": 100,
