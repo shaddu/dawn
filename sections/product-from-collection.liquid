@@ -99,6 +99,7 @@
                     {% capture thumbnail_id %}
                       Thumbnail-{{ section.id }}-{{ forloop.index0 }}
                     {% endcapture %}
+
                     <button
                       class="thumbnail global-media-settings global-media-settings--no-shadow"
                       aria-label="Load image {{ forloop.index }}"
@@ -111,12 +112,8 @@
                       {{
                         image
                         | image_url: width: 208
-                        | image_tag:
-                        widths: '104, 162, 208, 324, 416',
-                        sizes: sizes,
-                        id: {{thumbnail_id
+                        | image_tag: widths: '104, 162, 208, 324, 416', sizes: sizes, id: thumbnail_id, loading: 'lazy'
                       }}
-                      , loading: 'lazy' }}
                     </button>
                   </li>
                 {% endfor %}
