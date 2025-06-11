@@ -262,7 +262,7 @@
         "gallery_layout": "thumbnail",
         "padding_top": 100,
         "padding_bottom": 100,
-        "image_zoom": "hover"
+        "image_zoom": "lightbox"
       }
     },
     "image_with_text_tTVYnR": {
