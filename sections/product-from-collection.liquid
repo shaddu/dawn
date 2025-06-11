@@ -83,11 +83,14 @@
                     data-target="{{ section.id }}-{{ forloop.index0 }}"
                     data-media-position="{{ forloop.index }}"
                   >
+                    {% capture thumbnail_id %}
+                      Thumbnail-{{ section.id }}-{{ forloop.index0 }}
+                    {% endcapture %}
                     <button
                       class="thumbnail global-media-settings global-media-settings--no-shadow"
                       aria-label="Load image {{ forloop.index }}"
                       aria-controls="GalleryViewer-{{ section.id }}"
-                      aria-describedby="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
+                      aria-describedby="{{thumbnail_id}}"
                       {% if forloop.first %}
                         aria-current="true"
                       {% endif %}
@@ -98,9 +101,9 @@
                         | image_tag:
                         widths: '104, 162, 208, 324, 416',
                         sizes: '(min-width: 750px) 104px, 25vw',
-                        id: 'Thumbnail-{{ section.id
-                      -}}
-                      -{{ forloop.index0 }}', loading: 'lazy' }}
+                        id: {{thumbnail_id
+                      }}
+                      , loading: 'lazy' }}
                     </button>
                   </li>
                 {% endfor %}
