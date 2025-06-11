@@ -1,216 +1,189 @@
-{%- style -%}
-  .section-{{ section.id }}-padding {
-    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
-    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-  }
-  @media screen and (min-width: 750px) {
-    .section-{{ section.id }}-padding {
-      padding-top: {{ section.settings.padding_top }}px;
-      padding-bottom: {{ section.settings.padding_bottom }}px;
-    }
-  }
-{%- endstyle -%}
-
-{{ 'section-main-product.css' | asset_url | stylesheet_tag }}
-{{ 'component-accordion.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'component-rating.css' | asset_url | stylesheet_tag }}
-{{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
-
 <collection-info
   id="MainCollection-{{ section.id }}"
   class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}"
   data-section="{{ section.id }}"
+  {% if section.settings.image_zoom == 'hover' %}
+    data-zoom-on-hover
+  {% endif %}
 >
+  {{ 'section-main-product.css' | asset_url | stylesheet_tag }}
+  {{ 'component-accordion.css' | asset_url | stylesheet_tag }}
+  {{ 'component-slider.css' | asset_url | stylesheet_tag }}
+  {{ 'component-rating.css' | asset_url | stylesheet_tag }}
+  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+    .collection-gallery-square-{{ section.id }} {
+      max-width: 420px;
+      aspect-ratio: 1/1;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  {%- endstyle -%}
+
+  {% if section.settings.image_zoom == 'hover' %}
+    <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} grid grid--1-col grid--2-col-tablet">
       <div class="grid__item product__media-wrapper">
-        <media-gallery
-          id="MediaGallery-{{ section.id }}"
-          role="region"
-          class="product__column-sticky"
-          aria-label="{{ 'products.product.media.gallery_viewer' | t }}"
-          data-desktop-layout="{{ section.settings.gallery_layout }}"
-        >
-          {% assign gallery_images = collection.metafields.custom.product_images.value %}
-
-          <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
-          <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
-            <ul
-              id="Slider-Gallery-{{ section.id }}"
-              class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
-              role="list"
-            >
-              {% for image in gallery_images %}
-                <li
-                  id="Slide-{{ section.id }}-{{ forloop.index0 }}"
-                  class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
-                  data-media-id="{{ section.id }}-{{ forloop.index0 }}"
-                >
-                  <div
-                    class="product-media-container media"
-                    {% if section.settings.image_zoom == 'lightbox' %}
-                      data-media-id="{{ section.id }}-{{ forloop.index0 }}"
-                      data-modal-opener="ProductModal-{{ section.id }}"
-                    {% endif %}
-                  >
-                    <img
-                      src="{{ image | image_url: width: 1500 }}"
-                      sizes="(min-width: 750px) calc(100vw - 22rem), 100vw"
-                      srcset="
-                        {%- if image.width >= 550 -%}{{ image | image_url: width: 550 }} 550w,{%- endif -%}
-                        {%- if image.width >= 1100 -%}{{ image | image_url: width: 1100 }} 1100w,{%- endif -%}
-                        {%- if image.width >= 1500 -%}{{ image | image_url: width: 1500 }} 1500w,{%- endif -%}
-                        {%- if image.width >= 2200 -%}{{ image | image_url: width: 2200 }} 2200w,{%- endif -%}
-                        {{ image | image_url }} {{ image.width }}w
-                      "
-                      alt="{{ image.alt | default: collection.title | escape }}"
-                      loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
-                      width="{{ image.width }}"
-                      height="{{ image.height }}"
-                      class="media-image"
-                    >
-                  </div>
-                </li>
-              {% endfor %}
-            </ul>
-
-            {%- if gallery_images.size > 1 -%}
-              <div class="slider-buttons no-js-hidden quick-add-hidden">
-                <button type="button" class="slider-button slider-button--prev" name="previous">
-                  <span class="visually-hidden">{{ 'general.slider.previous_slide' | t }}</span>
-                  <span class="svg-wrapper">
-                    {{- 'icon-caret.svg' | inline_asset_content -}}
-                  </span>
-                </button>
-                <div class="slider-counter caption">
-                  <span class="slider-counter--current">1</span>
-                  <span aria-hidden="true"> / </span>
-                  <span class="slider-counter--total">{{ gallery_images.size }}</span>
-                </div>
-                <button type="button" class="slider-button slider-button--next" name="next">
-                  <span class="visually-hidden">{{ 'general.slider.next_slide' | t }}</span>
-                  <span class="svg-wrapper">
-                    {{- 'icon-caret.svg' | inline_asset_content -}}
-                  </span>
-                </button>
-              </div>
-            {%- endif -%}
-          </slider-component>
-
-          {%- if gallery_images.size > 1 and section.settings.gallery_layout == 'thumbnail' -%}
-            <slider-component id="GalleryThumbnails-{{ section.id }}" class="thumbnail-slider slider-mobile-gutter">
-              <ul class="thumbnail-list list-unstyled slider slider--mobile">
+        {% assign gallery_images = collection.metafields.custom.product_images.value %}
+        <div class="collection-gallery-square-{{ section.id }}">
+          <media-gallery
+            id="MediaGallery-{{ section.id }}"
+            role="region"
+            aria-label="Collection gallery"
+            data-desktop-layout="{{ section.settings.gallery_layout }}"
+          >
+            <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
+            <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
+              <ul
+                id="Slider-Gallery-{{ section.id }}"
+                class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
+                role="list"
+              >
                 {% for image in gallery_images %}
                   <li
-                    class="thumbnail-list__item slider__slide"
-                    data-target="{{ section.id }}-{{ forloop.index0 }}"
+                    id="Slide-{{ section.id }}-{{ forloop.index0 }}"
+                    class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
+                    data-media-id="{{ section.id }}-{{ forloop.index0 }}"
                   >
-                    <button
-                      class="thumbnail{% if forloop.first %} is-active{% endif %}"
-                      aria-label="{{ 'products.product.media.load_image' | t }} {{ forloop.index }} {{ 'products.product.media.of' | t }} {{ gallery_images.size }}"
-                      aria-controls="GalleryViewer-{{ section.id }}"
-                      aria-describedby="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
+                    <img
+                      src="{{ image | image_url: width: 800 }}"
+                      class="product__media-image"
+                      alt="{{ image.alt | default: collection.title }}"
+                      loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+                      style="width:100%;height:100%;object-fit:cover;"
                     >
-                      <img
-                        src="{{ image | image_url: width: 150 }}"
-                        alt="{{ image.alt | default: collection.title | escape }}"
-                        loading="lazy"
-                        width="150"
-                        height="150"
-                      >
-                    </button>
                   </li>
                 {% endfor %}
               </ul>
-            </slider-component>
-          {%- endif -%}
-        </media-gallery>
-      </div>
-
-      <div class="grid__item product__info-wrapper">
-        <div class="product__info-container">
-          <h1 class="collection-title">{{ collection.title | escape }}</h1>
-
-          {% if collection.description != blank %}
-            <div class="collection-description rte">
-              {{ collection.description }}
-            </div>
-          {% endif %}
-
-          <div class="product__accordion accordion">
-            {% assign product_data = collection.metafields.custom.product_data.value %}
-            {% if product_data %}
-              {% for item in product_data %}
-                <details class="accordion__item">
-                  <summary class="accordion__summary">
-                    <h2 class="accordion__title h4">{{ item.title }}</h2>
+              {% if gallery_images.size > 1 %}
+                <div class="slider-buttons quick-add-hidden">
+                  <button
+                    type="button"
+                    class="slider-button slider-button--prev"
+                    name="previous"
+                    aria-label="Previous slide"
+                  >
                     <span class="svg-wrapper">
                       {{- 'icon-caret.svg' | inline_asset_content -}}
                     </span>
-                  </summary>
-                  <div class="accordion__content rte">
-                    {{ item.content }}
+                  </button>
+                  <div class="slider-counter caption">
+                    <span class="slider-counter--current">1</span>
+                    <span aria-hidden="true"> / </span>
+                    <span class="slider-counter--total">{{ gallery_images.size }}</span>
                   </div>
-                </details>
+                  <button
+                    type="button"
+                    class="slider-button slider-button--next"
+                    name="next"
+                    aria-label="Next slide"
+                  >
+                    <span class="svg-wrapper">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  </button>
+                </div>
+              {% endif %}
+            </slider-component>
+            {% if gallery_images.size > 1 %}
+              <slider-component
+                id="GalleryThumbnails-{{ section.id }}"
+                class="thumbnail-slider slider-mobile-gutter quick-add-hidden"
+              >
+                <ul
+                  id="Slider-Thumbnails-{{ section.id }}"
+                  class="thumbnail-list list-unstyled slider slider--mobile"
+                >
+                  {% for image in gallery_images %}
+                    <li
+                      id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index0 }}"
+                      class="thumbnail-list__item slider__slide"
+                      data-target="{{ section.id }}-{{ forloop.index0 }}"
+                      data-media-position="{{ forloop.index }}"
+                    >
+                      <button
+                        class="thumbnail global-media-settings global-media-settings--no-shadow"
+                        aria-label="Load image {{ forloop.index }}"
+                        aria-controls="GalleryViewer-{{ section.id }}"
+                        aria-describedby="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
+                        {% if forloop.first %}
+                          aria-current="true"
+                        {% endif %}
+                      >
+                        <img
+                          src="{{ image | image_url: width: 74 }}"
+                          loading="lazy"
+                          id="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
+                          alt="{{ image.alt | default: collection.title }}"
+                          style="width: 74px; height: 74px; object-fit: cover;"
+                        >
+                      </button>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </slider-component>
+            {% endif %}
+          </media-gallery>
+        </div>
+      </div>
+      <div class="product__info-wrapper grid__item">
+        <section
+          id="CollectionInfo-{{ section.id }}"
+          class="product__info-container"
+        >
+          <div class="product__title">
+            <h1>{{ collection.title | escape }}</h1>
+          </div>
+          <div class="product__accordion">
+            {% assign product_data = collection.metafields.custom.product_data.value %}
+            {% if product_data %}
+              {% for item in product_data %}
+                <div class="product__accordion accordion">
+                  <details>
+                    <summary>
+                      <div class="summary__title">
+                        <h2 class="h4 accordion__title inline-richtext">
+                          {{ item.title }}
+                        </h2>
+                      </div>
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </summary>
+                    <div class="accordion__content rte">
+                      {{ item.content }}
+                    </div>
+                  </details>
+                </div>
               {% endfor %}
             {% else %}
-              <div class="no-data-message">No product data available</div>
+              <div style="padding:20px;text-align:center;background:#f4f4f4;border-radius:8px;">
+                No product data available
+              </div>
             {% endif %}
           </div>
-        </div>
+        </section>
       </div>
     </div>
   </div>
 </collection-info>
-
-{% if section.settings.image_zoom == 'lightbox' %}
-  <product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
-    <div
-      class="product-media-modal__dialog"
-      role="dialog"
-      aria-label="{{ 'products.modal.label' | t }}"
-      aria-modal="true"
-      tabindex="-1"
-    >
-      <button
-        id="ModalClose-{{ section.id }}"
-        type="button"
-        class="product-media-modal__toggle"
-        aria-label="{{ 'accessibility.close' | t }}"
-      >
-        <span class="svg-wrapper">
-          {{- 'icon-close.svg' | inline_asset_content -}}
-        </span>
-      </button>
-
-      <div class="product-media-modal__content" role="document">
-        {% for image in gallery_images %}
-          <div class="product-media-modal__content-info">
-            <img
-              srcset="
-                {% if image.width >= 550 %}{{ image | image_url: width: 550 }} 550w,{% endif %}
-                {% if image.width >= 1100 %}{{ image | image_url: width: 1100 }} 1100w,{% endif %}
-                {% if image.width >= 1445 %}{{ image | image_url: width: 1445 }} 1445w,{% endif %}
-                {% if image.width >= 1680 %}{{ image | image_url: width: 1680 }} 1680w,{% endif %}
-                {{ image | image_url }} {{ image.width }}w
-              "
-              src="{{ image | image_url: width: 1445 }}"
-              sizes="(min-width: 750px) calc(100vw - 22rem), 100vw"
-              alt="{{ image.alt | default: collection.title | escape }}"
-              loading="lazy"
-              width="{{ image.width }}"
-              height="{{ image.height }}"
-              class="media-modal__content"
-            >
-          </div>
-        {% endfor %}
-      </div>
-    </div>
-  </product-modal>
-
-  <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
-{% endif %}
 
 {% schema %}
 {
@@ -222,7 +195,7 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color scheme",
-      "default": "background-1"
+      "default": "scheme-1"
     },
     {
       "type": "select",
@@ -250,26 +223,12 @@
       "id": "gallery_layout",
       "options": [
         { "value": "stacked", "label": "Stacked" },
-        { "value": "thumbnail", "label": "Thumbnail" }
+        { "value": "columns", "label": "Columns" },
+        { "value": "thumbnail", "label": "Thumbnail" },
+        { "value": "thumbnail_slider", "label": "Thumbnail slider" }
       ],
-      "default": "thumbnail",
+      "default": "stacked",
       "label": "Gallery layout"
-    },
-    {
-      "type": "select",
-      "id": "image_zoom",
-      "options": [
-        {
-          "value": "none",
-          "label": "None"
-        },
-        {
-          "value": "lightbox",
-          "label": "Popup lightbox"
-        }
-      ],
-      "default": "lightbox",
-      "label": "Image zoom"
     },
     {
       "type": "range",
@@ -290,6 +249,12 @@
       "unit": "px",
       "label": "Padding bottom",
       "default": 36
+    },
+    {
+      "type": "checkbox",
+      "id": "image_zoom",
+      "label": "Enable image zoom on hover",
+      "default": false
     }
   ],
   "presets": [
