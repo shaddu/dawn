@@ -53,78 +53,29 @@
                     class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
                     data-media-id="{{ section.id }}-{{ forloop.index0 }}"
                   >
-                    {%- render 'product-thumbnail',
-                      media: image,
-                      media_count: gallery_images.size,
-                      position: forloop.index,
-                      desktop_layout: section.settings.gallery_layout,
-                      mobile_layout: section.settings.gallery_layout,
-                      modal_id: section.id,
-                      media_fit: 'cover',
-                      media_width: 100,
-                      lazy_load: true
-                    -%}
+                    <div class="media media--transparent">
+                      <img
+                        src="{{ image | image_url: width: 1000 }}"
+                        alt="{{ image.alt | default: collection.title }}"
+                        loading="lazy"
+                        width="1000"
+                        height="1000"
+                        style="max-width: 100%; height: auto; object-fit: cover; cursor: zoom-in;"
+                        {% if section.settings.image_zoom == 'hover' %}
+                          data-zoom-on-hover
+                        {% endif %}
+                      >
+                    </div>
                   </li>
                 {% endfor %}
               </ul>
-              {% if gallery_images.size > 1 %}
-                <div class="slider-buttons quick-add-hidden">
-                  <button
-                    type="button"
-                    class="slider-button slider-button--prev"
-                    name="previous"
-                    aria-label="Previous slide"
-                  >
-                    <span class="svg-wrapper">
-                      {{ 'icon-caret.svg' | inline_asset_content }}
-                    </span>
-                  </button>
-                  <div class="slider-counter caption">
-                    <span class="slider-counter--current">1</span>
-                    <span aria-hidden="true"> / </span>
-                    <span class="slider-counter--total">{{ gallery_images.size }}</span>
-                  </div>
-                  <button
-                    type="button"
-                    class="slider-button slider-button--next"
-                    name="next"
-                    aria-label="Next slide"
-                  >
-                    <span class="svg-wrapper">
-                      {{ 'icon-caret.svg' | inline_asset_content }}
-                    </span>
-                  </button>
-                </div>
-              {% endif %}
             </slider-component>
-            {% comment %} {% if gallery_images.size > 1 and section.settings.gallery_layout == 'thumbnail' %} {% endcomment %}
+
             <slider-component
               id="GalleryThumbnails-{{ section.id }}"
               class="thumbnail-slider slider-mobile-gutter quick-add-hidden"
             >
-              <button
-                type="button"
-                class="slider-button slider-button--prev{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
-                name="previous"
-                aria-label="{{ 'general.slider.previous_slide' | t }}"
-                aria-controls="GalleryThumbnails-{{ section.id }}"
-                data-step="3"
-              >
-                <span class="svg-wrapper">
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
-                </span>
-              </button>
-              <ul
-                id="Slider-Thumbnails-{{ section.id }}"
-                class="thumbnail-list list-unstyled slider slider--mobile"
-              >
-                {%- capture sizes -%}
-                  (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width | minus: 100 | times: media_width | round }} - 4rem) / 4),
-                  (min-width: 990px) calc(({{ media_width | times: 100 }}vw - 4rem) / 4),
-                  (min-width: 750px) calc((100vw - 15rem) / 8),
-                  calc((100vw - 8rem) / 3)
-                {%- endcapture -%}
-
+              <ul id="Slider-Thumbnails-{{ section.id }}" class="thumbnail-list list-unstyled slider slider--mobile">
                 {% for image in gallery_images %}
                   <li
                     id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index0 }}"
@@ -132,10 +83,6 @@
                     data-target="{{ section.id }}-{{ forloop.index0 }}"
                     data-media-position="{{ forloop.index }}"
                   >
-                    {%- capture thumbnail_id -%}
-                      Thumbnail-{{ section.id }}-{{ forloop.index }}
-                    {%- endcapture -%}
-
                     <button
                       class="thumbnail global-media-settings global-media-settings--no-shadow"
                       aria-label="Load image {{ forloop.index }}"
@@ -145,43 +92,20 @@
                         aria-current="true"
                       {% endif %}
                     >
-                      {% comment %}
-                        <img
-                          src="{{ image | image_url: width: 74 }}"
-                          loading="lazy"
-                          id="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
-                          alt="{{ image.alt | default: collection.title }}"
-                          style="width: 74px; height: 74px; object-fit: cover;"
-                        >
-                      {% endcomment %}
                       {{
                         image
-                        | image_url: width: 416
+                        | image_url: width: 208
                         | image_tag:
-                          widths: '54, 74, 104, 162, 208, 324, 416',
-                          sizes: sizes,
-                          id: thumbnail_id,
-                          loading: 'lazy'
-                        | escape
-                      }}
+                        widths: '104, 162, 208, 324, 416',
+                        sizes: '(min-width: 750px) 104px, 25vw',
+                        id: 'Thumbnail-{{ section.id
+                      -}}
+                      -{{ forloop.index0 }}', loading: 'lazy' }}
                     </button>
                   </li>
                 {% endfor %}
               </ul>
-              <button
-                type="button"
-                class="slider-button slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
-                name="next"
-                aria-label="{{ 'general.slider.next_slide' | t }}"
-                aria-controls="GalleryThumbnails-{{ section.id }}"
-                data-step="3"
-              >
-                <span class="svg-wrapper">
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
-                </span>
-              </button>
             </slider-component>
-            {% comment %} {% endif %} {% endcomment %}
           </media-gallery>
         </div>
       </div>
@@ -297,18 +221,18 @@
       "options": [
         {
           "value": "lightbox",
-          "label": "t:sections.main-product.settings.image_zoom.options__1.label"
+          "label": "Lightbox"
         },
         {
           "value": "hover",
-          "label": "t:sections.main-product.settings.image_zoom.options__2.label"
+          "label": "Zoom on hover"
         },
         {
           "value": "none",
-          "label": "t:sections.main-product.settings.image_zoom.options__3.label"
+          "label": "None"
         }
       ],
-      "label": "t:sections.main-product.settings.image_zoom.label"
+      "label": "Image zoom"
     }
   ],
   "presets": [
