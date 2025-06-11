@@ -56,7 +56,7 @@
               >
                 {% for image in gallery_images %}
                   <li
-                    id="Slide-{{ section.id }}-{{ forloop.index0 }}"
+                    id="Slide-{{ section.id }}-{{ image.id }}"
                     class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
                     data-media-id="{{ section.id }}-{{ image.id }}"
                   >
