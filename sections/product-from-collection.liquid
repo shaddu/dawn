@@ -25,9 +25,7 @@
     }
   {%- endstyle -%}
 
-  {% if section.settings.image_zoom == 'hover' %}
-    <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
-  {% endif %}
+  <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
 
   {% assign gallery_images = collection.metafields.custom.product_images.value %}
   {% assign media_count = gallery_images.size %}
@@ -223,10 +221,8 @@
     </div>
   </div>
 
-  {%- if gallery_images.size > 0 -%}
-    <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
-    <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
-  {%- endif -%}
+  <script src="{{ 'product-modal.js' | asset_url }}" defer="defer"></script>
+  <script src="{{ 'media-gallery.js' | asset_url }}" defer="defer"></script>
 </collection-info>
 
 {% schema %}
