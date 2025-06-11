@@ -30,6 +30,8 @@
   {% endif %}
 
   {% assign gallery_images = collection.metafields.custom.product_images.value %}
+  {% assign media_count = gallery_images.size %}
+
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} grid grid--1-col grid--2-col-tablet">
       <div class="grid__item product__media-wrapper">
@@ -97,31 +99,55 @@
                 </div>
               {% endif %}
             </slider-component>
-            {% if gallery_images.size > 1 and section.settings.gallery_layout == 'thumbnail' %}
-              <slider-component
-                id="GalleryThumbnails-{{ section.id }}"
-                class="thumbnail-slider slider-mobile-gutter quick-add-hidden"
+            {% comment %} {% if gallery_images.size > 1 and section.settings.gallery_layout == 'thumbnail' %} {% endcomment %}
+            <slider-component
+              id="GalleryThumbnails-{{ section.id }}"
+              class="thumbnail-slider slider-mobile-gutter quick-add-hidden"
+            >
+              <button
+                type="button"
+                class="slider-button slider-button--prev{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
+                name="previous"
+                aria-label="{{ 'general.slider.previous_slide' | t }}"
+                aria-controls="GalleryThumbnails-{{ section.id }}"
+                data-step="3"
               >
-                <ul
-                  id="Slider-Thumbnails-{{ section.id }}"
-                  class="thumbnail-list list-unstyled slider slider--mobile"
-                >
-                  {% for image in gallery_images %}
-                    <li
-                      id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index0 }}"
-                      class="thumbnail-list__item slider__slide"
-                      data-target="{{ section.id }}-{{ forloop.index0 }}"
-                      data-media-position="{{ forloop.index }}"
+                <span class="svg-wrapper">
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </span>
+              </button>
+              <ul
+                id="Slider-Thumbnails-{{ section.id }}"
+                class="thumbnail-list list-unstyled slider slider--mobile"
+              >
+                {%- capture sizes -%}
+                  (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width | minus: 100 | times: media_width | round }} - 4rem) / 4),
+                  (min-width: 990px) calc(({{ media_width | times: 100 }}vw - 4rem) / 4),
+                  (min-width: 750px) calc((100vw - 15rem) / 8),
+                  calc((100vw - 8rem) / 3)
+                {%- endcapture -%}
+
+                {% for image in gallery_images %}
+                  <li
+                    id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index0 }}"
+                    class="thumbnail-list__item slider__slide"
+                    data-target="{{ section.id }}-{{ forloop.index0 }}"
+                    data-media-position="{{ forloop.index }}"
+                  >
+                    {%- capture thumbnail_id -%}
+                      Thumbnail-{{ section.id }}-{{ forloop.index }}
+                    {%- endcapture -%}
+
+                    <button
+                      class="thumbnail global-media-settings global-media-settings--no-shadow"
+                      aria-label="Load image {{ forloop.index }}"
+                      aria-controls="GalleryViewer-{{ section.id }}"
+                      aria-describedby="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
+                      {% if forloop.first %}
+                        aria-current="true"
+                      {% endif %}
                     >
-                      <button
-                        class="thumbnail global-media-settings global-media-settings--no-shadow"
-                        aria-label="Load image {{ forloop.index }}"
-                        aria-controls="GalleryViewer-{{ section.id }}"
-                        aria-describedby="Thumbnail-{{ section.id }}-{{ forloop.index0 }}"
-                        {% if forloop.first %}
-                          aria-current="true"
-                        {% endif %}
-                      >
+                      {% comment %}
                         <img
                           src="{{ image | image_url: width: 74 }}"
                           loading="lazy"
@@ -129,12 +155,36 @@
                           alt="{{ image.alt | default: collection.title }}"
                           style="width: 74px; height: 74px; object-fit: cover;"
                         >
-                      </button>
-                    </li>
-                  {% endfor %}
-                </ul>
-              </slider-component>
-            {% endif %}
+                      {% endcomment %}
+                      {{
+                        image
+                        | image_url: width: 416,
+                        | image_tag:
+                        widths: '54, 74, 104, 162, 208, 324, 416',
+                        sizes: sizes,
+                        id: thumbnail_id,
+                        alt: image.alt
+                        loading: 'lazy',
+                        | escape
+                      }}
+                    </button>
+                  </li>
+                {% endfor %}
+              </ul>
+              <button
+                type="button"
+                class="slider-button slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
+                name="next"
+                aria-label="{{ 'general.slider.next_slide' | t }}"
+                aria-controls="GalleryThumbnails-{{ section.id }}"
+                data-step="3"
+              >
+                <span class="svg-wrapper">
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </span>
+              </button>
+            </slider-component>
+            {% comment %} {% endif %} {% endcomment %}
           </media-gallery>
         </div>
       </div>
