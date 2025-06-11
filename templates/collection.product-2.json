@@ -257,12 +257,12 @@
       "name": "Main Collection",
       "settings": {
         "color_scheme": "",
-        "media_size": "small",
+        "media_size": "medium",
         "media_position": "left",
         "gallery_layout": "thumbnail",
         "padding_top": 100,
-        "padding_bottom": 32,
-        "image_zoom": false
+        "padding_bottom": 100,
+        "image_zoom": "lightbox"
       }
     },
     "image_with_text_tTVYnR": {
