@@ -58,11 +58,11 @@
                   <li
                     id="Slide-{{ section.id }}-{{ forloop.index0 }}"
                     class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
-                    data-media-id="{{ section.id }}-{{ forloop.index0 }}"
+                    data-media-id="{{ section.id }}-{{ image.id }}"
                   >
                     {%- render 'product-thumbnail',
                       media: image,
-                      media_count: gallery_images.size,
+                      media_count: media_count,
                       position: forloop.index,
                       desktop_layout: section.settings.gallery_layout,
                       mobile_layout: section.settings.gallery_layout,
