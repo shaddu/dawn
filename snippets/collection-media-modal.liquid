@@ -1,0 +1,44 @@
+{% comment %}
+  Renders a collection media modal for images from metafields
+
+  Accepts:
+  - section_id: {String} Current section ID
+  - gallery_images: {Array} Collection images from metafield
+
+  Usage:
+  {% render 'collection-media-modal', section_id: section.id, gallery_images: gallery_images %}
+{% endcomment %}
+
+<modal-dialog id="ProductModal-{{ section_id }}" class="product-media-modal media-modal">
+  <div
+    class="product-media-modal__dialog gradient"
+    role="dialog"
+    aria-modal="true"
+    tabindex="-1"
+  >
+    <button
+      id="ModalClose-{{ section_id }}"
+      type="button"
+      class="product-media-modal__toggle"
+      aria-label="{{ 'accessibility.close' | t }}"
+    >
+      {{ 'icon-close.svg' | inline_asset_content }}
+    </button>
+
+    <div
+      class="product-media-modal__content gradient"
+      role="document"
+      tabindex="0"
+    >
+      {%- for image in gallery_images -%}
+        <div class="product-media-modal__content-info">
+          {{
+            image
+            | image_url: width: 1946
+            | image_tag: loading: 'lazy', width: 1946, class: 'product-media-modal__content-image'
+          }}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</modal-dialog>
