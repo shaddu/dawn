@@ -11,7 +11,7 @@
 
 <modal-dialog id="ProductModal-{{ section_id }}" class="product-media-modal media-modal">
   <div
-    class="product-media-modal__dialog gradient"
+    class="product-media-modal__dialog gradient color-background-1"
     role="dialog"
     aria-modal="true"
     tabindex="-1"
@@ -26,18 +26,23 @@
     </button>
 
     <div
-      class="product-media-modal__content gradient"
+      class="product-media-modal__content gradient color-background-1"
       role="document"
       tabindex="0"
     >
       {%- for image in gallery_images -%}
-        <div class="product-media-modal__content-info">
-          {{
-            image
-            | image_url: width: 1946
-            | image_tag: loading: 'lazy', width: 1946, class: 'product-media-modal__content-image'
-          }}
-        </div>
+        {% comment %}
+          <div class="product-media-modal__content-info">
+            {{
+              image
+              | image_url: width: 1946
+              | image_tag: loading: 'lazy', width: 1946, class: 'product-media-modal__content-image'
+            }}
+          </div>
+        {% endcomment %}
+        {%- liquid
+          render 'product-media', media: image, loop: false, variant_image: false
+        -%}
       {%- endfor -%}
     </div>
   </div>
