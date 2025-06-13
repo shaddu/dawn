@@ -312,8 +312,9 @@
     },
     "custom_collection_rMNtyd": {
       "type": "custom-collection",
-      "disabled": true,
-      "settings": {}
+      "settings": {
+        "image_zoom": "lightbox"
+      }
     },
     "slideshow_HKP4rX": {
       "type": "slideshow",
@@ -358,7 +359,6 @@
         "slide_acBJwJ"
       ],
       "disabled": true,
-      "name": "t:sections.slideshow.presets.name",
       "settings": {
         "layout": "grid",
         "slide_height": "medium",
