@@ -312,6 +312,7 @@
     },
     "custom_collection_rMNtyd": {
       "type": "custom-collection",
+      "disabled": true,
       "settings": {
         "image_zoom": "lightbox"
       }
