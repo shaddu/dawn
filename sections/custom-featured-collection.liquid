@@ -19,7 +19,7 @@
 {%- liquid
   assign filter_tag = section.settings.default_tag | default: collection.metafields.custom.product_type.value
 
-  assign filtered_products = ''
+  assign filtered_products = '' | split: ','
 
   # Alternative filtering approach
   for product in collection.products
