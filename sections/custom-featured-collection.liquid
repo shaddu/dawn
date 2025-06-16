@@ -19,6 +19,8 @@
 {%- liquid
   assign filter_tag = section.settings.default_tag | default: collection.metafields.custom.product_type.value
 
+  echo 'products count: ' | append: collection.products.size
+
   # Filter products by tag
   assign filtered_products = collection.products | where: 'tags', filter_tag
   assign products_to_display = filtered_products.size
