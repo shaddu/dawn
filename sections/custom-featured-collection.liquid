@@ -17,15 +17,12 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign collection = collection
-  echo 'Debug collection size: ' | append: collection.products.size
-
-  assign filter_tag = collection.metafields.custom.product_type.value | default: section.settings.default_tag
-  echo 'Debug filter tag: ' | append: filter_tag
+  assign filter_tag = section.settings.default_tag | default: collection.metafields.custom.product_type.value
 
   # Filter products by tag
   assign filtered_products = collection.products | where: 'tags', filter_tag
   assign products_to_display = filtered_products.size
+  echo 'Filtered products count: ' | append: products_to_display
 
   if section.settings.products_to_show < products_to_display
     assign products_to_display = section.settings.products_to_show
