@@ -31,15 +31,6 @@
       tabindex="0"
     >
       {%- for image in gallery_images -%}
-        {% comment %}
-          <div class="product-media-modal__content-info">
-            {{
-              image
-              | image_url: width: 1946
-              | image_tag: loading: 'lazy', width: 1946, class: 'product-media-modal__content-image'
-            }}
-          </div>
-        {% endcomment %}
         {%- liquid
           render 'product-media', media: image, loop: false, variant_image: false
         -%}
