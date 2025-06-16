@@ -16,19 +16,19 @@
       .section-{{ section.id }}-padding {
         padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
         padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
-        margin-top: 30px;
+        /* margin-top: 30px; */
       }
       @media screen and (min-width: 750px) {
         .section-{{ section.id }}-padding {
           padding-top: {{ section.settings.padding_top }}px;
           padding-bottom: {{ section.settings.padding_bottom }}px;
-          margin-top: 50px;
+          /* margin-top: 50px; */
         }
       }
 
-      #GalleryThumbnails-{{ section.id }} {
+      /* #GalleryThumbnails-{{ section.id }} {
       margin-top: 20px;
-    }
+    } */
   {%- endstyle -%}
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>
@@ -47,99 +47,98 @@
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} grid grid--1-col grid--2-col-tablet">
       <div class="grid__item product__media-wrapper">
-        <div class="collection-gallery-square-{{ section.id }}">
-          <media-gallery
-            id="MediaGallery-{{ section.id }}"
-            role="region"
-            aria-label="Collection gallery"
-            data-desktop-layout="{{ section.settings.gallery_layout }}"
-          >
-            <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
-            <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
-              <ul
-                id="Slider-Gallery-{{ section.id }}"
-                class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
-                role="list"
-              >
-                {% for image in gallery_images %}
-                  <li
-                    id="Slide-{{ section.id }}-{{ image.id }}"
-                    class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
-                    data-media-id="{{ section.id }}-{{ image.id }}"
-                  >
-                    {%- render 'product-thumbnail',
-                      media: image,
-                      media_count: media_count,
-                      position: forloop.index,
-                      desktop_layout: section.settings.gallery_layout,
-                      mobile_layout: section.settings.gallery_layout,
-                      modal_id: section.id,
-                      media_fit: 'cover',
-                      media_width: 100,
-                      lazy_load: true
-                    -%}
-                  </li>
-                {% endfor %}
-              </ul>
-            </slider-component>
-
-            <slider-component
-              id="GalleryThumbnails-{{ section.id }}"
-              class="thumbnail-slider slider-mobile-gutter quick-add-hidden"
+        <media-gallery
+          id="MediaGallery-{{ section.id }}"
+          class="product__column-sticky"
+          role="region"
+          aria-label="Collection gallery"
+          data-desktop-layout="{{ section.settings.gallery_layout }}"
+        >
+          <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
+          <slider-component id="GalleryViewer-{{ section.id }}" class="slider-mobile-gutter">
+            <ul
+              id="Slider-Gallery-{{ section.id }}"
+              class="product__media-list contains-media grid grid--peek list-unstyled slider slider--mobile"
+              role="list"
             >
-              <ul id="Slider-Thumbnails-{{ section.id }}" class="thumbnail-list list-unstyled slider slider--mobile">
-                {% for image in gallery_images %}
-                  <li
-                    id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index }}"
-                    class="thumbnail-list__item slider__slide"
-                    data-target="{{ section.id }}-{{ image.id }}"
-                    data-media-position="{{ forloop.index }}"
-                  >
-                    {%- capture sizes -%}
+              {% for image in gallery_images %}
+                <li
+                  id="Slide-{{ section.id }}-{{ image.id }}"
+                  class="product__media-item grid__item slider__slide{% if forloop.first %} is-active{% endif %}"
+                  data-media-id="{{ section.id }}-{{ image.id }}"
+                >
+                  {%- render 'product-thumbnail',
+                    media: image,
+                    media_count: media_count,
+                    position: forloop.index,
+                    desktop_layout: section.settings.gallery_layout,
+                    mobile_layout: section.settings.gallery_layout,
+                    modal_id: section.id,
+                    media_fit: 'cover',
+                    media_width: 100,
+                    lazy_load: true
+                  -%}
+                </li>
+              {% endfor %}
+            </ul>
+          </slider-component>
+
+          <slider-component
+            id="GalleryThumbnails-{{ section.id }}"
+            class="thumbnail-slider slider-mobile-gutter quick-add-hidden"
+          >
+            <ul id="Slider-Thumbnails-{{ section.id }}" class="thumbnail-list list-unstyled slider slider--mobile">
+              {% for image in gallery_images %}
+                <li
+                  id="Slide-Thumbnails-{{ section.id }}-{{ forloop.index }}"
+                  class="thumbnail-list__item slider__slide"
+                  data-target="{{ section.id }}-{{ image.id }}"
+                  data-media-position="{{ forloop.index }}"
+                >
+                  {%- capture sizes -%}
                       (min-width: {{ settings.page_width }}px) calc(({{ settings.page_width | minus: 100 | times: media_width | round }} - 4rem) / 4),
                       (min-width: 990px) calc(({{ media_width | times: 100 }}vw - 4rem) / 4),
                       (min-width: 750px) calc((100vw - 15rem) / 8),
                       calc((100vw - 8rem) / 3)
                     {%- endcapture -%}
-                    {% capture thumbnail_id %}
+                  {% capture thumbnail_id %}
                       Thumbnail-{{ section.id }}-{{ forloop.index }}
                     {% endcapture %}
 
-                    <button
-                      class="thumbnail global-media-settings global-media-settings--no-shadow"
-                      aria-label="{{ 'products.product.media.load_image' | t: index: forloop.index }}"
-                      aria-controls="GalleryViewer-{{ section.id }}"
-                      aria-describedby="{{thumbnail_id}}"
-                      {% if forloop.first %}
-                        aria-current="true"
-                      {% endif %}
-                    >
-                      {{
-                        image
-                        | image_url: width: 208
-                        | image_tag: widths: '104, 162, 208, 324, 416', sizes: sizes, id: thumbnail_id, loading: 'lazy'
-                      }}
-                    </button>
-                  </li>
-                {% endfor %}
-              </ul>
-              <button
-                type="button"
-                class="slider-button slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
-                name="next"
-                aria-label="{{ 'general.slider.next_slide' | t }}"
-                aria-controls="GalleryThumbnails-{{ section.id }}"
-                data-step="3"
-              >
-                <span class="svg-wrapper">
-                  {{- 'icon-caret.svg' | inline_asset_content -}}
-                </span>
-              </button>
-            </slider-component>
-          </media-gallery>
-        </div>
+                  <button
+                    class="thumbnail global-media-settings global-media-settings--no-shadow"
+                    aria-label="{{ 'products.product.media.load_image' | t: index: forloop.index }}"
+                    aria-controls="GalleryViewer-{{ section.id }}"
+                    aria-describedby="{{thumbnail_id}}"
+                    {% if forloop.first %}
+                      aria-current="true"
+                    {% endif %}
+                  >
+                    {{
+                      image
+                      | image_url: width: 208
+                      | image_tag: widths: '104, 162, 208, 324, 416', sizes: sizes, id: thumbnail_id, loading: 'lazy'
+                    }}
+                  </button>
+                </li>
+              {% endfor %}
+            </ul>
+            <button
+              type="button"
+              class="slider-button slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide large-up-hide{% endif %}"
+              name="next"
+              aria-label="{{ 'general.slider.next_slide' | t }}"
+              aria-controls="GalleryThumbnails-{{ section.id }}"
+              data-step="3"
+            >
+              <span class="svg-wrapper">
+                {{- 'icon-caret.svg' | inline_asset_content -}}
+              </span>
+            </button>
+          </slider-component>
+        </media-gallery>
       </div>
-      <div class="grid__item product__info-wrapper">
+      <div class="product__info-wrapper">
         <section id="CollectionInfo-{{ section.id }}" class="product__info-container">
           <div class="product__title">
             <h1>{{ collection.title | escape }}</h1>
