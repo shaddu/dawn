@@ -18,7 +18,10 @@
 
 {%- liquid
   assign collection = collections[section.settings.collection]
+  echo 'Debug collection size: ' | append: collection.products.size
+
   assign filter_tag = collection.metafields.custom.product_type.value | default: section.settings.default_tag
+  echo 'Debug filter tag: ' | append: filter_tag
 
   # Filter products by tag
   assign filtered_products = collection.products | where: 'tags', filter_tag
