@@ -18,7 +18,7 @@
 
 {%- liquid
   assign collection = collections[section.settings.collection]
-  assign filter_tag = collection.metafields.custom.product_type | default: section.settings.default_tag
+  assign filter_tag = collection.metafields.custom.product_type.value | default: section.settings.default_tag
 
   # Filter products by tag
   assign filtered_products = collection.products | where: 'tags', filter_tag
