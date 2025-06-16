@@ -113,7 +113,7 @@
       "name": "Custom Feat Collection",
       "settings": {
         "collection": "",
-        "default_tag": "parts",
+        "default_tag": "part",
         "title": "Parts",
         "heading_size": "h1",
         "products_to_show": 4,
