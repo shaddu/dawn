@@ -29,7 +29,17 @@
   endfor
 
   # Filter products by tag
-  assign filtered_products = collection.products | where: 'tags', filter_tag
+  assign filtered_products = ''
+
+  # Alternative filtering approach
+  assign temp_products = ''
+  for product in collection.products
+    if product.tags contains filter_tag
+      assign temp_products = temp_products | append: product | append: ','
+    endif
+  endfor
+
+  assign filtered_products = temp_products | split: ','
   assign products_to_display = filtered_products.size
   echo 'Filtered products count: ' | append: products_to_display
 
