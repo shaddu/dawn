@@ -1,0 +1,222 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-price.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- liquid
+  assign collection = collections[section.settings.collection]
+  assign filter_tag = collection.metafields.custom.product_type | default: section.settings.default_tag
+
+  # Filter products by tag
+  assign filtered_products = collection.products | where: 'tags', filter_tag
+  assign products_to_display = filtered_products.size
+
+  if section.settings.products_to_show < products_to_display
+    assign products_to_display = section.settings.products_to_show
+  endif
+-%}
+
+<div class="color-{{ section.settings.color_scheme }} gradient">
+  <div class="collection section-{{ section.id }}-padding">
+    {%- if section.settings.title != blank or collection.title != blank -%}
+      <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
+        <h2 class="title {{ section.settings.heading_size }}">
+          {{ section.settings.title | default: collection.title }}
+        </h2>
+
+        {%- if collection.description != blank and section.settings.show_description -%}
+          <div class="collection__description rte">
+            {{ collection.description }}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="page-width">
+      <ul class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down">
+        {%- for product in filtered_products limit: section.settings.products_to_show -%}
+          <li class="grid__item">
+            {% render 'card-product',
+              card_product: product,
+              media_aspect_ratio: section.settings.image_ratio,
+              show_secondary_image: section.settings.show_secondary_image,
+              show_vendor: section.settings.show_vendor,
+              show_rating: section.settings.show_rating
+            %}
+          </li>
+        {%- else -%}
+          <li class="grid__item">
+            <div class="collection-empty">
+              <p>No products found with tag: {{ filter_tag }}</p>
+            </div>
+          </li>
+        {%- endfor -%}
+      </ul>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Featured Collection",
+  "settings": [
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "text",
+      "id": "default_tag",
+      "label": "Default Filter Tag",
+      "info": "Used if no metafield tag is set"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured Collection"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "Small"
+        },
+        {
+          "value": "h1",
+          "label": "Medium"
+        },
+        {
+          "value": "h0",
+          "label": "Large"
+        }
+      ],
+      "default": "h1",
+      "label": "Heading Size"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "default": 4,
+      "label": "Products to show"
+    },
+    {
+      "type": "range",
+      "id": "columns_desktop",
+      "min": 1,
+      "max": 5,
+      "step": 1,
+      "default": 4,
+      "label": "Number of columns on desktop"
+    },
+    {
+      "type": "range",
+      "id": "columns_mobile",
+      "min": 1,
+      "max": 2,
+      "step": 1,
+      "default": 2,
+      "label": "Number of columns on mobile"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "default": false,
+      "label": "Show collection description"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_secondary_image",
+      "default": false,
+      "label": "Show second image on hover"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "default": false,
+      "label": "Show product vendor"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_rating",
+      "default": false,
+      "label": "Show product rating"
+    },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "Adapt to image"
+        },
+        {
+          "value": "portrait",
+          "label": "Portrait"
+        },
+        {
+          "value": "square",
+          "label": "Square"
+        }
+      ],
+      "default": "adapt",
+      "label": "Image ratio"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Padding bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Featured Collection",
+      "category": "Collection"
+    }
+  ]
+}
+{% endschema %}
