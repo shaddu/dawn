@@ -22,14 +22,13 @@
   assign filtered_products = ''
 
   # Alternative filtering approach
-  assign temp_products = ''
   for product in collection.products
     if product.tags contains filter_tag
-      assign temp_products = temp_products | append: product | append: ','
+      assign temp_products = product | sort
+      assign filtered_products = filtered_products | concat: temp_products | append: ','
     endif
   endfor
 
-  assign filtered_products = temp_products | split: ','
   assign products_to_display = filtered_products.size
 
   if section.settings.products_to_show < products_to_display
