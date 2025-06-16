@@ -19,7 +19,14 @@
 {%- liquid
   assign filter_tag = section.settings.default_tag | default: collection.metafields.custom.product_type.value
 
-  echo 'products count: ' | append: collection.products.size
+  # Debug outputs
+  echo 'Filter tag being used: ' | append: filter_tag | append: '<br>'
+  echo 'Products count: ' | append: collection.products.size | append: '<br>'
+
+  # Debug first few products' tags
+  for product in collection.products limit: 3
+    echo 'Product: ' | append: product.title | append: ' - Tags: ' | append: product.tags | join: ', ' | append: '<br>'
+  endfor
 
   # Filter products by tag
   assign filtered_products = collection.products | where: 'tags', filter_tag
