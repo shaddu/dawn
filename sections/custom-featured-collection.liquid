@@ -17,7 +17,7 @@
 {%- endstyle -%}
 
 {%- liquid
-  assign collection = collections[section.settings.collection]
+  assign collection = collection
   echo 'Debug collection size: ' | append: collection.products.size
 
   assign filter_tag = collection.metafields.custom.product_type.value | default: section.settings.default_tag
@@ -76,11 +76,6 @@
 {
   "name": "Custom Feat Collection",
   "settings": [
-    {
-      "type": "collection",
-      "id": "collection",
-      "label": "Collection"
-    },
     {
       "type": "text",
       "id": "default_tag",
