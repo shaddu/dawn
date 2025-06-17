@@ -29,6 +29,7 @@
 {%- liquid
   assign filter_tag = section.settings.default_tag | default: collection.metafields.custom.product_type.value
   assign filtered_count = 0
+  assign products_shown = 0
 
   for product in collection.products
     if product.tags contains filter_tag
@@ -56,7 +57,8 @@
       <div class="page-width">
         <ul class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down">
           {%- for product in collection.products -%}
-            {% if product.tags contains filter_tag %}
+            {% if product.tags contains filter_tag and products_shown < section.settings.products_to_show -%}
+              {%- assign products_shown = products_shown | plus: 1 -%}
               <li class="grid__item">
                 {% render 'card-product',
                   card_product: product,
