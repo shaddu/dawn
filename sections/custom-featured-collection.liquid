@@ -37,57 +37,59 @@
   endfor
 -%}
 
-<div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection section-{{ section.id }}-padding">
-    {%- if section.settings.title != blank or collection.title != blank -%}
-      <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
-        <h2 class="title {{ section.settings.heading_size }}">
-          {{ section.settings.title | default: collection.title }}
-        </h2>
-        {%- if collection.description != blank and section.settings.show_description -%}
-          <div class="collection__description rte">
-            {{ collection.description }}
+{% if filtered_count > 0 %}
+  <div class="color-{{ section.settings.color_scheme }} gradient">
+    <div class="collection section-{{ section.id }}-padding">
+      {%- if section.settings.title != blank or collection.title != blank -%}
+        <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
+          <h2 class="title {{ section.settings.heading_size }}">
+            {{ section.settings.title | default: collection.title }}
+          </h2>
+          {%- if collection.description != blank and section.settings.show_description -%}
+            <div class="collection__description rte">
+              {{ collection.description }}
+            </div>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      <div class="page-width">
+        <ul class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down">
+          {%- for product in collection.products limit: section.settings.products_to_show -%}
+            {% if product.tags contains filter_tag %}
+              <li class="grid__item">
+                {% render 'card-product',
+                  card_product: product,
+                  media_aspect_ratio: section.settings.image_ratio,
+                  show_secondary_image: section.settings.show_secondary_image,
+                  show_vendor: section.settings.show_vendor,
+                  show_rating: section.settings.show_rating
+                %}
+              </li>
+            {% endif %}
+          {%- else -%}
+            <li class="grid__item">
+              <div class="collection-empty">
+                <p>No products found with tag: {{ filter_tag }}</p>
+              </div>
+            </li>
+          {%- endfor -%}
+        </ul>
+        {%- if section.settings.show_view_all and filtered_count > section.settings.products_to_show -%}
+          <div class="center collection__view-all">
+            <a
+              href="{{ collection.url }}/{{ filter_tag | handleize }}/?view=default"
+              class="button"
+              aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: collection.title }}"
+            >
+              {{ 'sections.featured_collection.view_all' | t }}
+            </a>
           </div>
         {%- endif -%}
       </div>
-    {%- endif -%}
-
-    <div class="page-width">
-      <ul class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down">
-        {%- for product in collection.products limit: section.settings.products_to_show -%}
-          {% if product.tags contains filter_tag %}
-            <li class="grid__item">
-              {% render 'card-product',
-                card_product: product,
-                media_aspect_ratio: section.settings.image_ratio,
-                show_secondary_image: section.settings.show_secondary_image,
-                show_vendor: section.settings.show_vendor,
-                show_rating: section.settings.show_rating
-              %}
-            </li>
-          {% endif %}
-        {%- else -%}
-          <li class="grid__item">
-            <div class="collection-empty">
-              <p>No products found with tag: {{ filter_tag }}</p>
-            </div>
-          </li>
-        {%- endfor -%}
-      </ul>
-      {%- if section.settings.show_view_all and filtered_count > 0 -%}
-        <div class="center collection__view-all">
-          <a
-            href="{{ collection.url }}/{{ filter_tag | url_encode }}/?view=default"
-            class="button"
-            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: collection.title }}"
-          >
-            {{ 'sections.featured_collection.view_all' | t }}
-          </a>
-        </div>
-      {%- endif -%}
     </div>
   </div>
-</div>
+{% endif %}
 
 {% schema %}
 {
