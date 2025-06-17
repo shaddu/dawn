@@ -14,25 +14,29 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
   }
+
+  .collection__view-all {
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .collection-empty {
+    text-align: center;
+    padding: 2rem;
+  }
 {%- endstyle -%}
 
 {%- liquid
   assign filter_tag = section.settings.default_tag | default: collection.metafields.custom.product_type.value
+  assign filtered_count = 0
 
-  assign filtered_products = '' | split: ','
-
-  # Alternative filtering approach
   for product in collection.products
     if product.tags contains filter_tag
-      assign filtered_products = filtered_products | concat: product
+      assign filtered_count = filtered_count | plus: 1
     endif
   endfor
 
-  assign products_to_display = filtered_products.size
-
-  if section.settings.products_to_show < products_to_display
-    assign products_to_display = section.settings.products_to_show
-  endif
+  echo 'filtered product count' | append  filtered_count
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -72,6 +76,17 @@
           </li>
         {%- endfor -%}
       </ul>
+      {%- if section.settings.show_view_all and filtered_count >= section.settings.products_to_show -%}
+        <div class="center collection__view-all">
+          <a
+            href="{{ collection.url }}?tag={{ filter_tag | url_encode }}"
+            class="button"
+            aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: collection.title }}"
+          >
+            {{ 'sections.featured_collection.view_all' | t }}
+          </a>
+        </div>
+      {%- endif -%}
     </div>
   </div>
 </div>
@@ -120,6 +135,12 @@
       "step": 1,
       "default": 4,
       "label": "Products to show"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "default": true,
+      "label": "Show 'View all' button"
     },
     {
       "type": "range",
