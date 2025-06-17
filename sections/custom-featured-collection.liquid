@@ -37,6 +37,7 @@
   endfor
 
   echo 'filtered product count: ' | append: filtered_count
+  echo 'product to show: ' | append: section.settings.products_to_show
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
@@ -76,7 +77,7 @@
           </li>
         {%- endfor -%}
       </ul>
-      {%- if section.settings.show_view_all and filtered_count >= section.settings.products_to_show -%}
+      {%- if section.settings.show_view_all and filtered_count -%}
         <div class="center collection__view-all">
           <a
             href="{{ collection.url }}?tag={{ filter_tag | url_encode }}"
