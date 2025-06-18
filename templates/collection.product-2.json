@@ -89,6 +89,7 @@
     },
     "custom_featured_collection_HjTGXG": {
       "type": "custom-featured-collection",
+      "disabled": true,
       "name": "Custom Feat Collection",
       "settings": {
         "default_tag": "{{ collection.metafields.custom.product_type.value }}",
@@ -110,6 +111,7 @@
     },
     "custom_featured_collection_iybKMt": {
       "type": "custom-featured-collection",
+      "disabled": true,
       "name": "Custom Feat Collection",
       "settings": {
         "default_tag": "part",
