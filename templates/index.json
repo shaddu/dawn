@@ -8,539 +8,539 @@
  * ------------------------------------------------------------
  */
 {
-    "sections": {
-        "d2a7f3ac-886e-4197-8c48-027e0f688f6f": {
-            "type": "slideshow",
-            "blocks": {
-                "e4317265-d7a0-4a6e-a167-040e023958b8": {
-                    "type": "slide",
-                    "disabled": true,
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/Black_Friday_2024_Banner_2.jpg",
-                        "image_overlay_opacity": 0,
-                        "heading": "",
-                        "heading_size": "h1",
-                        "subheading": "",
-                        "button_label": "",
-                        "link": "shopify:\/\/collections\/black-friday-deals",
-                        "button_style_secondary": false,
-                        "show_text_box": false,
-                        "box_align": "middle-center",
-                        "text_alignment": "center",
-                        "text_alignment_mobile": "center",
-                        "color_scheme": "background-1"
-                    }
-                },
-                "be9b7b80-111e-4070-a0d8-cadbf64d3cdb": {
-                    "type": "slide",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/organized-workspace_27830f8a-744e-4fca-a5a6-032923487438.jpg",
-                        "image_overlay_opacity": 20,
-                        "heading": "Make something NEW with OLD",
-                        "heading_size": "h2",
-                        "subheading": "",
-                        "button_label": "",
-                        "link": "shopify:\/\/collections\/all",
-                        "button_style_secondary": false,
-                        "show_text_box": true,
-                        "box_align": "top-center",
-                        "text_alignment": "center",
-                        "text_alignment_mobile": "left",
-                        "color_scheme": "accent-2"
-                    }
-                },
-                "template--16845912539417__d2a7f3ac-886e-4197-8c48-027e0f688f6f-1668324058ad398561-0": {
-                    "type": "slide",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/s-l1600_3.jpg",
-                        "image_overlay_opacity": 30,
-                        "heading": "24-months warranty",
-                        "heading_size": "h1",
-                        "subheading": "On all PCs 😊",
-                        "button_label": "",
-                        "link": "shopify:\/\/policies\/refund-policy",
-                        "button_style_secondary": false,
-                        "show_text_box": false,
-                        "box_align": "bottom-right",
-                        "text_alignment": "center",
-                        "text_alignment_mobile": "center",
-                        "color_scheme": "inverse"
-                    }
-                },
-                "124573fd-bbb6-445b-83d7-735c232462b6": {
-                    "type": "slide",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/shipping-optimized.jpg",
-                        "image_overlay_opacity": 30,
-                        "heading": "Fast & Free Shipping",
-                        "heading_size": "h1",
-                        "subheading": "On all orders 🚀",
-                        "button_label": "",
-                        "link": "shopify:\/\/policies\/shipping-policy",
-                        "button_style_secondary": false,
-                        "show_text_box": false,
-                        "box_align": "bottom-center",
-                        "text_alignment": "center",
-                        "text_alignment_mobile": "center",
-                        "color_scheme": "inverse"
-                    }
-                },
-                "template--16845912539417__d2a7f3ac-886e-4197-8c48-027e0f688f6f-1668324058ad398561-1": {
-                    "type": "slide",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/return-button-optimized.jpg",
-                        "image_overlay_opacity": 40,
-                        "heading": "60-days hassle free return",
-                        "heading_size": "h1",
-                        "subheading": "60 days to change your mind 😎",
-                        "button_label": "",
-                        "link": "shopify:\/\/policies\/refund-policy",
-                        "button_style_secondary": false,
-                        "show_text_box": false,
-                        "box_align": "middle-left",
-                        "text_alignment": "center",
-                        "text_alignment_mobile": "left",
-                        "color_scheme": "accent-2"
-                    }
-                }
-            },
-            "block_order": [
-                "e4317265-d7a0-4a6e-a167-040e023958b8",
-                "be9b7b80-111e-4070-a0d8-cadbf64d3cdb",
-                "template--16845912539417__d2a7f3ac-886e-4197-8c48-027e0f688f6f-1668324058ad398561-0",
-                "124573fd-bbb6-445b-83d7-735c232462b6",
-                "template--16845912539417__d2a7f3ac-886e-4197-8c48-027e0f688f6f-1668324058ad398561-1"
-            ],
-            "custom_css": [],
-            "settings": {
-                "layout": "grid",
-                "slide_height": "small",
-                "slider_visual": "dots",
-                "auto_rotate": true,
-                "change_slides_speed": 5,
-                "image_behavior": "none",
-                "show_text_below": false,
-                "accessibility_info": "Slideshow about our brand"
-            }
+  "sections": {
+    "d2a7f3ac-886e-4197-8c48-027e0f688f6f": {
+      "type": "slideshow",
+      "blocks": {
+        "e4317265-d7a0-4a6e-a167-040e023958b8": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/Black_Friday_2024_Banner_2.jpg",
+            "image_overlay_opacity": 0,
+            "heading": "",
+            "heading_size": "h1",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/black-friday-deals",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "background-1"
+          }
         },
-        "44c52b0e-c3f1-4482-bae8-962c1f12d4dc": {
-            "type": "collection-list",
-            "blocks": {
-                "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-0": {
-                    "type": "featured_collection",
-                    "settings": {
-                        "collection": "mini-pc"
-                    }
-                },
-                "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-2": {
-                    "type": "featured_collection",
-                    "disabled": true,
-                    "settings": {
-                        "collection": "parts"
-                    }
-                },
-                "5cae370a-1995-4816-9067-9efa74403f1e": {
-                    "type": "featured_collection",
-                    "settings": {
-                        "collection": "nuc"
-                    }
-                },
-                "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-1": {
-                    "type": "featured_collection",
-                    "settings": {
-                        "collection": "laptop"
-                    }
-                },
-                "2884f61b-a2d6-42b6-800b-f419b3bf0f51": {
-                    "type": "featured_collection",
-                    "disabled": true,
-                    "settings": {
-                        "collection": "barebone"
-                    }
-                }
-            },
-            "block_order": [
-                "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-0",
-                "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-2",
-                "5cae370a-1995-4816-9067-9efa74403f1e",
-                "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-1",
-                "2884f61b-a2d6-42b6-800b-f419b3bf0f51"
-            ],
-            "settings": {
-                "title": "Shop Category",
-                "heading_size": "h2",
-                "image_ratio": "adapt",
-                "columns_desktop": 3,
-                "color_scheme": "background-1",
-                "show_view_all": false,
-                "columns_mobile": "1",
-                "swipe_on_mobile": false,
-                "padding_top": 36,
-                "padding_bottom": 36
-            }
+        "be9b7b80-111e-4070-a0d8-cadbf64d3cdb": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/organized-workspace_27830f8a-744e-4fca-a5a6-032923487438.jpg",
+            "image_overlay_opacity": 20,
+            "heading": "Make something NEW with OLD",
+            "heading_size": "h2",
+            "subheading": "",
+            "button_label": "",
+            "link": "shopify://collections/all",
+            "button_style_secondary": false,
+            "show_text_box": true,
+            "box_align": "top-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "left",
+            "color_scheme": "accent-2"
+          }
         },
-        "collection_list_RrckDr": {
-            "type": "collection-list",
-            "blocks": {
-                "featured_collection_VB8Pag": {
-                    "type": "featured_collection",
-                    "settings": {
-                        "collection": "dell-mini-pc"
-                    }
-                },
-                "featured_collection_atRmM6": {
-                    "type": "featured_collection",
-                    "settings": {
-                        "collection": "lenovo-mini-pc"
-                    }
-                },
-                "featured_collection_BcPtim": {
-                    "type": "featured_collection",
-                    "settings": {
-                        "collection": "hp-mini-pc"
-                    }
-                }
-            },
-            "block_order": [
-                "featured_collection_VB8Pag",
-                "featured_collection_atRmM6",
-                "featured_collection_BcPtim"
-            ],
-            "settings": {
-                "title": "Mini PCs",
-                "heading_size": "h2",
-                "image_ratio": "adapt",
-                "columns_desktop": 3,
-                "color_scheme": "",
-                "show_view_all": false,
-                "columns_mobile": "1",
-                "swipe_on_mobile": false,
-                "padding_top": 36,
-                "padding_bottom": 36
-            }
+        "template--16845912539417__d2a7f3ac-886e-4197-8c48-027e0f688f6f-1668324058ad398561-0": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/s-l1600_3.jpg",
+            "image_overlay_opacity": 30,
+            "heading": "24-months warranty",
+            "heading_size": "h1",
+            "subheading": "On all PCs 😊",
+            "button_label": "",
+            "link": "shopify://policies/refund-policy",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-right",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "inverse"
+          }
         },
-        "87754bf5-246d-4ee2-9f15-3c0f43eeb274": {
-            "type": "multicolumn",
-            "blocks": {
-                "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-2": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/pixeltrue-icons-security-3.png",
-                        "title": "2 Year Warranty",
-                        "text": "<p>We are super confident in our refurbishment processes and quality checks, and offer a 2-Year Warranty on all PCs ( just to put this in perspective, that's more than what most manufacturers offer )<\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-0": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/pixeltrue-icons-seo-business-location-1.png",
-                        "title": "Fast & Free Shipping",
-                        "text": "<p>Who likes to pay for shipping? No one! That is why we will never charge you extra for shipping. On top of that, we will try to dispatch all orders received by 3 PM, Mon - Fri, on the same day!<\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "3abf3d01-a31d-4eff-98f2-2ccc98847150": {
-                    "type": "column",
-                    "disabled": true,
-                    "settings": {
-                        "title": "Environment Friendly",
-                        "text": "<p>Our business model reduces unnecessary e-waste, and promotes reuse and redeployment of computing assets. This is just our own little way of thanking Mother Earth.<\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-1": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/pixeltrue-icons-time-is-money-3.png",
-                        "title": "60 day returns",
-                        "text": "<p>Changed your mind? or just didn't like the device. Feel free to return your device within 60 days of purchase and we will refund you. Have the perfect peace of mind on every purchase.<\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "d0eeedb4-abf8-41a5-9c77-73e4b71feaf8": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/pixeltrue-icons-seo-optimize.png",
-                        "title": "7+ Point Inspection",
-                        "text": "<p>We refurbish in-house to control the quality and use a 7+ points inspection and a multi-step quality process, ensuring an amazing unboxing experience for each product.<\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "36a42daf-82c5-4b95-a69d-8dcba856880d": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/pixeltrue-icons-security.png",
-                        "title": "Reliable Customer Service",
-                        "text": "<p>We offer affordable, high-quality refurbished computers. Our customer service team is here to help you with any inquiries. We aim to provide the best experience and complete satisfaction.<\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "0d49eb0d-9679-4d86-85cb-3d95a89e4233": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/pixeltrue-icons-grow-your-money-3.png",
-                        "title": "ReUse RePurpose ReThink",
-                        "text": "<p>Let's make something <em>new<\/em> from old devices, it can be a new NAS server, pfSense router or a simple home automation server or go dev mode and make a k8s cluster. New ideas on old devices.<\/p>",
-                        "link_label": "",
-                        "link": "shopify:\/\/blogs\/news"
-                    }
-                },
-                "1efa6ee3-dcbf-43ac-933f-e6bc346a1f43": {
-                    "type": "column",
-                    "disabled": true,
-                    "settings": {
-                        "title": "Column",
-                        "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.<\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                }
-            },
-            "block_order": [
-                "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-2",
-                "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-0",
-                "3abf3d01-a31d-4eff-98f2-2ccc98847150",
-                "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-1",
-                "d0eeedb4-abf8-41a5-9c77-73e4b71feaf8",
-                "36a42daf-82c5-4b95-a69d-8dcba856880d",
-                "0d49eb0d-9679-4d86-85cb-3d95a89e4233",
-                "1efa6ee3-dcbf-43ac-933f-e6bc346a1f43"
-            ],
-            "settings": {
-                "title": "",
-                "heading_size": "h2",
-                "image_width": "third",
-                "image_ratio": "adapt",
-                "button_label": "",
-                "button_link": "",
-                "columns_desktop": 3,
-                "column_alignment": "center",
-                "background_style": "primary",
-                "color_scheme": "background-1",
-                "columns_mobile": "1",
-                "swipe_on_mobile": false,
-                "padding_top": 20,
-                "padding_bottom": 20
-            }
+        "124573fd-bbb6-445b-83d7-735c232462b6": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/shipping-optimized.jpg",
+            "image_overlay_opacity": 30,
+            "heading": "Fast & Free Shipping",
+            "heading_size": "h1",
+            "subheading": "On all orders 🚀",
+            "button_label": "",
+            "link": "shopify://policies/shipping-policy",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "bottom-center",
+            "text_alignment": "center",
+            "text_alignment_mobile": "center",
+            "color_scheme": "inverse"
+          }
         },
-        "multicolumn": {
-            "type": "multicolumn",
-            "blocks": {
-                "column1": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/dell_1.png",
-                        "title": "",
-                        "text": "<p><\/p>",
-                        "link_label": "",
-                        "link": "https:\/\/ticktech.com\/"
-                    }
-                },
-                "column2": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/lenovo_1.png",
-                        "title": "",
-                        "text": "<p><\/p>",
-                        "link_label": "",
-                        "link": "https:\/\/ticktech.com\/"
-                    }
-                },
-                "column3": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/hp_1.png",
-                        "title": "",
-                        "text": "<p><\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "3b791899-8673-4a38-bd8a-14892be58ea7": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/microsoft1_1.png",
-                        "title": "",
-                        "text": "<p><\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "afb02e5f-f146-409b-a297-05fd5e34b75e": {
-                    "type": "column",
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/Grey3.png",
-                        "title": "",
-                        "text": "<p><\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                },
-                "c840f97a-b3d0-43a1-88f2-eeae1fe3a7ee": {
-                    "type": "column",
-                    "disabled": true,
-                    "settings": {
-                        "image": "shopify:\/\/shop_images\/385-3857956_gigabyte-logo-black-and-white-ihs-markit-logo_1.png",
-                        "title": "",
-                        "text": "<p><\/p>",
-                        "link_label": "",
-                        "link": ""
-                    }
-                }
-            },
-            "block_order": [
-                "column1",
-                "column2",
-                "column3",
-                "3b791899-8673-4a38-bd8a-14892be58ea7",
-                "afb02e5f-f146-409b-a297-05fd5e34b75e",
-                "c840f97a-b3d0-43a1-88f2-eeae1fe3a7ee"
-            ],
-            "disabled": true,
-            "settings": {
-                "title": "",
-                "heading_size": "h1",
-                "image_width": "full",
-                "image_ratio": "adapt",
-                "button_label": "",
-                "button_link": "",
-                "columns_desktop": 5,
-                "column_alignment": "center",
-                "background_style": "none",
-                "color_scheme": "background-1",
-                "columns_mobile": "1",
-                "swipe_on_mobile": true,
-                "padding_top": 64,
-                "padding_bottom": 8
-            }
-        },
-        "b5c0d8ec-d094-493c-94ca-f05c9eba2ab0": {
-            "type": "featured-product",
-            "blocks": {
-                "68336ab7-f643-4086-a414-03ca369dd3ad": {
-                    "type": "custom_liquid",
-                    "settings": {
-                        "custom_liquid": "<h1 id=\"dotw\" > <strong>DEAL OF THE WEEK <\/strong> <\/h1>\n<div id=\"timer\">\n  <div id=\"days\"><\/div>\n  <div id=\"hours\"><\/div>\n  <div id=\"minutes\"><\/div>\n  <div id=\"seconds\"><\/div>\n\n<\/div>\n\n<style>\n@import url(https:\/\/fonts.googleapis.com\/css?family=Covered+By+Your+Grace);\n\n#days {\n  font-size: 50px;\n  color: white;\n}\n#hours {\n  font-size: 50px;\n  color: black;\n}\n#minutes {\n  font-size: 50px;\n  color: black;\n}\n#seconds {\n  font-size: 50px;\n  color: white;\n}\n\n#days, #hours, #minutes, #seconds {\n  display: table-cell;\n  line-height: 1;\n  padding: 5px 15px;\n  font-size: 35px;\n  color: white;\n}\n\n#timespan {\n  display: block;\n  font-size: 20px;\n  color: white;\n}\n\n#timer {\n  background: #d11e1f;\n  font-family: 'Covered By Your Grace', cursive;\n  text-align: center;\n  color: white;\n  border-radius:5px;\ndisplay: inline-block;\n\n}\n#dotw{\ntext-align:left;\nfont-family: monospace;\nmargin:0;\nfont-size:34px;\n}\n  \n<\/style>\n\n<script type=\"text\/javascript\">\nfunction makeTimer() {\nvar endTime = new Date(\"{{  section.settings.product.metafields.custom.endtime}}\");\n\n\/\/var endTime = new Date(\"August 14, 2023 00:00:00 PDT\");\t\t\t\n\t\t\tvar endTime = (Date.parse(endTime )) \/ 1000;\n\n\t\t\tvar now = new Date();\n\t\t\tvar now = (Date.parse(now) \/ 1000);\n\n\t\t\tvar timeLeft = endTime - now;\n\n\t\t\tvar days = Math.floor(timeLeft \/ 86400); \n\t\t\tvar hours = Math.floor((timeLeft - (days * 86400)) \/ 3600);\n\t\t\tvar minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) \/ 60);\n\t\t\tvar seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));\n\n\t\t\tif (hours < \"10\") { hours = \"0\" + hours; }\n\t\t\tif (minutes < \"10\") { minutes = \"0\" + minutes; }\n\t\t\tif (seconds < \"10\") { seconds = \"0\" + seconds; }\n\n\t\t\t\tdocument.getElementById(\"days\").innerHTML = days + \"<span id='timespan'>Days<\/span>\";\n\t\t\tdocument.getElementById(\"hours\").innerHTML = hours + \"<span id='timespan'>Hours<\/span>\";\n\t\t\tdocument.getElementById(\"minutes\").innerHTML = minutes + \"<span id='timespan'>Minutes<\/span>\";\n\t\t\tdocument.getElementById(\"seconds\").innerHTML = seconds + \"<span id='timespan'>Seconds<\/span>\";\t\t\n\n}\n  \n\tsetInterval(function() { makeTimer(); }, 1000);\n<\/script>"
-                    }
-                },
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-text-1": {
-                    "type": "text",
-                    "disabled": true,
-                    "settings": {
-                        "text": "{{ section.settings.product.vendor }}",
-                        "text_style": "uppercase"
-                    }
-                },
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-title-1": {
-                    "type": "title",
-                    "settings": {
-                        "heading_size": "h2"
-                    }
-                },
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-price-1": {
-                    "type": "price",
-                    "settings": {}
-                },
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-variant_picker-1": {
-                    "type": "variant_picker",
-                    "disabled": true,
-                    "settings": {
-                        "picker_type": "button",
-                        "swatch_shape": "circle"
-                    }
-                },
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-quantity_selector-1": {
-                    "type": "quantity_selector",
-                    "settings": {}
-                },
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-buy_buttons-1": {
-                    "type": "buy_buttons",
-                    "settings": {
-                        "show_dynamic_checkout": true,
-                        "show_gift_card_recipient": true
-                    }
-                },
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-share-1": {
-                    "type": "share",
-                    "settings": {
-                        "share_label": "Share"
-                    }
-                },
-                "0a56f519-d2a0-4e7c-ad2b-5b28f2c5698a": {
-                    "type": "rating",
-                    "disabled": true,
-                    "settings": {}
-                }
-            },
-            "block_order": [
-                "68336ab7-f643-4086-a414-03ca369dd3ad",
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-text-1",
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-title-1",
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-price-1",
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-variant_picker-1",
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-quantity_selector-1",
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-buy_buttons-1",
-                "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-share-1",
-                "0a56f519-d2a0-4e7c-ad2b-5b28f2c5698a"
-            ],
-            "settings": {
-                "product": "breakfree-computers-deal-of-the-week",
-                "color_scheme": "background-1",
-                "secondary_background": false,
-                "media_size": "small",
-                "constrain_to_viewport": true,
-                "media_fit": "contain",
-                "media_position": "left",
-                "image_zoom": "none",
-                "hide_variants": false,
-                "enable_video_looping": false,
-                "padding_top": 36,
-                "padding_bottom": 36
-            }
-        },
-        "featured_collection": {
-            "type": "featured-collection",
-            "settings": {
-                "collection": "mini-pc",
-                "products_to_show": 5,
-                "title": "Recently added",
-                "heading_size": "h2",
-                "description": "",
-                "show_description": false,
-                "description_style": "body",
-                "columns_desktop": 5,
-                "enable_desktop_slider": false,
-                "full_width": false,
-                "show_view_all": false,
-                "view_all_style": "solid",
-                "color_scheme": "background-1",
-                "image_ratio": "adapt",
-                "image_shape": "default",
-                "show_secondary_image": false,
-                "show_vendor": false,
-                "show_rating": true,
-                "quick_add": "none",
-                "columns_mobile": "2",
-                "swipe_on_mobile": true,
-                "padding_top": 36,
-                "padding_bottom": 36
-            }
+        "template--16845912539417__d2a7f3ac-886e-4197-8c48-027e0f688f6f-1668324058ad398561-1": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/return-button-optimized.jpg",
+            "image_overlay_opacity": 40,
+            "heading": "60-days hassle free return",
+            "heading_size": "h1",
+            "subheading": "60 days to change your mind 😎",
+            "button_label": "",
+            "link": "shopify://policies/refund-policy",
+            "button_style_secondary": false,
+            "show_text_box": false,
+            "box_align": "middle-left",
+            "text_alignment": "center",
+            "text_alignment_mobile": "left",
+            "color_scheme": "accent-2"
+          }
         }
+      },
+      "block_order": [
+        "e4317265-d7a0-4a6e-a167-040e023958b8",
+        "be9b7b80-111e-4070-a0d8-cadbf64d3cdb",
+        "template--16845912539417__d2a7f3ac-886e-4197-8c48-027e0f688f6f-1668324058ad398561-0",
+        "124573fd-bbb6-445b-83d7-735c232462b6",
+        "template--16845912539417__d2a7f3ac-886e-4197-8c48-027e0f688f6f-1668324058ad398561-1"
+      ],
+      "custom_css": [],
+      "settings": {
+        "layout": "grid",
+        "slide_height": "small",
+        "slider_visual": "dots",
+        "auto_rotate": true,
+        "change_slides_speed": 5,
+        "image_behavior": "none",
+        "show_text_below": false,
+        "accessibility_info": "Slideshow about our brand"
+      }
     },
-    "order": [
-        "d2a7f3ac-886e-4197-8c48-027e0f688f6f",
-        "44c52b0e-c3f1-4482-bae8-962c1f12d4dc",
-        "collection_list_RrckDr",
-        "87754bf5-246d-4ee2-9f15-3c0f43eeb274",
-        "multicolumn",
-        "b5c0d8ec-d094-493c-94ca-f05c9eba2ab0",
-        "featured_collection"
-    ]
+    "44c52b0e-c3f1-4482-bae8-962c1f12d4dc": {
+      "type": "collection-list",
+      "blocks": {
+        "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-0": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "mini-pcs"
+          }
+        },
+        "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-2": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "collection": "parts"
+          }
+        },
+        "5cae370a-1995-4816-9067-9efa74403f1e": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "nuc"
+          }
+        },
+        "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-1": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "laptop"
+          }
+        },
+        "2884f61b-a2d6-42b6-800b-f419b3bf0f51": {
+          "type": "featured_collection",
+          "disabled": true,
+          "settings": {
+            "collection": "barebone"
+          }
+        }
+      },
+      "block_order": [
+        "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-0",
+        "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-2",
+        "5cae370a-1995-4816-9067-9efa74403f1e",
+        "template--16845912539417__44c52b0e-c3f1-4482-bae8-962c1f12d4dc-166795305519eade02-1",
+        "2884f61b-a2d6-42b6-800b-f419b3bf0f51"
+      ],
+      "settings": {
+        "title": "Shop Category",
+        "heading_size": "h2",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "color_scheme": "background-1",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "collection_list_RrckDr": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_VB8Pag": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dell-mini-pc"
+          }
+        },
+        "featured_collection_atRmM6": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "lenovo-mini-pc"
+          }
+        },
+        "featured_collection_BcPtim": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "hp-mini-pc"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_VB8Pag",
+        "featured_collection_atRmM6",
+        "featured_collection_BcPtim"
+      ],
+      "settings": {
+        "title": "Mini PCs",
+        "heading_size": "h2",
+        "image_ratio": "adapt",
+        "columns_desktop": 3,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "87754bf5-246d-4ee2-9f15-3c0f43eeb274": {
+      "type": "multicolumn",
+      "blocks": {
+        "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/pixeltrue-icons-security-3.png",
+            "title": "2 Year Warranty",
+            "text": "<p>We are super confident in our refurbishment processes and quality checks, and offer a 2-Year Warranty on all PCs ( just to put this in perspective, that's more than what most manufacturers offer )</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-0": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/pixeltrue-icons-seo-business-location-1.png",
+            "title": "Fast & Free Shipping",
+            "text": "<p>Who likes to pay for shipping? No one! That is why we will never charge you extra for shipping. On top of that, we will try to dispatch all orders received by 3 PM, Mon - Fri, on the same day!</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "3abf3d01-a31d-4eff-98f2-2ccc98847150": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "title": "Environment Friendly",
+            "text": "<p>Our business model reduces unnecessary e-waste, and promotes reuse and redeployment of computing assets. This is just our own little way of thanking Mother Earth.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/pixeltrue-icons-time-is-money-3.png",
+            "title": "60 day returns",
+            "text": "<p>Changed your mind? or just didn't like the device. Feel free to return your device within 60 days of purchase and we will refund you. Have the perfect peace of mind on every purchase.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "d0eeedb4-abf8-41a5-9c77-73e4b71feaf8": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/pixeltrue-icons-seo-optimize.png",
+            "title": "7+ Point Inspection",
+            "text": "<p>We refurbish in-house to control the quality and use a 7+ points inspection and a multi-step quality process, ensuring an amazing unboxing experience for each product.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "36a42daf-82c5-4b95-a69d-8dcba856880d": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/pixeltrue-icons-security.png",
+            "title": "Reliable Customer Service",
+            "text": "<p>We offer affordable, high-quality refurbished computers. Our customer service team is here to help you with any inquiries. We aim to provide the best experience and complete satisfaction.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "0d49eb0d-9679-4d86-85cb-3d95a89e4233": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/pixeltrue-icons-grow-your-money-3.png",
+            "title": "ReUse RePurpose ReThink",
+            "text": "<p>Let's make something <em>new</em> from old devices, it can be a new NAS server, pfSense router or a simple home automation server or go dev mode and make a k8s cluster. New ideas on old devices.</p>",
+            "link_label": "",
+            "link": "shopify://blogs/news"
+          }
+        },
+        "1efa6ee3-dcbf-43ac-933f-e6bc346a1f43": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "title": "Column",
+            "text": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-2",
+        "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-0",
+        "3abf3d01-a31d-4eff-98f2-2ccc98847150",
+        "template--16845912539417__87754bf5-246d-4ee2-9f15-3c0f43eeb274-166795501019f3d31a-1",
+        "d0eeedb4-abf8-41a5-9c77-73e4b71feaf8",
+        "36a42daf-82c5-4b95-a69d-8dcba856880d",
+        "0d49eb0d-9679-4d86-85cb-3d95a89e4233",
+        "1efa6ee3-dcbf-43ac-933f-e6bc346a1f43"
+      ],
+      "settings": {
+        "title": "",
+        "heading_size": "h2",
+        "image_width": "third",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 3,
+        "column_alignment": "center",
+        "background_style": "primary",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "multicolumn": {
+      "type": "multicolumn",
+      "blocks": {
+        "column1": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/dell_1.png",
+            "title": "",
+            "text": "<p></p>",
+            "link_label": "",
+            "link": "https://ticktech.com/"
+          }
+        },
+        "column2": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/lenovo_1.png",
+            "title": "",
+            "text": "<p></p>",
+            "link_label": "",
+            "link": "https://ticktech.com/"
+          }
+        },
+        "column3": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/hp_1.png",
+            "title": "",
+            "text": "<p></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "3b791899-8673-4a38-bd8a-14892be58ea7": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/microsoft1_1.png",
+            "title": "",
+            "text": "<p></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "afb02e5f-f146-409b-a297-05fd5e34b75e": {
+          "type": "column",
+          "settings": {
+            "image": "shopify://shop_images/Grey3.png",
+            "title": "",
+            "text": "<p></p>",
+            "link_label": "",
+            "link": ""
+          }
+        },
+        "c840f97a-b3d0-43a1-88f2-eeae1fe3a7ee": {
+          "type": "column",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/385-3857956_gigabyte-logo-black-and-white-ihs-markit-logo_1.png",
+            "title": "",
+            "text": "<p></p>",
+            "link_label": "",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "column1",
+        "column2",
+        "column3",
+        "3b791899-8673-4a38-bd8a-14892be58ea7",
+        "afb02e5f-f146-409b-a297-05fd5e34b75e",
+        "c840f97a-b3d0-43a1-88f2-eeae1fe3a7ee"
+      ],
+      "disabled": true,
+      "settings": {
+        "title": "",
+        "heading_size": "h1",
+        "image_width": "full",
+        "image_ratio": "adapt",
+        "button_label": "",
+        "button_link": "",
+        "columns_desktop": 5,
+        "column_alignment": "center",
+        "background_style": "none",
+        "color_scheme": "background-1",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
+        "padding_top": 64,
+        "padding_bottom": 8
+      }
+    },
+    "b5c0d8ec-d094-493c-94ca-f05c9eba2ab0": {
+      "type": "featured-product",
+      "blocks": {
+        "68336ab7-f643-4086-a414-03ca369dd3ad": {
+          "type": "custom_liquid",
+          "settings": {
+            "custom_liquid": "<h1 id=\"dotw\" > <strong>DEAL OF THE WEEK </strong> </h1>\n<div id=\"timer\">\n  <div id=\"days\"></div>\n  <div id=\"hours\"></div>\n  <div id=\"minutes\"></div>\n  <div id=\"seconds\"></div>\n\n</div>\n\n<style>\n@import url(https://fonts.googleapis.com/css?family=Covered+By+Your+Grace);\n\n#days {\n  font-size: 50px;\n  color: white;\n}\n#hours {\n  font-size: 50px;\n  color: black;\n}\n#minutes {\n  font-size: 50px;\n  color: black;\n}\n#seconds {\n  font-size: 50px;\n  color: white;\n}\n\n#days, #hours, #minutes, #seconds {\n  display: table-cell;\n  line-height: 1;\n  padding: 5px 15px;\n  font-size: 35px;\n  color: white;\n}\n\n#timespan {\n  display: block;\n  font-size: 20px;\n  color: white;\n}\n\n#timer {\n  background: #d11e1f;\n  font-family: 'Covered By Your Grace', cursive;\n  text-align: center;\n  color: white;\n  border-radius:5px;\ndisplay: inline-block;\n\n}\n#dotw{\ntext-align:left;\nfont-family: monospace;\nmargin:0;\nfont-size:34px;\n}\n  \n</style>\n\n<script type=\"text/javascript\">\nfunction makeTimer() {\nvar endTime = new Date(\"{{  section.settings.product.metafields.custom.endtime}}\");\n\n//var endTime = new Date(\"August 14, 2023 00:00:00 PDT\");\t\t\t\n\t\t\tvar endTime = (Date.parse(endTime )) / 1000;\n\n\t\t\tvar now = new Date();\n\t\t\tvar now = (Date.parse(now) / 1000);\n\n\t\t\tvar timeLeft = endTime - now;\n\n\t\t\tvar days = Math.floor(timeLeft / 86400); \n\t\t\tvar hours = Math.floor((timeLeft - (days * 86400)) / 3600);\n\t\t\tvar minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);\n\t\t\tvar seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));\n\n\t\t\tif (hours < \"10\") { hours = \"0\" + hours; }\n\t\t\tif (minutes < \"10\") { minutes = \"0\" + minutes; }\n\t\t\tif (seconds < \"10\") { seconds = \"0\" + seconds; }\n\n\t\t\t\tdocument.getElementById(\"days\").innerHTML = days + \"<span id='timespan'>Days</span>\";\n\t\t\tdocument.getElementById(\"hours\").innerHTML = hours + \"<span id='timespan'>Hours</span>\";\n\t\t\tdocument.getElementById(\"minutes\").innerHTML = minutes + \"<span id='timespan'>Minutes</span>\";\n\t\t\tdocument.getElementById(\"seconds\").innerHTML = seconds + \"<span id='timespan'>Seconds</span>\";\t\t\n\n}\n  \n\tsetInterval(function() { makeTimer(); }, 1000);\n</script>"
+          }
+        },
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-text-1": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "text": "{{ section.settings.product.vendor }}",
+            "text_style": "uppercase"
+          }
+        },
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-title-1": {
+          "type": "title",
+          "settings": {
+            "heading_size": "h2"
+          }
+        },
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-price-1": {
+          "type": "price",
+          "settings": {}
+        },
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-variant_picker-1": {
+          "type": "variant_picker",
+          "disabled": true,
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-quantity_selector-1": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-buy_buttons-1": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": true
+          }
+        },
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-share-1": {
+          "type": "share",
+          "settings": {
+            "share_label": "Share"
+          }
+        },
+        "0a56f519-d2a0-4e7c-ad2b-5b28f2c5698a": {
+          "type": "rating",
+          "disabled": true,
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "68336ab7-f643-4086-a414-03ca369dd3ad",
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-text-1",
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-title-1",
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-price-1",
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-variant_picker-1",
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-quantity_selector-1",
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-buy_buttons-1",
+        "template--16845912539417__b5c0d8ec-d094-493c-94ca-f05c9eba2ab0-share-1",
+        "0a56f519-d2a0-4e7c-ad2b-5b28f2c5698a"
+      ],
+      "settings": {
+        "product": "breakfree-computers-deal-of-the-week",
+        "color_scheme": "background-1",
+        "secondary_background": false,
+        "media_size": "small",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "media_position": "left",
+        "image_zoom": "none",
+        "hide_variants": false,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "collection": "mini-pcs",
+        "products_to_show": 5,
+        "title": "Recently added",
+        "heading_size": "h2",
+        "description": "",
+        "show_description": false,
+        "description_style": "body",
+        "columns_desktop": 5,
+        "enable_desktop_slider": false,
+        "full_width": false,
+        "show_view_all": false,
+        "view_all_style": "solid",
+        "color_scheme": "background-1",
+        "image_ratio": "adapt",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": true,
+        "quick_add": "none",
+        "columns_mobile": "2",
+        "swipe_on_mobile": true,
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "d2a7f3ac-886e-4197-8c48-027e0f688f6f",
+    "44c52b0e-c3f1-4482-bae8-962c1f12d4dc",
+    "collection_list_RrckDr",
+    "87754bf5-246d-4ee2-9f15-3c0f43eeb274",
+    "multicolumn",
+    "b5c0d8ec-d094-493c-94ca-f05c9eba2ab0",
+    "featured_collection"
+  ]
 }
