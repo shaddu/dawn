@@ -36,7 +36,7 @@
   }
 {%- endstyle -%}
 
-{% assign collection.products = collection.products | where: "type", "Mini PC" %}
+{% assign renamed_variable_collection_2e_products = collection.products | where: "type", "Mini PC" %}
 
 <div class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
   {%- paginate collection.products by section.settings.products_per_page -%}
@@ -424,3 +424,15 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: '{% assign collection.products = collection.products | where: "type", "Mini
+    PC" %}'
+  to: '{% assign renamed_variable_collection_2e_products = collection.products | where:
+    "type", "Mini PC" %}'
+  position: 1463..1564
+{% endcomment %}
